@@ -1,7 +1,7 @@
 <template>
 <section id="home">
   <div class="news">
-    <h2>NYHETER</h2>
+    <h2>NYHETER</h2> 
   </div>
 </section>
 </template>

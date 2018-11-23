@@ -2,7 +2,6 @@
   <div id="app">
     <main-nav/>
     <hero/>
-    <!--<img src="./assets/logo.png">-->
     <router-view/>
   </div>
 </template>

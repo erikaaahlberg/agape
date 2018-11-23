@@ -4,7 +4,7 @@
       <div class="overlay">
     <div class="container">
       <h1 class="title">
-        Karl Green
+        <i class="fas fa-angle-right"></i> Karl Green
       </h1>
       <h2 class="subtitle">
         Människa & vägledare på jorden
@@ -43,10 +43,16 @@
       top: 0;
       left: 0;
   }
-    .title, 
-    .subtitle{
+  .title, 
+  .subtitle{
     color: white;
     font-family: 'Hind', sans-serif;
     letter-spacing: 1.5px;
-    }
+  }
+  i.fa-angle-right{
+    color: red;
+    font-size: 1.3em;
+    position: relative;
+    bottom: -4px;
+  }
 </style>
