@@ -24,7 +24,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
   #top-hero-img {
-    background: url("../../images/hero-image2.jpg"); 
+    background: url("../../../images/hero-image2.jpg"); 
     background-size: cover;
     position: relative;
 		height: 300px;

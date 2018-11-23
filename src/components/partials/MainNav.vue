@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <img src="../../images/logotype2.png" id="logotype-img-top">
+      <img src="../../../images/logotype2.png" id="logotype-img-top">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="isOpen = !isOpen"
         v-bind:class="{'is-active': isOpen}">
         <span aria-hidden="true"></span>
@@ -11,9 +11,11 @@
     </div>
     <div class="navbar-menu" v-bind:class="{'is-active': isOpen}">
       <div class="navbar-end">
-        <router-link to="/" class="navbar-item is-tab"> Home</router-link>
-        <router-link to="/about" class="navbar-item is-tab">About</router-link>
-        <router-link to="/else" class="navbar-item is-tab">Something</router-link>
+        <router-link to="/" class="navbar-item is-tab">Start</router-link>
+        <router-link to="/about" class="navbar-item is-tab">Om Karl</router-link>
+        <router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link>
+        <router-link to="/book" class="navbar-item is-tab">Boka</router-link>
+        <router-link to="/art" class="navbar-item is-tab">Konst</router-link>
       </div>
     </div>
   </nav>

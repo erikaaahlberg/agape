@@ -3,19 +3,19 @@
     <main-nav/>
     <hero/>
     <!--<img src="./assets/logo.png">-->
-    <!--<router-view/>-->
+    <router-view/>
   </div>
 </template>
 
 <script>
-import mainNav from '@/components/MainNav'
-import hero from '@/components/HeroImage'
+import MainNav from './components/partials/MainNav'
+import Hero from './components/sections/HeroImage'
 
 export default {
   name: 'App',
   components: {
-    'main-nav': mainNav,
-    'hero': hero
+    'main-nav': MainNav,
+    'hero': Hero
   }
 };
 </script>
@@ -45,6 +45,6 @@ body{
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: white;
 }
 </style>
