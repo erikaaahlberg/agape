@@ -1,6 +1,6 @@
 <template>
 <section id="about">
-  <div class="news">
+  <div class="section-padding">
     <h2>ABOUT</h2>
   </div>
 </section>

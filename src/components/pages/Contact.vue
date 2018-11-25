@@ -1,5 +1,5 @@
 <template>
-<section id="contact">
+<section id="section-padding">
   <div class="news">
     <h2>contact</h2>
   </div>

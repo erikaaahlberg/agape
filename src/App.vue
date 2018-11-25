@@ -22,7 +22,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Hind:400,600,700');
 
-/* Global */
+/* Global classes */
 .flex-center{
   display: flex;
   align-items: center;
@@ -31,6 +31,10 @@ export default {
 .content-wrapper{
   margin: 30px;
 }
+.section-padding{
+  padding: 30px 50px;
+}
+
 *{
   box-sizing: border-box;
 }
