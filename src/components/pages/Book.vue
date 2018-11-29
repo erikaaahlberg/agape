@@ -2,13 +2,31 @@
 <section id="book">
   <div class="section-padding">
     <h2>Book</h2>
+    <!--{{ fetchedBookings }}-->
   </div>
 </section>
 </template>
 
 <script>
-    /*export default {
-        name: 'Home'
+  import fetchBookings from '../services/fetchBookings';
+  console.log(fetchBookings);
+  /*  export default {
+        name: 'Book',
+        data: function() {
+          return {
+            this.
+          }
+        }
+    }*/
+    /*    methods: {
+          function (fetchBookings) {
+            fetch("api/bookings")
+            .then(response => response.json())
+            .then((fetchedBookings) => {
+              return fetchedBookings;
+            })
+          }
+        }
     };*/
     /*export default {
         name: 'Home',
