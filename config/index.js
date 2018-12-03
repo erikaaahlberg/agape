@@ -5,12 +5,31 @@
 const path = require('path')
 
 module.exports = {
-  dev: {
+    /*proxy: {
+      "/api": {
+        target: "http://localhost:3001/",
+        port: 3001,
+        changeOrigin: true,
+        pathRewrite: {
+        '^/api': ''
+      }
+      }
+    }*/
 
+  dev: {
+    /*proxyTable: {
+      // proxy all requests starting with /api to jsonplaceholder
+      '/api': {
+        target: 'http://localhost:3001/',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },*/
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

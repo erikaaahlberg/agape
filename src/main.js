@@ -9,6 +9,7 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
 Vue.use(Buefy);
+Vue.prototype.HOST = '/api';
 
 Vue.config.productionTip = false;
 
