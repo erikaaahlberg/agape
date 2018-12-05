@@ -1,16 +1,21 @@
 <template>
-<section id="book">
-  <div class="section-padding">
+<section id="book" class="section-padding">
     <h2>Book</h2>
     <p>{{ bookings }}
     {{ hello }}</p>
-  </div>
+      <booking-form/>
+      <div class="pickers-wrapper">
+        <datepicker/>
+        <timepicker/>
+      </div>
 </section>
 </template>
 
 <script>
-  //import fetchBookings from '../../services/fetchBookings.js';
-  //console.log(fetchBookings);
+  import Datepicker from '../partials/DatePicker'
+  import BookingForm from '../partials/BookingForm'
+  import Timepicker from '../partials/Timepicker'
+
     export default {
         name: 'Book',
         data: function() {
@@ -21,10 +26,6 @@
         },
         methods: {
           fetchBookings: function () {
-            /*var xhr = new XMLHttpRequest();
-            xhr.open('GET', 'ttp://localhost:3001/bookings', true);
-            xhr.withCredentials = true;
-            xhr.send(null);*/
             fetch("http://localhost:3001/bookings", {
                method: 'GET',
                headers: {
@@ -45,6 +46,11 @@
         mounted: function() {
           this.fetchBookings();
           this.sayHello();
+        },
+        components: {
+          'booking-form': BookingForm,
+          'datepicker': Datepicker,
+          'timepicker': Timepicker
         }
     }
     /*    methods: {
@@ -77,8 +83,44 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.purple{
-  background: transparent;
-  height: 200px;
+.pickers-wrapper{
+  width: 100%;
+  display: flex; 
+  justify-content: space-between;
+}
+/*.field{
+  flex-basis: 45%;
+}
+.book-input{
+	flex-basis: 100%;
+}
+
+	.datepicker-wrapper{
+    width: 50%;
+		flex-basis: 45%;
+	}*/
+.input,
+.textarea{
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid rgb(193, 163, 87);
+	border-radius: 0px;
+	}
+/*.input,
+.textarea{
+	background: transparent;
+	border: none;
+	border-bottom: 1px solid rgb(193, 163, 87);
+	border-radius: 0px;
+}*/
+input.input:focus,
+textarea.textarea:focus,
+input.input:active,
+textarea.textarea:active{
+	background: transparent;
+	border: none;
+	outline: none !important;
+	border-bottom: 1px solid red;
+	border-radius: 0px;
 }
 </style>

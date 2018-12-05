@@ -8,9 +8,14 @@ import router from './router';
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
-Vue.use(Buefy);
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+  defaultContainerElement: '#content',
+  defaultDayNames: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'],
+  defaultUnselectableDaysOfWeek: ['Lör', 'Sön'],
+  defaultTimeFormatter: 'HH:mm'
+})
 Vue.prototype.HOST = '/api';
-
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

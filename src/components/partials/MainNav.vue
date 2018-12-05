@@ -30,7 +30,6 @@
             }
         }
     };
-
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -81,6 +80,7 @@
         color: rgb(193, 163, 87);
         transition: all .2s ease-in-out;
         border-bottom: 1px solid rgb(193, 163, 87);
+        text-align: center;
     }
 
 
