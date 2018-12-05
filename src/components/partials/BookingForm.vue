@@ -31,7 +31,7 @@
 
 </script>
 
-<style>
+<style lang="scss">
 .book-input{
 	display: flex;
 	justify-content: space-between;

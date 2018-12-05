@@ -22,6 +22,7 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Hind:400,600,700');
 /*@import "~bulma/sass/utilities/_all";*/
+@import '@/scss/_variables.scss';
 
 /* Global classes */
 .flex-center{
@@ -41,10 +42,10 @@ export default {
 }
 body{
   height: 100%;
-  background: rgb(29, 29, 29);
+  background: $black;
 }
 #app {
-  background: rgb(29, 29, 29);
+  background: $black;
   font-family: 'Hind', sans-serif;
   text-transform: uppercase;
   -webkit-font-smoothing: antialiased;

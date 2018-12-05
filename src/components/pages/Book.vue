@@ -82,11 +82,36 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-.pickers-wrapper{
-  width: 100%;
-  display: flex; 
-  justify-content: space-between;
+<style lang="scss">
+@import '@/scss/_variables.scss';
+#book{
+  .pickers-wrapper{
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
+  }
+  .input,
+  .textarea{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(193, 163, 87);
+    border-radius: 0px;
+  }
+  input.input:focus,
+  textarea.textarea:focus,
+  input.input:active,
+  textarea.textarea:active{
+    background: transparent;
+    border: none;
+    outline: none !important;
+    border-bottom: 1px solid red;
+    border-radius: 0px;
+  }
+  .timepicker-control{
+    .dropdown-content{
+      background: $black;
+    }
+  }
 }
 /*.field{
   flex-basis: 45%;
@@ -99,13 +124,7 @@
     width: 50%;
 		flex-basis: 45%;
 	}*/
-.input,
-.textarea{
-	background: transparent;
-	border: none;
-	border-bottom: 1px solid rgb(193, 163, 87);
-	border-radius: 0px;
-	}
+
 /*.input,
 .textarea{
 	background: transparent;
@@ -113,14 +132,5 @@
 	border-bottom: 1px solid rgb(193, 163, 87);
 	border-radius: 0px;
 }*/
-input.input:focus,
-textarea.textarea:focus,
-input.input:active,
-textarea.textarea:active{
-	background: transparent;
-	border: none;
-	outline: none !important;
-	border-bottom: 1px solid red;
-	border-radius: 0px;
-}
+
 </style>
