@@ -23,6 +23,14 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Hind:400,600,700');
 /*@import "~bulma/sass/utilities/_all";*/
 @import '@/scss/_variables.scss';
+@import '@/scss/_base.scss';
+// Custom variables go here
+$family-sans-serif: "Hind", sans-serif;
+// Import Bulma and Buefy styles
+/*@import "~bulma/sass/utilities/_all";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+@import '@/scss/_bulma.scss';*/
 
 /* Global classes */
 .flex-center{
@@ -37,13 +45,7 @@ export default {
   padding: 30px 50px;
 }
 
-*{
-  box-sizing: border-box;
-}
-body{
-  height: 100%;
-  background: $black;
-}
+
 #app {
   background: $black;
   font-family: 'Hind', sans-serif;

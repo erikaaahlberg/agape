@@ -1,18 +1,18 @@
+// Set your colors
 $black: rgb(29, 29, 29);
 $gold: rgb(193, 163, 87);
 $red: rgb(240, 84, 57);
-$white: rgb(245, 226, 226);
-$primary: #714ed2;
+$purple: #714ed2;
+$purple-invert: findColorInvert($purple);
+
+
+$primary: #8c67ef;
 $primary-invert: findColorInvert($primary);
-
-$lightGrey: #7a7a7a;
-$mediumGrey: #4a4a4a;
-
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
-/*$colors: (
+$colors: (
     "white": ($white, $black),
     "black": ($black, $white),
     "light": ($light, $light-invert),
@@ -23,9 +23,9 @@ $twitter-invert: findColorInvert($twitter);
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
     "twitter": ($twitter, $twitter-invert)
-);*/
+);
 
 // Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: none;
+$link: $purple;
+$link-invert: $purple-invert;
+$link-focus-border: $purple;

@@ -76,7 +76,7 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.sass$/,
         use: [
           'vue-style-loader',
           'css-loader',
@@ -85,8 +85,8 @@ module.exports = {
             options: {
               indentedSyntax: true,
               data: `
-                @import "./scss/_variables.scss";
-                @import "./scss/_mixins.scss";
+                @import "../scss/_variables.scss";
+                @import "../scss/_mixins.scss";
               `
             }
           }

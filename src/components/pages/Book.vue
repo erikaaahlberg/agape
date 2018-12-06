@@ -1,8 +1,7 @@
 <template>
 <section id="book" class="section-padding">
-    <h2>Book</h2>
-    <p>{{ bookings }}
-    {{ hello }}</p>
+    <h2>Boka en tid med Karl</h2>
+    <p>{{ bookings }}</p>
       <booking-form/>
       <div class="pickers-wrapper">
         <datepicker/>
@@ -85,34 +84,83 @@
 <style lang="scss">
 @import '@/scss/_variables.scss';
 #book{
-  .pickers-wrapper{
-    width: 100%;
-    display: flex; 
-    justify-content: space-between;
-  }
   .input,
   .textarea{
     background: transparent;
     border: none;
-    border-bottom: 1px solid rgb(193, 163, 87);
+    border-bottom: 1px solid $gold;
     border-radius: 0px;
+    color: white;
+    font-family: 'Hind', sans-serif;
+    letter-spacing: 1.5px;
   }
   input.input:focus,
   textarea.textarea:focus,
   input.input:active,
   textarea.textarea:active{
     background: transparent;
-    border: none;
-    outline: none !important;
-    border-bottom: 1px solid red;
+    /*border: none;
+    outline: none;*/
+    border-bottom: 1px solid $white;
+    box-shadow: none;
     border-radius: 0px;
   }
-  .timepicker-control{
-    .dropdown-content{
-      background: $black;
-    }
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $mediumGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $mediumGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: $mediumGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $mediumGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .field{
+    flex-basis: 45%;
+  }
+  .label{
+    font-size: 1.2em;
+    color: $lightGrey;
+    letter-spacing: 1.5px;
+  }
+  
+  /* Timepicker and datepicker */
+  .icon i{
+    color: $mediumGrey;
+    margin-right: 5px;
+  }
+  .dropdown-content{
+    background: $black;
+  }
+  .pickers-wrapper{
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
+				select {
+					background: black;
+					font-family: 'hind', sans-serif;
+					text-transform: uppercase;
+					letter-spacing: 1.5px;
+					font-size: 1.1em;
+					color: $white;
+				}
   }
 }
+
 /*.field{
   flex-basis: 45%;
 }

@@ -25,23 +25,24 @@
 </template>
 
 <script>
-  export default {
+  /*export default {
     name: 'BookingForm'
-  }
+  }*/
 
 </script>
 
 <style lang="scss">
-.book-input{
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-}
-.field{
-	flex-basis: 45%;
-}
-.textarea-wrapper{
-	flex-basis: 100%;
+@import '@/scss/_variables.scss';
+
+#book{
+	.book-input{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	.textarea-wrapper{
+		flex-basis: 100%;
+	}
 }
 /*.book-input input{
 	flex-basis: 45%;

@@ -10,7 +10,6 @@ import 'buefy/dist/buefy.css'
 
 Vue.use(Buefy, {
   defaultIconPack: 'fas',
-  defaultContainerElement: '#content',
   defaultDayNames: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'],
   defaultUnselectableDaysOfWeek: ['Lör', 'Sön'],
   defaultTimeFormatter: 'HH:mm'
