@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Start from '../components/pages/Start.vue';
-import About from '../components/pages/About.vue';
-import Book from '../components/pages/Book.vue';
-import Contact from '../components/pages/Contact.vue';
-import Art from '../components/pages/Art.vue';
+import Start from '@/components/pages/Start.vue';
+import About from '@/components/pages/About.vue';
+import Book from '@/components/pages/Book.vue';
+import Contact from '@/components/pages/Contact.vue';
+import Art from '@/components/pages/Art.vue';
+import Services from '@/components/pages/Services.vue';
 
 Vue.use(Router);
 
@@ -14,6 +15,11 @@ export default new Router({
       path: '/',
       name: 'Start',
       component: Start
+    },
+    {
+      path: '/services',
+      name: 'Services',
+      component: Services
     },
     {
       path: '/about',

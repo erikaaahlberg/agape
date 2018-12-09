@@ -13,6 +13,7 @@
       <div class="navbar-end">
         <router-link to="/" class="navbar-item is-tab">Start</router-link>
         <router-link to="/about" class="navbar-item is-tab">Om Karl</router-link>
+        <router-link to="/services" class="navbar-item is-tab">Tjänster</router-link>
         <router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link>
         <router-link to="/book" class="navbar-item is-tab">Boka</router-link>
         <router-link to="/art" class="navbar-item is-tab">Konst</router-link>
