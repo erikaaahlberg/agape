@@ -3,9 +3,7 @@
   <div class="hero-body flex-center" id="top-hero-img">
       <div class="overlay">
     <div class="container">
-      <h1>
-        <i class="fas fa-angle-right"></i> Karl Green
-      </h1>
+      <h1>Karl Green</h1>
       <h2 class="subtitle">
         Människa & vägledare på jorden
       </h2>

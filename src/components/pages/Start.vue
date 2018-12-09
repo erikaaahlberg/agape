@@ -1,12 +1,23 @@
 <template>
-<section id="home">
-  <div class="section-padding">
-    <h2>NYHETER</h2> 
-  </div>
-</section>
+  <section id="home">
+    <h2><i class="fas fa-angle-right"></i> Tjänster</h2> 
+    <services-part/>
+    <h2><i class="fas fa-angle-right"></i> Aktuellt</h2> 
+    <news-part/>
+  </section>
 </template>
 
 <script>
+  import ServicesPart from '@/components/partials/ServicesPart.vue';
+  import NewsPart from '@/components/partials/NewsPart.vue';
+  
+  export default {
+    name: 'Start',
+		components: {
+      'services-part': ServicesPart,
+      'news-part': NewsPart
+		}
+  };
     /*export default {
         name: 'Home'
     };*/
@@ -29,9 +40,15 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
-.purple{
-  background: transparent;
-  height: 200px;
+<style lang="scss">
+@import '@/scss/_variables.scss';
+#home{
+  h2{
+    width: 100%;
+    background: $black;
+    border-bottom: 1px solid $lightGrey;
+    padding: 5px;
+    padding-left: 30px;
+  }
 }
 </style>

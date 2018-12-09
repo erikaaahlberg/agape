@@ -1,0 +1,21 @@
+@mixin button($background, $text, $border, $bgHover, $textHover, $borderHover){
+    cursor: pointer;
+    color: $text;
+    border: 2px solid $border;
+    display: inline-block;
+    background: $background;
+    font-size: 0.75rem;
+    padding: 7px 20px;
+    border-radius: 5em;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    &:hover{
+        background: $bgHover;
+        color: $textHover;
+        border: 2px solid $borderHover;
+        transition: all .3s ease-in-out;
+    }
+}
