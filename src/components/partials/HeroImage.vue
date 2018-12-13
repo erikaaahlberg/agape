@@ -24,7 +24,7 @@
 @import '@/scss/_variables.scss';
 
   #top-hero-img {
-    background: url("../../../images/hero-image2.jpg"); 
+    background: url("../../assets/images/hero-image2.jpg"); 
     background-size: cover;
     position: relative;
 		height: 320px;

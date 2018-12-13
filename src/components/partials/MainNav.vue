@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <img src="../../../images/logotype2.png" id="logotype-img-top">
+      <img src="../../assets/images/logotype2.png" id="logotype-img-top">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="isOpen = !isOpen"
         v-bind:class="{'is-active': isOpen}">
         <span aria-hidden="true"></span>

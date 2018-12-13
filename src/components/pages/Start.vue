@@ -48,6 +48,7 @@
     background: $black;
     border-bottom: 1px solid $lightGrey;
     padding: 5px;
+    padding-top: 10px;
     padding-left: 30px;
   }
 }
