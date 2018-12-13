@@ -8,14 +8,19 @@ import router from './router';
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+/* Slider */
+import VueCarousel from '@chenfengyuan/vue-carousel';
+
 Vue.use(Buefy, {
   defaultIconPack: 'fas',
   defaultDayNames: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'],
   defaultUnselectableDaysOfWeek: ['Lör', 'Sön'],
   defaultTimeFormatter: 'HH:mm'
 })
+
 Vue.prototype.HOST = '/api';
 Vue.config.productionTip = false;
+Vue.component(VueCarousel.name, VueCarousel);
 
 /* eslint-disable no-new */
 new Vue({

@@ -71,5 +71,14 @@ $family-sans-serif: "Hind", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $white;
+
+  h2{
+    width: 100%;
+    background: $black;
+    border-bottom: 1px solid $lightGrey;
+    padding: 5px;
+    padding-top: 10px;
+    padding-left: 30px;
+  }
 }
 </style>

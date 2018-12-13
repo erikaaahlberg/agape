@@ -4,9 +4,9 @@
       <div class="overlay">
     <div class="container">
       <h1>Karl Green</h1>
-      <h2 class="subtitle">
+      <h3 class="subtitle">
         Människa & vägledare på jorden
-      </h2>
+      </h3>
     </div>
     </div>
   </div>

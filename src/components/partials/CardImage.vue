@@ -6,8 +6,8 @@
     </div>
       
     <div class="wrapper-card-text">
-      <h3>{{title}}</h3>
-      <p>{{description}}</p>
+      <h3>{{ title }}</h3>
+      <p>{{ description }}</p>
       <a href="#" type="button" class="btn-purple">Läs mer</a>
       <a href="#" type="button" class="btn-red">Boka tid</a>
     </div>
@@ -18,11 +18,11 @@
 <script>
 export default {
   name: 'CardImage',
-    props: [ 
-      'title',
-      'description',
-      'imgUrl'
-    ]
+  props: [ 
+    'title',
+    'description',
+    'imgUrl'
+  ]
 };
 /*export default {
         name: 'Home',

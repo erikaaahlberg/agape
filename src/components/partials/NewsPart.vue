@@ -1,16 +1,19 @@
 <template>
 	<section class="news-part">
-    <div class="wrapper-cards">
+    <div class="wrapper-news-cards">
       <news-card 
-      title="Coaching" 
+      title="Workshop" 
+      date="Söndag 23/01/2019"
+      time="19.30"
+      place="Nacka"
       description="Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul."
       :imgUrl="images.img1"/>
 
-      <news-card title="Tarot/Runor" 
+      <!--<news-card title="Tarot/Runor" 
       description="Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul."/>
 
       <news-card title="Workshop" 
-      description="Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul."/>
+      description="Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul."/>-->
     </div>
 	</section>
 </template>
@@ -22,7 +25,10 @@
     data () {
       return {
         images: {
-          hej: 'hej'
+          img1: require('@/assets/images/card-image1.jpg'),
+          img2: require('@/assets/images/card-image2.jpg'),
+          img3: require('@/assets/images/card-image3.jpg'),
+          img4: require('@/assets/images/card-image1.jpg')
         }
       }
     },
@@ -60,8 +66,9 @@
 @import '@/scss/_variables.scss';
 .wrapper-cards{
     width: 100%;
-    display: flex;
+    text-align: center;
+    /*display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: wrap;*/
 }
 </style>

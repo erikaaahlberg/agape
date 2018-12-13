@@ -1,12 +1,20 @@
 <template>
-<section id="book" class="section-padding">
-    <h2>Boka en tid med Karl</h2>
+<section id="book">
+  <h2><i class="fas fa-angle-right"></i> Boka direkt</h2>
+  <div class="section-padding">
     <p>{{ bookings }}</p>
+    <div class="form-wrapper">
+		<label class="label">Fyll i dina personliga uppgifter</label>
       <booking-form/>
       <div class="pickers-wrapper">
         <datepicker/>
         <timepicker/>
       </div>
+      <div class="btn-wrapper">
+        <input type="submit" class="btn-purple" value="Boka nu">
+      </div>
+    </div>
+  </div>
 </section>
 </template>
 
@@ -84,15 +92,29 @@
 <style lang="scss">
 @import '@/scss/_variables.scss';
 #book{
+  .form-wrapper{
+    border-top: 30px solid $primaryBright;
+    background: $black;
+    padding: 50px;
+  }
+  .btn-wrapper{
+    text-align: center;
+    margin-top: 20px;
+    input[type=submit]{
+      border-color: none;
+      border-style: none;
+    }
+  }
   .input,
   .textarea{
     background: transparent;
     border: none;
-    border-bottom: 1px solid $gold;
+    border-bottom: 1px solid $lightGrey;
     border-radius: 0px;
     color: white;
     font-family: 'Hind', sans-serif;
     letter-spacing: 1.5px;
+    padding-bottom: 5px;
   }
   input.input:focus,
   textarea.textarea:focus,
@@ -106,25 +128,25 @@
     border-radius: 0px;
   }
     ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: $mediumGrey;
+    color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
   ::-moz-placeholder { /* Firefox 19+ */
-    color: $mediumGrey;
+    color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
   :-ms-input-placeholder { /* IE 10+ */
-    color: $mediumGrey;
+    color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
   :-moz-placeholder { /* Firefox 18- */
-    color: $mediumGrey;
+    color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -134,7 +156,7 @@
   }
   .label{
     font-size: 1.2em;
-    color: $lightGrey;
+    color: $white;
     letter-spacing: 1.5px;
   }
   

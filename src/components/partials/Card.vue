@@ -1,7 +1,15 @@
 <template>
   <div class="card card-transparent">
+    <div class="card-img" :style="{ 
+      'background': 'url(' + imgUrl + ')',
+      'background-position': 'center',
+      'background-repeat': 'no-repeat',
+      'background-cover': 'cover'
+     }">
+    </div>
     <div class="wrapper-card-text">
-      <h3 class="news">{{ title }}</h3>
+      <h3>{{ title }}</h3>
+      <h5 class="sub-title">{{ date }} {{ time }} {{ place }}</h5>
       <p>{{ description }}</p>
       <a class="btn-transparent">
         Fortsätt läsa 
@@ -21,9 +29,13 @@
         }
       }
     },
-		props: [ 
+    props: [ 
       'title',
-      'description'
+      'description',
+      'date',
+      'time',
+      'place',
+      'imgUrl'
     ]
     /*,
     mounted: {
@@ -54,8 +66,30 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_variables.scss';
+.card{
+  h5{
+    color: $redBright;
+    font-size: 1.1em;
+  }
+}
 .card-transparent{
     background: transparent;
-    flex-basis: 30%;
+    display: flex;
+    margin: 50px auto;
+    width: 80%;
+  .card-img{
+    width: 100%;
+    flex-basis: 50%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .wrapper-card-text{
+    flex-basis: 50%;
+    text-align: left;
+    /*h3{
+      color: $primaryBright;
+    }*/
+  }
 }
 </style>
