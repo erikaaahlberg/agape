@@ -83,7 +83,4 @@
         border-bottom: 1px solid rgb(193, 163, 87);
         text-align: center;
     }
-
-
-
 </style>
