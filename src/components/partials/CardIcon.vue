@@ -1,27 +1,30 @@
   <template>
   <div class="card card-black">
 
-    <div class="wrapper-card-img">
+    <!--<div class="wrapper-card-img">
       <img v-bind:src="imgUrl"/>
-    </div>
+    </div>-->
       
     <div class="wrapper-card-text">
+      <i :class="icon"></i> 
       <h3>{{ title }}</h3>
       <p>{{ description }}</p>
-      <a href="#" type="button" class="btn-purple">Läs mer</a>
-      <a href="#" type="button" class="btn-red">Boka tid</a>
     </div>
+      <div class="btn-wrapper">
+        <a href="#" type="button" class="btn-purple">Läs mer</a>
+        <a href="#" type="button" class="btn-red">Boka tid</a>
+      </div>
 
   </div>
   </template>
 
 <script>
 export default {
-  name: 'CardImage',
+  name: 'CardIcon',
   props: [ 
     'title',
     'description',
-    'imgUrl'
+    'icon'
   ]
 };
 /*export default {
@@ -51,12 +54,17 @@ export default {
   margin-bottom: 30px;
   &.card-black{
     background: $black;
+    i{
+      font-size: 3em;
+      color: $white;
+      margin-bottom: 20px;
+    }
   }
   @media (min-width: 768px) {
     flex-basis: 45%;
   }
   @media (min-width: 1200px){
-    flex-basis: 40%;
+    flex-basis: 25%;
   }
 
   .wrapper-card-img {
@@ -68,10 +76,10 @@ export default {
     }
   }
   .wrapper-card-text {
-    padding: 30px;
+    padding: 30px 30px 10px 30px;
     text-align: center;
     @media (min-width: 768px) {
-      padding: 40px 50px;
+      padding: 40px 50px 10px 50px;
     }
 
     h3 {
@@ -83,9 +91,6 @@ export default {
 
     p {
       text-transform: none;
-      line-height: 1.6;
-      letter-spacing: 1.5px;
-      font-size: 1em;
       color: $lightGrey;
     }
 
@@ -93,6 +98,12 @@ export default {
       margin: 5px;
       margin-top: 20px;
       margin-bottom: 10px;
+    }
+  }
+  .btn-wrapper{
+    padding: 0px 0px 40px 0px;
+    @media(min-width: 768px){
+    padding: 0px 0px 50px 0px;
     }
   }
 }

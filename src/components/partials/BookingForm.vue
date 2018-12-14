@@ -1,5 +1,18 @@
 <template>
   <section class="book-input">
+    <div class="select-wrapper">
+      <b-field label="Välj en kategori">
+        <b-select v-model="selectedOption" placeholder="-">
+          <option 
+					v-for="option in data" 
+					:value="option.value" 
+					:key="option.value">
+            {{ option.title }}
+          </option>
+        </b-select>
+      </b-field>
+    </div>
+    <label class="label title-label">Fyll i dina personliga uppgifter</label>
     <b-field>
       <b-input placeholder="Förnamn" type="text"></b-input>
     </b-field>
@@ -25,26 +38,70 @@
 </template>
 
 <script>
-  /*export default {
-    name: 'BookingForm'
-  }*/
+const data = [
+	{
+	value: 'coaching',
+	title: 'Coaching'
+	},	
+	{
+	value: 'tarot-runor',
+	title: 'Tarot / Runor'
+	},	
+	{
+	value: 'workshop',
+	title: 'Workshop'
+	},	
+	{
+	value: 'lecture',
+	title: 'Föreläsning'
+	},
+];
+
+
+export default {
+  data() {
+		return { data }
+  }
+}
 
 </script>
 
 <style lang="scss">
-@import '@/scss/_variables.scss';
+  @import '@/scss/_variables.scss';
 
-#book{
-	.book-input{
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-	}
-	.textarea-wrapper{
-		flex-basis: 100%;
-	}
-}
-/*.book-input input{
+  #book {
+    .book-input {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .title-label {
+      display: block;
+      width: 100%;
+    }
+
+    .select-wrapper {
+      display: block;
+      width: 100%;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid $white;
+
+      select {
+        background: black;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: white;
+      }
+    }
+
+    .textarea-wrapper {
+      flex-basis: 100%;
+    }
+  }
+
+  /*.book-input input{
 	flex-basis: 45%;
 }
 .book-input input,
@@ -73,4 +130,5 @@ textarea:focus,
 	border-bottom: 1px solid red;
 	border-radius: 0px;
 }*/
+
 </style>

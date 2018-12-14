@@ -64,6 +64,20 @@ $family-sans-serif: "Hind", sans-serif;
   @include button('transparent', $white, $primaryBright, 'transparent', $lightGrey, $primary);
 }
 
+/* Text color */
+.c-purple{
+  color: $primary;
+}
+.c-purple-bright{
+  color: $primaryBright;
+}
+.c-red{
+  color: $red;
+}
+.c-red-bright{
+  color: $redBright;
+}
+
 #app {
   background: black;
   font-family: 'Hind', sans-serif;

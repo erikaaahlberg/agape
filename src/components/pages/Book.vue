@@ -4,7 +4,6 @@
   <div class="section-padding">
     <p>{{ bookings }}</p>
     <div class="form-wrapper">
-		<label class="label">Fyll i dina personliga uppgifter</label>
       <booking-form/>
       <div class="pickers-wrapper">
         <datepicker/>

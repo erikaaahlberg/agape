@@ -11,76 +11,117 @@
     </div>
     <div class="navbar-menu" v-bind:class="{'is-active': isOpen}">
       <div class="navbar-end">
-        <router-link to="/" class="navbar-item is-tab">Start</router-link>
-        <router-link to="/about" class="navbar-item is-tab">Om Karl</router-link>
-        <router-link to="/services" class="navbar-item is-tab">Tjänster</router-link>
-        <router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link>
-        <router-link to="/book" class="navbar-item is-tab">Boka</router-link>
-        <router-link to="/art" class="navbar-item is-tab">Konst</router-link>
+        <p class="flex-center link-wrapper"><router-link to="/" class="navbar-item is-tab">Start</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/about" class="navbar-item is-tab">Om Karl</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/services" class="navbar-item is-tab">Tjänster</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/book" class="navbar-item is-tab">Boka</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/art" class="navbar-item is-tab">Konst</router-link></p>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-    export default {
-        name: 'mainNav',
-        data: function () {
-            return {
-                isOpen: false
-            }
-        }
-    };
+  export default {
+    name: 'mainNav',
+    data: function () {
+      return {
+        isOpen: false
+      }
+    }
+  };
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-    /* Mobile menu*/
-    .navbar-menu{
-        background: rgba(29, 29, 29, 0.577);
-        color: white;
-        text-align: center;
-    }
-    .navbar-burger{
-        color: white;
-    }
-    .navbar-burger:hover{
-        color: rgb(193, 163, 87);
-    }
-    @media screen and (max-width: 1087px){
-        .navbar-menu.is-active{
-            position: absolute;
-            width: 100%;
-            left: 0;
-            padding-top: 40px;
-        }
-    }
-    #logotype-img-top{
-        max-height: 80px;
-    }
+<style lang="scss">
+@import '../../scss/_variables.scss';
 
-    /* Expanded navbar */
-    .navbar{
-        background: rgb(29, 29, 29);
-        color: white;
-        padding: 20px 50px;
+  /* Mobile menu*/
+  .navbar-menu {
+    background: rgba(29, 29, 29, 0.749);
+    color: $white;
+    text-align: center;
+  }
+
+  .navbar-burger {
+    color: $white;
+		&:hover{
+			color: $primary;
+		}
+  }
+
+  @media screen and (max-width: 1087px) {
+    .navbar-menu.is-active {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      padding-top: 40px;
     }
-    .navbar-brand{
-        align-items: center;
-    }
-    .navbar-end{
-        text-align: center;
-    }
-    .navbar-item {
-        color: white;
-        letter-spacing: 1.5px;
-        margin: auto;
-        max-width: 110px;
-    }
-    .navbar-item:hover{
-        color: rgb(193, 163, 87);
-        transition: all .2s ease-in-out;
-        border-bottom: 1px solid rgb(193, 163, 87);
-        text-align: center;
-    }
+		.navbar-item{
+			&.is-active{
+				border-bottom: 3px solid $primary;
+			}
+		}
+		.link-wrapper{
+			margin-bottom: 15px;
+		}
+  }
+
+  #logotype-img-top {
+    max-height: 80px;
+  }
+
+  /* Expanded navbar */
+  .navbar {
+    background: rgb(29, 29, 29);
+    color: $white;
+    padding: 20px 50px;
+		p{
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+  }
+
+  .navbar-brand {
+    align-items: center;
+  }
+
+  .navbar-end {
+    text-align: center;
+  }
+
+  .navbar-item {
+		text-transform: uppercase;
+		&.is-tab{
+			padding: 0px;
+			color: $white;
+			letter-spacing: 1.5px;
+			margin: auto;
+			min-height: 0px;
+			display: inline-block;
+			border-bottom: none;
+		}
+		&.router-link-exact-active{
+			border-bottom: 3px solid $primary;
+			padding-bottom: 2px;
+			padding-top: 7px;
+			
+		}
+		&.router-link-exact-active:hover{
+			color: $white;
+			border-bottom: 3px solid $primary;
+			padding-bottom: 2px;
+			padding-top: 7px;
+			
+		}
+		&:hover{
+			color: $primary;
+			transition: all .2s ease-in-out;
+			text-align: center;
+			border-bottom: none;
+		}
+  }
+
 </style>
