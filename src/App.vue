@@ -52,6 +52,10 @@ $family-sans-serif: "Hind", sans-serif;
   margin-top: 40px;
   margin-bottom: 50px;
 }
+.section-margin{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 /* Buttons */
 .btn-purple {

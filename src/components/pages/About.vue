@@ -1,7 +1,7 @@
 <template>
-<section id="about">
+<section id="about-page">
+  <h2><i class="fas fa-angle-right"></i> Om Karl</h2>
   <div class="section-padding">
-    <h2>ABOUT</h2>
   </div>
 </section>
 </template>
@@ -30,8 +30,4 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-.purple{
-  background: transparent;
-  height: 200px;
-}
 </style>

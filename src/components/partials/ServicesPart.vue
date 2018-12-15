@@ -1,5 +1,5 @@
 <template>
- <section id="services-part">
+ <section id="services-part" class="section-margin">
     <div class="wrapper-cards">
       <service-card 
       title="Coaching" 
@@ -74,14 +74,96 @@
 <style lang="scss">
 @import '@/scss/_variables.scss';
 #services-part{
-  margin-top: 20px;
-  margin-bottom: 20px;
+  @media (min-width: 1200px){
+    border-top: 1px solid $redBright;
+    border-bottom: 1px solid $primaryBright; 
+  }
 .wrapper-cards{
-  //background: $black;
+  margin: 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    .card-black {
+      flex-basis: 80%;
+      margin: auto;
+      background: $black;
+      @media (max-width: 1200px){
+        border-top: 1px solid $redBright;
+        border-right: 1px solid $primaryBright;
+        border-bottom: 1px solid $redBright;
+        border-left: 1px solid $primaryBright;
+        &:nth-child(1){
+          margin-bottom: 30px;
+        }
+        &:nth-child(1){
+          margin-bottom: 30px;
+        }
+        &:nth-child(2){
+          margin-bottom: 30px;
+        }
+      }
+    i{
+      font-size: 3em;
+      color: $white;
+      margin-bottom: 20px;
+    }
+  @media (min-width: 768px) {
+    flex-basis: 45%;
+  }
+  @media (min-width: 1200px){
+    flex-basis: 25%;
+  }
+
+  .wrapper-card-img {
+    width: 100%;
+    img {
+      width: 100%;
+      overflow: hidden;
+      margin: auto;
+    }
+  }
+  .wrapper-card-text {
+    padding: 30px 30px 10px 30px;
+    text-align: center;
+    @media (min-width: 768px) {
+      padding: 40px 50px 10px 50px;
+    }
+
+    h3 {
+      padding: 0px;
+      margin: 0px;
+      color: $white;
+      margin-bottom: 10px;
+    }
+
+    p {
+      text-transform: none;
+      color: $lightGrey;
+    }
+  }
+  .btn-wrapper{
+    text-align: center;
+    padding: 0px 0px 40px 0px;
+    a{
+      margin: 5px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+    @media(min-width: 768px){
+    padding: 0px 0px 50px 0px;
+    }
+  }
+}
+
+.card-news {
+  background: transparent;
+  flex-basis: 30%;
+
+  h3 {
+    color: $white;
+  }
+}
 }
 }
 </style>

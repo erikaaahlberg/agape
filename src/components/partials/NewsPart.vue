@@ -1,5 +1,5 @@
 <template>
-	<section class="news-part">
+	<section id="news-part" class="section-margin">
     <div class="wrapper-news-cards">
       <news-card 
       title="Workshop" 
@@ -64,11 +64,14 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_variables.scss';
-.wrapper-cards{
+#news-part{
+  .wrapper-news-cards{
     width: 100%;
     text-align: center;
-    /*display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;*/
+    .card-transparent{
+      margin: 50px auto;
+      width: 80%;
+    }
+  }
 }
 </style>

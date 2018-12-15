@@ -1,9 +1,9 @@
 * {
   box-sizing: border-box;
 }
-body {
+body, html {
   height: 100%;
-  background: $black;
+  background: black;
   font-family: 'Hind', sans-serif;
   color: white;
 }

@@ -1,7 +1,7 @@
 <template>
-<section id="art">
+<section id="art-page">
+  <h2><i class="fas fa-angle-right"></i> Konst</h2>
   <div class="section-padding">
-    <h2>ART</h2>
   </div>
 </section>
 </template>

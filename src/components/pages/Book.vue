@@ -92,7 +92,7 @@
 @import '@/scss/_variables.scss';
 #book{
   .form-wrapper{
-    border-top: 30px solid $primaryBright;
+    border-top: 1px solid $primaryBright;
     background: $black;
     padding: 50px;
   }

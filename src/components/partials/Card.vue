@@ -75,8 +75,6 @@
 .card-transparent{
     background: transparent;
     display: flex;
-    margin: 50px auto;
-    width: 80%;
   .card-img{
     width: 100%;
     flex-basis: 50%;
