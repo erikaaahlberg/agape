@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: 'mainNav',
+    name: 'PageNav',
     data: function () {
       return {
         isOpen: false

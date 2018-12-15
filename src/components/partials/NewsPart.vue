@@ -70,7 +70,10 @@
     text-align: center;
     .card-transparent{
       margin: 50px auto;
+      width: 100%;
+      @media(min-width: 768px){
       width: 80%;
+      }
     }
   }
 }

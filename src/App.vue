@@ -1,20 +1,23 @@
 <template>
   <div id="app">
-    <main-nav/>
+    <page-nav/>
     <hero/>
     <router-view/>
+    <page-footer/>
   </div>
 </template>
 
 <script>
-import MainNav from '@/components/partials/MainNav'
-import Hero from '@/components/partials/HeroImage'
+import PageNav from '@/components/partials/PageNav';
+import Hero from '@/components/partials/HeroImage';
+import PageFooter from '@/components/partials/PageFooter';
 
 export default {
   name: 'App',
   components: {
-    'main-nav': MainNav,
-    'hero': Hero
+    'page-nav': PageNav,
+    'hero': Hero,
+    'page-footer': PageFooter
   }
 };
 </script>
@@ -65,7 +68,7 @@ $family-sans-serif: "Hind", sans-serif;
   @include button($redBright, $black, 'transparent', $red, $white, 'transparent');
 }
 .btn-transparent{
-  @include button('transparent', $white, $primaryBright, 'transparent', $lightGrey, $primary);
+  @include button('transparent', $white, $red, 'transparent', $primaryBright, $primary);
 }
 
 /* Text color */

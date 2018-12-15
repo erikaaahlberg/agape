@@ -45,11 +45,11 @@
 #home{
   h2{
     width: 100%;
-    background: $black;
+  /*  background: $black;
     border-bottom: 1px solid $lightGrey;
     padding: 5px;
     padding-top: 10px;
-    padding-left: 30px;
+    padding-left: 30px;*/
   }
 }
 </style>

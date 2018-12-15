@@ -15,7 +15,7 @@
 
 <script>
     export default {
-        name: 'hero',
+        name: 'HeroImage'
     };
 </script>
 
@@ -24,10 +24,12 @@
 @import '@/scss/_variables.scss';
 
   #top-hero-img {
-    background: url("../../assets/images/hero-image2.jpg"); 
+    background: url("../../assets/images/karl.jpg"); 
     background-size: cover;
     position: relative;
-		height: 320px;
+		height: 100%;
+    min-height: 350px;
+    max-height: 500px;
     text-align: left;
     .container{
       margin-top: 200px;

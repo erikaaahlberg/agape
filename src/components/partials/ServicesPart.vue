@@ -74,10 +74,10 @@
 <style lang="scss">
 @import '@/scss/_variables.scss';
 #services-part{
-  @media (min-width: 1200px){
+  /*@media (min-width: 1200px){
     border-top: 1px solid $redBright;
     border-bottom: 1px solid $primaryBright; 
-  }
+  }*/
 .wrapper-cards{
   margin: 0px;
     width: 100%;
@@ -88,32 +88,40 @@
       flex-basis: 80%;
       margin: auto;
       background: $black;
-      @media (max-width: 1200px){
-        border-top: 1px solid $redBright;
-        border-right: 1px solid $primaryBright;
-        border-bottom: 1px solid $redBright;
-        border-left: 1px solid $primaryBright;
-        &:nth-child(1){
-          margin-bottom: 30px;
-        }
         &:nth-child(1){
           margin-bottom: 30px;
         }
         &:nth-child(2){
           margin-bottom: 30px;
         }
+        &:nth-child(3){
+          margin-bottom: 30px;
+        }
+      @media (min-width: 768px){
+        flex-basis: 45%;
+        &:nth-child(3){
+          margin-bottom: 0px;
+        }
+      }
+      @media (min-width: 1200px){
+        flex-basis: 25%;
+        margin-bottom: 0px !important;
+        /*border-top: 1px solid $redBright;
+        border-right: 1px solid $primaryBright;
+        border-bottom: 1px solid $redBright;
+        border-left: 1px solid $primaryBright;*/
       }
     i{
       font-size: 3em;
       color: $white;
       margin-bottom: 20px;
     }
-  @media (min-width: 768px) {
+  /*@media (min-width: 768px) {
     flex-basis: 45%;
   }
   @media (min-width: 1200px){
     flex-basis: 25%;
-  }
+  }*/
 
   .wrapper-card-img {
     width: 100%;

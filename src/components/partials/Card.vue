@@ -11,10 +11,12 @@
       <h3>{{ title }}</h3>
       <h5 class="sub-title">{{ date }} {{ time }} {{ place }}</h5>
       <p>{{ description }}</p>
-      <a class="btn-transparent">
-        Fortsätt läsa 
-        <i class="fas fa-angle-right"></i>
-      </a>
+      <div class="btn-wrapper">
+        <a class="btn-transparent">
+          Fortsätt läsa 
+          <i class="fas fa-angle-right"></i>
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -76,6 +78,9 @@
     background: transparent;
     display: flex;
   .card-img{
+    @media(max-width: 768px){
+      display: none;
+    }
     width: 100%;
     flex-basis: 50%;
     background-position: center;
@@ -83,11 +88,14 @@
     background-repeat: no-repeat;
   }
   .wrapper-card-text{
-    flex-basis: 50%;
+    flex-basis: 100%;
     text-align: left;
-    /*h3{
-      color: $primaryBright;
-    }*/
+    .btn-wrapper{
+      text-align: center;
+    }
+    @media(min-width: 768px){
+      flex-basis: 50%;
+    }
   }
 }
 </style>

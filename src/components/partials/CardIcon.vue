@@ -28,16 +28,7 @@ export default {
 
 <style lang="scss">
 @import '@/scss/_variables.scss';
-
-.card {
-  &.card-black{
-    background: $black;
-    i{
-      font-size: 3em;
-      color: $white;
-      margin-bottom: 20px;
-    }
-  }
+.card{
   .wrapper-card-text {
     padding: 30px 30px 10px 30px;
     text-align: center;
@@ -60,6 +51,15 @@ export default {
       margin-bottom: 10px;
     }
   }
+}
+.card-black {
+    background: $black;
+    i{
+      font-size: 3em;
+      color: $white;
+      margin-bottom: 20px;
+    }
+
   .btn-wrapper{
     padding: 0px 0px 40px 0px;
     @media(min-width: 768px){
