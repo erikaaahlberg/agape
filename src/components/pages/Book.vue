@@ -10,7 +10,7 @@
         <timepicker/>
       </div>
       <div class="btn-wrapper">
-        <input type="submit" class="btn-purple" value="Boka nu">
+        <button type="button" v-on:click= class="btn-purple">Boka nu</button>
       </div>
     </div>
   </div>
@@ -18,9 +18,11 @@
 </template>
 
 <script>
-  import Datepicker from '../partials/DatePicker'
-  import BookingForm from '../partials/BookingForm'
-  import Timepicker from '../partials/Timepicker'
+  import Datepicker from '@/components/partials/DatePicker';
+  import BookingForm from '@/components/partials/BookingForm';
+  import Timepicker from '@/components/partials/Timepicker';
+  import fetchBookings from '@/functions/fetchBookings.js';
+
 
     export default {
         name: 'Book',
@@ -31,7 +33,11 @@
           }
         },
         methods: {
+           onChildClick: function (value) {
+            console.log(this.fromBookingForm = value);
+          },
           fetchBookings: function () {
+            event.preventDefault();
             fetch("http://localhost:3001/bookings", {
                method: 'GET',
                headers: {
@@ -45,9 +51,38 @@
                   this.bookings = fetchedBookings;
                 })
           },
-          sayHello: function () {
-            this.hello = 'HELLO THEERE';
-          } 
+            createBooking: function (event) {
+              event.preventDefault();
+              const { booking } = this.state;
+              const requestBody = {
+                date: booking.date,
+                guests: booking.guests,
+                session: booking.session,
+                name: booking.name,
+                email: booking.email,
+                phone: booking.phone,
+              };
+
+              fetch("http://localhost:3001/create_booking", {
+                headers: { "Content-Type": "application/json" },
+                method: "POST",
+                body: JSON.stringify(requestBody),
+              })
+                .then((response) => {
+                  const { name, date, session } = this.state.booking;
+
+                  if (response.ok) {
+                    const message = `Tack ${name} för din bokning!
+                    Välkommen till Kult den ${date} kl.${session}.
+                    Vi ser fram emot besöket!`;
+                    this.triggerShowModal(message, true);
+                  } else {
+                    const message = "Bokningen misslyckades, försök igen.";
+                    this.triggerShowModal(message, true);
+                  }
+                });
+            }
+
         },
         mounted: function() {
           this.fetchBookings();

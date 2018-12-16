@@ -38,6 +38,33 @@ app.get('/bookings', (req, res) => {
       }
   );
 });
+
+app.post('/api/create_booking', (req, res) => {
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const category = req.body.category;
+  const date = req.body.date;
+  const time = req.body.time;
+
+  const queryString =
+    `INSERT INTO bookings
+    (id, firstname, lastname, email, phone, category, date, time)
+    VALUES ('', ?, ?, ?, ?, ?, ?, ?)`;
+
+  connection.query(`INSERT INTO bookings
+  (id, firstname, lastname, email, phone, category, date, time)
+  VALUES ('', ?, ?, ?, ?, ?, ?, ?)`, [firstname, lastname, email, phone, category, date, time], (err, results, fields) => {
+    if(err){
+      console.log('Failed to create new booking: ' + err);
+      res.sendStatus(500)
+      res.end();
+      return;
+    }
+  })
+  res.end();
+});
 /*
 app.get('/bookings', (req, res) => {
   console.log("terminal")
