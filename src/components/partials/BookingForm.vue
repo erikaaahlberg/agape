@@ -2,9 +2,9 @@
   <section class="book-input">
     <div class="select-wrapper">
       <b-field label="Välj en kategori">
-        <b-select v-model="selectedOption" placeholder="-">
+        <b-select v-model="category" placeholder="-" id="category-select">
           <option 
-					v-for="option in data" 
+					v-for="option in categories" 
 					:value="option.value" 
 					:key="option.value">
             {{ option.title }}
@@ -12,56 +12,220 @@
         </b-select>
       </b-field>
     </div>
+
     <label class="label title-label">Fyll i dina personliga uppgifter</label>
     <b-field>
-      <b-input placeholder="Förnamn" type="text"></b-input>
+      <b-input placeholder="Förnamn" type="text" v-model="firstName" id="firstname-input"></b-input>
     </b-field>
 
     <b-field>
-      <b-input placeholder="Efternamn" type="text"></b-input>
+      <b-input placeholder="Efternamn" type="text" v-model="lastName" id="lastname-input"></b-input>
     </b-field>
 
     <b-field>
-      <b-input placeholder="Email" type="email"></b-input>
+      <b-input placeholder="Email" type="email" v-model="email" id="email-input"></b-input>
     </b-field>
 
     <b-field>
-      <b-input placeholder="Telefonnummer" type="tel" min="10" max="10">
+      <b-input placeholder="Telefonnummer" type="tel" min="10" max="10" v-model="phone" id="phone-input">
       </b-input>
     </b-field>
 
     <b-field class="textarea-wrapper">
-      <b-input type="textarea" minlength="10" maxlength="100" placeholder="Beskriv kortfattat vad du vill ha hjälp med">
+      <b-input type="textarea" minlength="10" maxlength="100" placeholder="Beskriv kortfattat vad du vill ha hjälp med" v-model="description" id="description-input">
       </b-input>
     </b-field>
+
+<b-field label="Välj ett datum">
+    <b-datepicker placeholder="Tryck för att välja"
+				icon-pack="fa" 
+				icon="calendar-alt" 
+				:min-date="minDate"
+				:max-date="maxDate"
+        v-model="date">
+    </b-datepicker>
+  </b-field>
+
+    <b-field label="Välj tid">
+    <b-timepicker placeholder="Tryck för att välja" 
+		icon-pack="fa" 
+		icon="clock" 
+		:min-time="timeFrame.minTime" 
+		:max-time="timeFrame.maxTime"
+    :increment-minutes=60
+    v-model="time">
+    </b-timepicker>
+  </b-field>
+
+
+      <div class="btn-wrapper">
+        <button type="button" class="btn-purple" v-on:click="onSubmit">Boka nu</button>
+      </div>
   </section>
 </template>
 
 <script>
-const data = [
-	{
-	value: 'coaching',
-	title: 'Coaching'
-	},	
-	{
-	value: 'tarot-runor',
-	title: 'Tarot / Runor'
-	},	
-	{
-	value: 'workshop',
-	title: 'Workshop'
-	},	
-	{
-	value: 'lecture',
-	title: 'Föreläsning'
-	},
-];
 
 
 export default {
   data() {
-		return { data }
+  const categories = [
+    {
+    value: 'coaching',
+    title: 'Coaching'
+    },	
+    {
+    value: 'tarot-runor',
+    title: 'Tarot / Runor'
+    },	
+    {
+    value: 'workshop',
+    title: 'Workshop'
+    },	
+    {
+    value: 'lecture',
+    title: 'Föreläsning'
+    }
+  ];
+        /*const input = {
+        firstName: this.firstName,
+        lastName: this.lastName, 
+        email: this.email,
+        phone: this.phone,
+        category: this.category,
+        description: this.description,
+        date: this.date,
+        time: this.time
+      }*/
+        /*const input = {
+        firstName: '',
+        lastName: '', 
+        email: '',
+        phone: '',
+        category: '',
+        description: '',
+        date: '',
+        time: ''
+      }*/
+    const today = new Date()
+
+    /*const dateFrame = {
+        date: new Date(),
+        minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+        maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate())
+    }*/
+
+    /* Min time for timepicker */
+    const min = new Date()
+    min.setHours(9)
+    min.setMinutes(0)
+
+    /* Max time for timepicker */
+    const max = new Date()
+    max.setHours(18)
+    max.setMinutes(0)
+
+      /*const min = new Date()
+      min.setHours(9)
+      min.setMinutes(0)
+      const max = new Date()
+      max.setHours(18)
+      max.setMinutes(0)*/
+
+      /*const timeFrame = {
+        minTime: min,
+        maxTime: max
+      }*/
+
+/* Form input */
+      /*const input = {
+        firstName: firstName,
+        lastName: lastName, 
+        email: email,
+        phone: phone,
+        category: category,
+        description: description,
+        date: date,
+        time: time
+      }*/
+      const timeFrame = {
+        minTime: min,
+        maxTime: max
+      }
+
+    return { 
+      date: new Date(),
+      minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+      maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
+      timeFrame,
+      categories/*,
+      input: {
+        firstName: '',
+        lastName: '', 
+        email: '',
+        phone: '',
+        category: '',
+        description: ''
+      }*/
+        /*,
+    { input }*/
+    }
+  },
+  methods: {
+    /*collectInput: function() {
+      const input = {
+        firstName: this.firstName,
+        lastName: this.lastName, 
+        email: this.email,
+        phone: this.phone,
+        category: this.category,
+        description: this.description,
+        date: this.date,
+        time: this.time
+      }
+      console.log(input);
+      createBooking();
+    },*/
+    collectInput: function () {      
+      const input = {
+        firstName: this.firstName,
+        lastName: this.lastName, 
+        email: this.email,
+        phone: this.phone,
+        category: this.category,
+        description: this.description,
+        date: this.date,
+        time: this.time
+      }
+      return input;
+      //console.log(input);
+      //this.$emit('collectInput', input);
+    },
+    checkIfEmpty: function (object) {
+      for(let key in object){
+        if (key && key !== ''){
+          return true;
+        } else {
+          return false;
+        }
+      }
+    },
+    sendBooking: function (booking) {
+      this.$emit('sendBooking', booking);
+    },
+    onSubmit: function () {
+      const booking = this.collectInput();
+      //console.log(booking);
+      //const isEmpty = this.checkIfEmpty(booking);
+      /*if (!isEmpty) {
+        this.sendBooking(booking);
+      }*/
+      this.sendBooking(booking);
+    }
   }
+  /*data() {
+		return { data }
+  }*/
 }
 
 </script>
@@ -69,7 +233,110 @@ export default {
 <style lang="scss">
   @import '@/scss/_variables.scss';
 
-  #book {
+  #book-page {
+
+  /*--------*/
+  .form-wrapper{
+    border-top: 1px solid $primaryBright;
+    background: $black;
+    padding: 50px;
+  }
+  .btn-wrapper{
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    button{
+      border-color: none;
+      border-style: none;
+    }
+  }
+  .input,
+  .textarea{
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $lightGrey;
+    border-radius: 0px;
+    color: white;
+    font-family: 'Hind', sans-serif;
+    letter-spacing: 1.5px;
+    padding-bottom: 5px;
+  }
+  input.input:focus,
+  textarea.textarea:focus,
+  input.input:active,
+  textarea.textarea:active{
+    background: transparent;
+    /*border: none;
+    outline: none;*/
+    border-bottom: 1px solid $white;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: $lightGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: $lightGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: $lightGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: $lightGrey;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .field{
+    flex-basis: 45%;
+  }
+  .label{
+    font-size: 1.2em;
+    color: $white;
+    letter-spacing: 1.5px;
+  }
+  
+  /* Timepicker and datepicker */
+  .icon i{
+    color: $mediumGrey;
+    margin-right: 5px;
+  }
+  .dropdown-content{
+    background: $black;
+  }
+  .pickers-wrapper{
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
+				select {
+					background: black;
+					font-family: 'hind', sans-serif;
+					text-transform: uppercase;
+					letter-spacing: 1.5px;
+					font-size: 1.1em;
+					color: $white;
+				}
+  }
+
+  /*--------*/
+
+.overlay{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.482);
+}
     .book-input {
       display: flex;
       justify-content: space-between;
@@ -99,6 +366,52 @@ export default {
     .textarea-wrapper {
       flex-basis: 100%;
     }
+
+    /* Datepicker */
+		.datepicker{
+			font-family: 'Hind', sans-serif;
+			.dropdown-content{
+				background: $black;
+			}
+			.datepicker-header {
+				.pagination-previous,
+				.pagination-next{
+					border: none;
+					font-size: 1.5em;
+				}
+				.pagination-previous i{
+					color: $primary;
+    			margin-bottom: -4px;
+				}				
+				.pagination-next i{
+					color: $red;
+				}
+				
+			}
+			.datepicker-cell{
+				&.is-unselectable{
+					color: #4a4a4a;
+				font-size: 1.1em;
+				letter-spacing: 2px;
+				}
+				&.is-selectable{
+					color: white;
+				font-size: 1.1em;
+				letter-spacing: 2px;
+				}
+				&.is-selectable:hover{
+					background: $red;
+					font-size: 1.1em;
+				}
+				&.is-today{
+					border: 2px solid $primary;
+					font-size: 1.5em;
+				}
+			}
+		}
+		.datepicker-wrapper {
+			flex-basis: 45%;
+		}
   }
 
   /*.book-input input{

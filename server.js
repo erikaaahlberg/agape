@@ -40,11 +40,12 @@ app.get('/bookings', (req, res) => {
 });
 
 app.post('/api/create_booking', (req, res) => {
-  const firstname = req.body.firstname;
-  const lastname = req.body.lastname;
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
   const email = req.body.email;
   const phone = req.body.phone;
   const category = req.body.category;
+  const description = req.body.description;
   const date = req.body.date;
   const time = req.body.time;
 

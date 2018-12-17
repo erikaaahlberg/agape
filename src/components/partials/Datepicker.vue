@@ -7,17 +7,6 @@
 				:max-date="maxDate">
     </b-datepicker>
   </b-field>
-  <!--
-		<b-field label="Välj datum">
-			<b-datepicker 
-				placeholder="Klicka för att välja" 
-				icon-pack="fa" 
-				icon="calendar" 
-				:min-date="minDate"
-				:max-date="maxDate">
-			</b-datepicker>
-		</b-field>
-		-->
 </template>
 
 <script>
@@ -31,7 +20,29 @@
       }
     }
   }
+    /*<div class="pickers-wrapper">
+      <!--Datepicker-->
+      <b-field label="Välj ett datum">
+        <b-datepicker placeholder="Tryck för att välja"
+            icon-pack="fa" 
+            icon="calendar-alt" 
+            :min-date="minDate"
+            :max-date="maxDate"
+            v-model="input.date">
+        </b-datepicker>
+      </b-field>
 
+      <!--Timepicker-->
+      <b-field label="Välj tid">
+        <b-timepicker placeholder="Tryck för att välja" 
+        icon-pack="fa" 
+        icon="clock" 
+        :min-time="minTime" 
+        :max-time="maxTime"
+        v-model="input.time">
+        </b-timepicker>
+      </b-field> 
+    </div> */
 </script>
 
 <style lang="scss">

@@ -1,17 +1,17 @@
 <template>
-<section id="book">
+<section id="book-page">
   <h2><i class="fas fa-angle-right"></i> Boka direkt</h2>
   <div class="section-padding">
     <p>{{ bookings }}</p>
     <div class="form-wrapper">
-      <booking-form/>
-      <div class="pickers-wrapper">
+      <booking-form v-on:sendBooking="createBooking($event)"/>
+      <!--<div class="pickers-wrapper">
         <datepicker/>
         <timepicker/>
       </div>
       <div class="btn-wrapper">
-        <button type="button" v-on:click= class="btn-purple">Boka nu</button>
-      </div>
+        <button type="button" class="btn-purple">Boka nu</button>
+      </div>-->
     </div>
   </div>
 </section>
@@ -37,7 +37,6 @@
             console.log(this.fromBookingForm = value);
           },
           fetchBookings: function () {
-            event.preventDefault();
             fetch("http://localhost:3001/bookings", {
                method: 'GET',
                headers: {
@@ -51,19 +50,29 @@
                   this.bookings = fetchedBookings;
                 })
           },
-            createBooking: function (event) {
-              event.preventDefault();
-              const { booking } = this.state;
-              const requestBody = {
-                date: booking.date,
+            createBooking: function ($event) {
+              //const { booking } = this.state;
+              console.log($event);
+              const requestBody = $event;
+              /*const requestBody = {
+                firstName: input.firstName,
+                lastName: input.lastName, 
+                email: input.email,
+                phone: input.phone,
+                category: input.category,
+                description: input.description,
+                date: input.date,
+                time: input.time
+                /*date: booking.date,
                 guests: booking.guests,
                 session: booking.session,
                 name: booking.name,
                 email: booking.email,
                 phone: booking.phone,
-              };
+            };*/
 
-              fetch("http://localhost:3001/create_booking", {
+
+              /*fetch("http://localhost:3001/create_booking", {
                 headers: { "Content-Type": "application/json" },
                 method: "POST",
                 body: JSON.stringify(requestBody),
@@ -80,13 +89,12 @@
                     const message = "Bokningen misslyckades, försök igen.";
                     this.triggerShowModal(message, true);
                   }
-                });
+                });*/
             }
 
         },
         mounted: function() {
           this.fetchBookings();
-          this.sayHello();
         },
         components: {
           'booking-form': BookingForm,
@@ -134,7 +142,7 @@
   .btn-wrapper{
     text-align: center;
     margin-top: 20px;
-    input[type=submit]{
+    button{
       border-color: none;
       border-style: none;
     }
