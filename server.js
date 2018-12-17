@@ -39,7 +39,12 @@ app.get('/bookings', (req, res) => {
   );
 });
 
-app.post('/api/create_booking', (req, res) => {
+//app.route('/api/create_booking')
+
+app.post('/create_booking', (req, res) => {
+  res.send('funkish');
+  res.writeHead(statusCode);
+  console.log(req.body);
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
@@ -51,12 +56,12 @@ app.post('/api/create_booking', (req, res) => {
 
   const queryString =
     `INSERT INTO bookings
-    (id, firstname, lastname, email, phone, category, date, time)
+    (id, firstName, lastName, email, phone, category, description, date, time)
     VALUES ('', ?, ?, ?, ?, ?, ?, ?)`;
 
   connection.query(`INSERT INTO bookings
-  (id, firstname, lastname, email, phone, category, date, time)
-  VALUES ('', ?, ?, ?, ?, ?, ?, ?)`, [firstname, lastname, email, phone, category, date, time], (err, results, fields) => {
+  (id, firstName, lastName, email, phone, category, description, date, time)
+  VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?)`, [firstName, lastName, email, phone, category, description, date, time], (err, results, fields) => {
     if(err){
       console.log('Failed to create new booking: ' + err);
       res.sendStatus(500)

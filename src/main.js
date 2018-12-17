@@ -11,6 +11,11 @@ import 'buefy/dist/buefy.css'
 /* Slider */
 import VueCarousel from '@chenfengyuan/vue-carousel';
 
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate, {
+  events: ''
+});
+
 Vue.use(Buefy, {
   defaultIconPack: 'fas',
   defaultDayNames: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'],

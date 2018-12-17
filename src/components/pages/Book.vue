@@ -72,24 +72,29 @@
             };*/
 
 
-              /*fetch("http://localhost:3001/create_booking", {
-                headers: { "Content-Type": "application/json" },
-                method: "POST",
+              fetch("/api/create_booking", {
+                method: 'POST',
+                headers: {
+                 'Accept': 'application/json',
+                 'Content-Type': 'application/json',
+               },
                 body: JSON.stringify(requestBody),
               })
                 .then((response) => {
-                  const { name, date, session } = this.state.booking;
+                  //const { name, date, session } = this.state.booking;
 
                   if (response.ok) {
-                    const message = `Tack ${name} för din bokning!
-                    Välkommen till Kult den ${date} kl.${session}.
+                    const message = `Tack ${requestBody.firstName} för din bokning!
+                    Välkommen till Kult den ${requestBody.date} kl.${requestBody.time}.
                     Vi ser fram emot besöket!`;
-                    this.triggerShowModal(message, true);
+                    console.log(message);
+                    //this.triggerShowModal(message, true);
                   } else {
                     const message = "Bokningen misslyckades, försök igen.";
-                    this.triggerShowModal(message, true);
+                    //this.triggerShowModal(message, true);
+                    console.log(message);
                   }
-                });*/
+                });
             }
 
         },

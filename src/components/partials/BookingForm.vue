@@ -1,8 +1,9 @@
 <template>
   <section class="book-input">
+    <form @submit.prevent="validateBeforeSubmit">
     <div class="select-wrapper">
       <b-field label="Välj en kategori">
-        <b-select v-model="category" placeholder="-" id="category-select">
+        <b-select v-model="category" placeholder="-" id="category-select" v-validate="'required'">
           <option 
 					v-for="option in categories" 
 					:value="option.value" 
@@ -14,20 +15,27 @@
     </div>
 
     <label class="label title-label">Fyll i dina personliga uppgifter</label>
-    <b-field>
-      <b-input placeholder="Förnamn" type="text" v-model="firstName" id="firstname-input"></b-input>
+    <b-field 
+    :type="{'is-danger': errors.has('firstName')}"
+    :message="errors.first('firstName')">
+      <b-input 
+      placeholder="Förnamn" 
+      type="text" 
+      v-model="firstName" 
+      id="firstname-input" 
+      v-validate="'required'"></b-input>
     </b-field>
 
     <b-field>
-      <b-input placeholder="Efternamn" type="text" v-model="lastName" id="lastname-input"></b-input>
+      <b-input placeholder="Efternamn" type="text" v-model="lastName" id="lastname-input" v-validate="'required'"></b-input>
     </b-field>
 
     <b-field>
-      <b-input placeholder="Email" type="email" v-model="email" id="email-input"></b-input>
+      <b-input placeholder="Email" type="email" v-model="email" id="email-input" v-validate="'required'"></b-input>
     </b-field>
 
     <b-field>
-      <b-input placeholder="Telefonnummer" type="tel" min="10" max="10" v-model="phone" id="phone-input">
+      <b-input placeholder="Telefonnummer" type="tel" min="10" max="10" v-model="phone" id="phone-input" v-validate="'required'">
       </b-input>
     </b-field>
 
@@ -42,7 +50,7 @@
 				icon="calendar-alt" 
 				:min-date="minDate"
 				:max-date="maxDate"
-        v-model="date">
+        v-model="date" v-validate="'required'">
     </b-datepicker>
   </b-field>
 
@@ -53,7 +61,7 @@
 		:min-time="timeFrame.minTime" 
 		:max-time="timeFrame.maxTime"
     :increment-minutes=60
-    v-model="time">
+    v-model="time" v-validate="'required'">
     </b-timepicker>
   </b-field>
 
@@ -61,10 +69,12 @@
       <div class="btn-wrapper">
         <button type="button" class="btn-purple" v-on:click="onSubmit">Boka nu</button>
       </div>
+      </form>
   </section>
 </template>
 
 <script>
+
 
 
 export default {
@@ -194,8 +204,8 @@ export default {
         phone: this.phone,
         category: this.category,
         description: this.description,
-        date: this.date,
-        time: this.time
+        date: this.date.toDateString(),
+        time: this.time.toLocaleTimeString()
       }
       return input;
       //console.log(input);
@@ -203,7 +213,9 @@ export default {
     },
     checkIfEmpty: function (object) {
       for(let key in object){
-        if (key && key !== ''){
+        console.log(key);
+        console.log(object.key);
+        if (object.key !== '' && object.key !== 'undefined'){
           return true;
         } else {
           return false;
@@ -216,12 +228,31 @@ export default {
     onSubmit: function () {
       const booking = this.collectInput();
       //console.log(booking);
-      //const isEmpty = this.checkIfEmpty(booking);
-      /*if (!isEmpty) {
+      /*const isEmpty = this.checkIfEmpty(booking);
+      if (!isEmpty) {
         this.sendBooking(booking);
+      } else {
+        console.log('its empty');
       }*/
       this.sendBooking(booking);
-    }
+    },
+    validateBeforeSubmit() {
+                this.$validator.validateAll().then((result) => {
+                    if (result) {
+                        this.$toast.open({
+                            message: 'Form is valid!',
+                            type: 'is-success',
+                            position: 'is-bottom'
+                        })
+                        return;
+                    }
+                    this.$toast.open({
+                        message: 'Form is not valid! Please check the fields.',
+                        type: 'is-danger',
+                        position: 'is-bottom'
+                    })
+                });
+            }
   }
   /*data() {
 		return { data }
@@ -338,9 +369,11 @@ export default {
   background: rgba(0, 0, 0, 0.482);
 }
     .book-input {
+      form{
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      }
     }
 
     .title-label {
