@@ -16,6 +16,7 @@
     "@chenfengyuan/vue-carousel": "^0.1.1",
     "@fortawesome/fontawesome-free": "^5.5.0",
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "buefy": "^0.7.1",
     "cors": "^2.8.5",
     "express-vue": "^5.8.2",
