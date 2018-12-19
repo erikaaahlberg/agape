@@ -3,9 +3,18 @@ const app = express();
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
 var cors = require('cors');
+const proxy = require('http-proxy-middleware');
+var router = express.Router();
 
+const apiProxy = proxy('/api', { 
+  target: 'http://localhost:3001',
+ });
+app.use('/api', apiProxy);
+
+app.use('/api', router);
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/', express.static('public'));
+app.use(express.static('public'));
 app.use(cors());
 
 const connection = mysql.createConnection({
@@ -39,12 +48,10 @@ app.get('/bookings', (req, res) => {
   );
 });
 
-//app.route('/api/create_booking')
-
-app.post('/create_booking', (req, res) => {
-  res.send('funkish');
-  res.writeHead(statusCode);
+app.post('/create', (req, res) => {
   console.log(req.body);
+
+  const id = '';
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;
@@ -54,14 +61,10 @@ app.post('/create_booking', (req, res) => {
   const date = req.body.date;
   const time = req.body.time;
 
-  const queryString =
+  connection.query(
     `INSERT INTO bookings
-    (id, firstName, lastName, email, phone, category, description, date, time)
-    VALUES ('', ?, ?, ?, ?, ?, ?, ?)`;
-
-  connection.query(`INSERT INTO bookings
   (id, firstName, lastName, email, phone, category, description, date, time)
-  VALUES ('', ?, ?, ?, ?, ?, ?, ?, ?)`, [firstName, lastName, email, phone, category, description, date, time], (err, results, fields) => {
+  VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)`, [firstName, lastName, email, phone, category, description, date, time], (err, results, fields) => {
     if(err){
       console.log('Failed to create new booking: ' + err);
       res.sendStatus(500)
@@ -71,31 +74,3 @@ app.post('/create_booking', (req, res) => {
   })
   res.end();
 });
-/*
-app.get('/bookings', (req, res) => {
-  console.log("terminal")
-  res.send("fetchen")
-
-  
-    const queryString = "SELECT * FROM bookings";
-    console.log(queryString);
-  
-    connection.query(
-      `SELECT * FROM bookings`,
-       (err, rows, fields) => {
-      if (err) {
-        console.log('Failed to get all bookings: ' + err);
-        res.sendStatus(500); // Show internal server error
-        res.end();
-        return;
-      }
-
-      const bookings = rows.map((row) => {
-        return row;
-      })
-
-      res.json(bookings);
-      res.send(bookings);
-      return res.json(bookings);
-    }) 
-  })*/

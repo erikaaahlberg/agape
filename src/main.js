@@ -11,6 +11,12 @@ import 'buefy/dist/buefy.css'
 /* Slider */
 import VueCarousel from '@chenfengyuan/vue-carousel';
 
+
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+ 
+Vue.use(VueAxios, axios)
+
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate, {
   events: ''
