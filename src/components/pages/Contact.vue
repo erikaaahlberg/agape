@@ -56,9 +56,9 @@ export default {
       margin-bottom: 15px;
     }
     .social-media{
-    i{
-      margin-right: 10px;
-    }
+      i{
+        margin-right: 10px;
+      }
     }
 }
 </style>
