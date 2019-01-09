@@ -54,6 +54,27 @@
               console.log(bookedDates);
             });
           },
+          filterDuplicateDates: function (bookings) {
+            /* Check for bookings on the same date */
+            const duplicateDates = [];
+            const lastIndex = bookings.length - 1;
+            for (let i = 0; i < bookings.length; i++) {
+              if (i !== lastIndex) {
+                for (let p = i + 1; p < bookings.length; p++) {
+                  if (bookings[i].date === bookings[p].date) {
+                    duplicateDates.push(bookings[i].date);
+                  }
+                }
+              }
+            }
+            return duplicateDates;
+          },
+          filterBookedTimes: function (duplicateDates, bookedDates) {
+            console.log('hej');
+          },
+          findFullyBookedDates: function (bookedDates) {
+            console.log('hej');
+          },
           fetchAllBookings: function () { 
             /*axios.get('http://localhost:3001/bookings').then((res) => {
                 console.log('score?');

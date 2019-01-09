@@ -57,6 +57,7 @@
           :min-time="timeFrame.minTime"
           :max-time="timeFrame.maxTime" 
           :increment-minutes=60 v-model="time" 
+          :unselectable-times=times
           v-validate="'required'">
         </b-timepicker>
       </b-field>
@@ -81,6 +82,8 @@
           title: 'Tarot / Runor'
         }
       ];
+
+      const times = ["09:00"];
 
       const today = new Date()
 
@@ -117,8 +120,9 @@
           category: this.category,
           description: this.description,
           date: this.date,
-          time: this.time.toLocaleTimeString()
+          time: this.time
         }
+        console.log(input);
         return input;
       },
       checkIfEmpty: function (object) {
@@ -137,7 +141,7 @@
       },
       onSubmit: function () {
         const booking = this.collectInput();
-        this.sendBooking(booking);
+        //this.sendBooking(booking);
       },
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
