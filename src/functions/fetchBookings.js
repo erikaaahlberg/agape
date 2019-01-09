@@ -1,4 +1,8 @@
-export function fetchBookings () { 
+const bodyParser = require('body-parser');
+let cors = require('cors');
+var http = require('http');
+  
+export default function fetchBookings () { 
   /*axios.get('http://localhost:3001/bookings').then((res) => {
       console.log('score?');
       console.log(res);

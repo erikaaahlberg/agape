@@ -41,7 +41,20 @@
            onChildClick: function (value) {
             console.log(this.fromBookingForm = value);
           },
-          fetchBookings: function () { 
+          fetchBookedDates: function () {
+            fetchBookings()
+            .then((fetchedBookings) => {
+              const bookedDates = fetchedBookings.map((row) => {
+                return { 
+                  date: row.date, 
+                  time: row.time 
+                };
+              });
+              //console.log(booked);
+              console.log(bookedDates);
+            });
+          },
+          fetchAllBookings: function () { 
             /*axios.get('http://localhost:3001/bookings').then((res) => {
                 console.log('score?');
                 console.log(res);
@@ -61,7 +74,7 @@
               .then(response => response.json())
                 .then((fetchedBookings) => {
                   console.log(fetchedBookings);
-                  this.bookings = fetchedBookings;
+                  //this.bookings = fetchedBookings;
                 }) 
           },
             createBooking: function ($event) {
@@ -152,7 +165,7 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
 
         },
         mounted: function() {
-          this.fetchBookings();
+          this.fetchBookedDates();
         },
         components: {
           'booking-form': BookingForm,

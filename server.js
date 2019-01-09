@@ -43,7 +43,8 @@ app.get('/bookings', (req, res) => {
           return row;
         });
         res.json(bookings);
-        res.send(data);
+        res.end();
+        //res.send(data);
       }
   );
 });

@@ -4,7 +4,9 @@
       <div class="select-wrapper">
         <b-field label="Välj en kategori">
           <b-select v-model="category" placeholder="-" id="category-select" v-validate="'required'">
-            <option v-for="option in categories" :value="option.value" :key="option.value">
+            <option v-for="option in categories" 
+            :value="option.value" 
+            :key="option.value">
               {{ option.title }}
             </option>
           </b-select>
@@ -77,14 +79,6 @@
         {
           value: 'tarot-runor',
           title: 'Tarot / Runor'
-        },
-        {
-          value: 'workshop',
-          title: 'Workshop'
-        },
-        {
-          value: 'lecture',
-          title: 'Föreläsning'
         }
       ];
 
