@@ -2,7 +2,6 @@
 <section id="book-page">
   <h2><i class="fas fa-angle-right"></i> Boka direkt</h2>
   <div class="section-padding">
-    <p>{{ bookings }}</p>
     <div class="form-wrapper">
       <booking-form v-on:sendBooking="createBooking($event)"/>
       <!--<div class="pickers-wrapper">
@@ -25,11 +24,7 @@
 
   const bodyParser = require('body-parser');
   let cors = require('cors');
-  const path = require('path');
-
-var http = require('http');
-  //app.use(bodyParser.json());
-  //app.use(cors());
+  var http = require('http');
 
   import axios from 'axios'
   import VueAxios from 'vue-axios'
@@ -47,16 +42,16 @@ var http = require('http');
             console.log(this.fromBookingForm = value);
           },
           fetchBookings: function () { 
-            axios.get('http://localhost:3001/bookings').then((res) => {
+            /*axios.get('http://localhost:3001/bookings').then((res) => {
                 console.log('score?');
                 console.log(res);
-            });/*
-            fetch("/api/bookings", {
+            });*/
+            fetch("http://localhost:3001/bookings", {
               host: 'localhost',
               // port to forward to
               port:   3001,
               // path to forward to
-              path:   '/api/bookings',
+              //path:   '/api/bookings',
                method: 'GET',
                headers: {
                  'Accept': 'application/json',
@@ -67,7 +62,7 @@ var http = require('http');
                 .then((fetchedBookings) => {
                   console.log(fetchedBookings);
                   this.bookings = fetchedBookings;
-                }) */
+                }) 
           },
             createBooking: function ($event) {
               console.log($event);
@@ -89,8 +84,7 @@ var http = require('http');
 
                   if (response.ok) {
                     const message = `Tack ${requestBody.firstName} för din bokning!
-                    Välkommen till Kult den ${requestBody.date} kl.${requestBody.time}.
-                    Vi ser fram emot besöket!`;
+                    Varmt välkommen till Agape den ${requestBody.date} kl.${requestBody.time}!`;
                     console.log('yes');
                     //this.triggerShowModal(message, true);
                   } else {
@@ -197,12 +191,15 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_variables.scss';
-#book{
+#book-page{
   .form-wrapper{
     border-top: 1px solid $primaryBright;
     background: $black;
     padding: 50px;
-  }
+    max-width: 1000px;
+    margin: auto;
+  }}
+  /*
   .btn-wrapper{
     text-align: center;
     margin-top: 20px;
@@ -228,30 +225,30 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
   textarea.textarea:active{
     background: transparent;
     /*border: none;
-    outline: none;*/
+    outline: none;
     border-bottom: 1px solid $white;
     box-shadow: none;
     border-radius: 0px;
   }
-    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari 
     color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
-  ::-moz-placeholder { /* Firefox 19+ */
+  ::-moz-placeholder { /* Firefox 19+
     color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
-  :-ms-input-placeholder { /* IE 10+ */
+  :-ms-input-placeholder { /* IE 10+ 
     color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1.5px;
   }
-  :-moz-placeholder { /* Firefox 18- */
+  :-moz-placeholder { /* Firefox 18- 
     color: $lightGrey;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
@@ -266,7 +263,7 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
     letter-spacing: 1.5px;
   }
   
-  /* Timepicker and datepicker */
+  /* Timepicker and datepicker 
   .icon i{
     color: $mediumGrey;
     margin-right: 5px;

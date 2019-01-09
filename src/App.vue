@@ -73,14 +73,33 @@ $family-sans-serif: "Hind", sans-serif;
   @include button($redBright, $black, 'transparent', $red, $white, 'transparent');
 }
 .btn-transparent{
-  @include button('transparent', $white, $red, 'transparent', $primaryBright, $primary);
+  @include button('transparent', $white, $primary, 'transparent', $primary, $primary);
 }
 
+/* Links */
+.link-green{
+  color: $primaryBright;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: none;
+  i.fa-angle-right{
+    position: relative;
+    bottom: -2px;
+    color: $redBright;
+    font-size: 1.2em;
+  }
+  &:hover{
+    color: $primary;
+    i.fa-angle-right{
+      color: $red;
+    }
+  }
+}
 /* Text color */
-.c-purple{
+.c-green{
   color: $primary;
 }
-.c-purple-bright{
+.c-green-bright{
   color: $primaryBright;
 }
 .c-red{

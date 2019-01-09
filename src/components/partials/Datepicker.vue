@@ -4,7 +4,8 @@
 				icon-pack="fa" 
 				icon="calendar-alt" 
 				:min-date="minDate"
-				:max-date="maxDate">
+				:max-date="maxDate"
+				:unselectable-dates="minDate">
     </b-datepicker>
   </b-field>
 </template>

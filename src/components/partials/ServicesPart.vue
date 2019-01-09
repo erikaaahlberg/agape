@@ -1,5 +1,11 @@
 <template>
  <section id="services-part" class="section-margin">
+     <!--<p>Agape erbjuder olika tjänster som alla syftar till hjälpa alla att må sitt allra bästa. Privatperson eller företag, ålder är bara en siffra - alla förtjänar att må bra och nå sina mål i livet.</p>
+     <div class="btn-wrapper">
+        <a href="#" type="button" class="btn-purple">Läs mer</a>
+        <a href="#" type="button" class="btn-red">Boka tid</a>
+      </div>
+      -->
     <div class="wrapper-cards">
       <service-card 
       title="Coaching" 
@@ -78,6 +84,28 @@
     border-top: 1px solid $redBright;
     border-bottom: 1px solid $primaryBright; 
   }*/
+  .intro-text{
+    p{
+      text-transform: uppercase;
+      padding: 50px 30px 10px 30px;
+      text-align: center;
+      font-size: 1.5em;
+      margin: auto;
+      width: 90%;
+      @media (min-width: 768px){
+        width: 80%;
+        max-width: 700px;
+      }
+    }
+ /*   .btn-wrapper{
+      text-align: center;
+      padding: 10px 30px 50px 30px;
+      a{
+        display: inline-block;
+        margin: 5px;
+      }
+    }*/
+  }
 .wrapper-cards{
   margin: 0px;
     width: 100%;
@@ -87,7 +115,7 @@
     .card-black {
       flex-basis: 80%;
       margin: auto;
-      background: $black;
+      border: 1px solid $white;
         &:nth-child(1){
           margin-bottom: 30px;
         }
@@ -104,35 +132,38 @@
         }
       }
       @media (min-width: 1200px){
+        border: none;
         flex-basis: 25%;
+        margin: 0px;
         margin-bottom: 0px !important;
         /*border-top: 1px solid $redBright;
         border-right: 1px solid $primaryBright;
         border-bottom: 1px solid $redBright;
         border-left: 1px solid $primaryBright;*/
       }
-    i{
+    /*i{
       font-size: 3em;
       color: $white;
       margin-bottom: 20px;
-    }
+    }*/
   /*@media (min-width: 768px) {
     flex-basis: 45%;
-  }
-  @media (min-width: 1200px){
-    flex-basis: 25%;
   }*/
+  @media (min-width: 1200px){
+    border-top: 1px solid $white;
+    border-bottom: 1px solid $white; 
+  }
 
-  .wrapper-card-img {
+  /*.wrapper-card-img {
     width: 100%;
     img {
       width: 100%;
       overflow: hidden;
       margin: auto;
     }
-  }
-  .wrapper-card-text {
-    padding: 30px 30px 10px 30px;
+  }*/
+  /*.wrapper-card-text {
+    //padding: 30px 30px 10px 30px;
     text-align: center;
     @media (min-width: 768px) {
       padding: 40px 50px 10px 50px;
@@ -161,17 +192,17 @@
     @media(min-width: 768px){
     padding: 0px 0px 50px 0px;
     }
-  }
+  }*/
 }
 
-.card-news {
+/*.card-news {
   background: transparent;
   flex-basis: 30%;
 
   h3 {
     color: $white;
   }
-}
+}*/
 }
 }
 </style>

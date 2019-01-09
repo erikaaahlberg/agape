@@ -1,33 +1,33 @@
 * {
-  box-sizing: border-box;
-}
-body, html {
-  height: 100%;
-  background: black;
-  font-family: 'Hind', sans-serif;
-  color: white;
-}
-h1{
-    font-size: 3em;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
-h2{
-    font-size: 2em;
-    letter-spacing: 2px;
-    font-weight: 600;
-}
-h3, h4, h5, h6{
-    font-size: 1.5em;
-    letter-spacing: 1.5px;
-    font-weight: 600;
-}
-p{
-	text-transform: none;
-	line-height: 1.6;
-	letter-spacing: 1.5px;
-	font-size: 1em;  
-}
-i.fa-angle-right{
-    color: $red;
-}
+    box-sizing: border-box;
+  }
+  body, html {
+    height: 100%;
+    background: black;
+    font-family: 'Hind', sans-serif;
+    color: white;
+  }
+  h1{
+      font-size: 3em;
+      letter-spacing: 2px;
+      font-weight: 600;
+  }
+  h2{
+      font-size: 2em;
+      letter-spacing: 2px;
+      font-weight: 600;
+  }
+  h3, h4, h5, h6{
+      font-size: 1.5em;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+  }
+  p{
+      text-transform: none;
+      line-height: 1.8;
+      letter-spacing: 1.5px;
+      font-size: 1em;  
+  }
+  i.fa-angle-right{
+      color: $red;
+  }

@@ -1,7 +1,11 @@
 <template>
 <section id="about-page">
-  <h2><i class="fas fa-angle-right"></i> Om Karl</h2>
-  <div class="section-padding">
+  <h2><i class="fas fa-angle-right"></i> Om Agape</h2>
+  <about-container 
+  :imgUrl="imgBackgroundUrl"
+  :text="text"
+  />
+  <!--<div class="section-padding">
     <div class="flex-wrapper">
       <div class="bg-img"></div>
       <div class="text-wrapper">
@@ -11,11 +15,25 @@
         <p>blablablbaabla blablablbaabl abla blablba ablablab lablbaabla blablablbaab lablablablbaab lablablablbaabla blab lablba ablabl ablablb aablablabl ablbaablab lablablbaa </p>
       </div>
     </div>
-  </div>
+  </div>-->
 </section>
 </template>
 
 <script>
+import FlexContainer from '@/components/partials/FlexContainer.vue';
+
+export default {
+    name: 'About',
+    data() {
+      return {
+        imgBackgroundUrl: require('@/assets/images/karl2.jpg'),
+        text: 'här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle.'
+      }
+    },
+    components: {
+      'about-container': FlexContainer
+    }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

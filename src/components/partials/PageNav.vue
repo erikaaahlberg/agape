@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <img src="../../assets/images/logotype2.png" id="logotype-img-top">
+      <img :src="logoUrl" id="logotype-img-top">
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="isOpen = !isOpen"
         v-bind:class="{'is-active': isOpen}">
         <span aria-hidden="true"></span>
@@ -12,11 +12,10 @@
     <div class="navbar-menu" v-bind:class="{'is-active': isOpen}">
       <div class="navbar-end">
         <p class="flex-center link-wrapper"><router-link to="/" class="navbar-item is-tab">Start</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/about" class="navbar-item is-tab">Om Karl</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/about" class="navbar-item is-tab">Om Agape</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/services" class="navbar-item is-tab">Tjänster</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/book" class="navbar-item is-tab">Boka</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/art" class="navbar-item is-tab">Konst</router-link></p>
       </div>
     </div>
   </nav>
@@ -25,9 +24,10 @@
 <script>
   export default {
     name: 'PageNav',
-    data: function () {
+    data() {
       return {
-        isOpen: false
+        isOpen: false,
+        logoUrl: require('@/assets/images/logo.png')
       }
     }
   };
@@ -102,6 +102,12 @@
 			min-height: 0px;
 			display: inline-block;
 			border-bottom: none;
+		&:hover{
+			color: $primary;
+			transition: all .2s ease-in-out;
+			text-align: center;
+			border-bottom: none;
+		}
 		}
 		&.router-link-exact-active{
 			border-bottom: 3px solid $red;
@@ -115,12 +121,6 @@
 			padding-bottom: 2px;
 			padding-top: 7px;
 			
-		}
-		&:hover{
-			color: $primary;
-			transition: all .2s ease-in-out;
-			text-align: center;
-			border-bottom: none;
 		}
   }
 

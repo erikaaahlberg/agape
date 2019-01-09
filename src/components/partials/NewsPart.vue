@@ -2,12 +2,13 @@
 	<section id="news-part" class="section-margin">
     <div class="wrapper-news-cards">
       <news-card 
-      title="Workshop" 
+      title="Projekt" 
       date="Söndag 23/01/2019"
       time="19.30"
       place="Nacka"
-      description="Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul."
-      :imgUrl="images.img1"/>
+      description="Karl har en del projekt igång som involverar musik och annan konst. Det är alltid mycket som händer och alla uppdateringar postas dagligen på facebook."
+      :imgUrl="images.img1"
+      link="https://www.facebook.com/thewisdomofaman"/>
 
       <!--<news-card title="Tarot/Runor" 
       description="Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul."/>

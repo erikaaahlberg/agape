@@ -1,7 +1,13 @@
 <template>
   <section id="home">
     <h2><i class="fas fa-angle-right"></i> Tjänster</h2> 
+    <quote-part
+    quote="Ålder är bara en siffra - alla förtjänar att må bra och nå sina mål i livet."
+    author="Karl Green"/>
     <services-part/>
+    <quote-part 
+    quote="You learn more about yourself through your child, I guess."
+    author="Heath Ledger"/>
     <h2><i class="fas fa-angle-right"></i> Aktuellt</h2> 
     <news-part/>
   </section>
@@ -10,36 +16,18 @@
 <script>
   import ServicesPart from '@/components/partials/ServicesPart.vue';
   import NewsPart from '@/components/partials/NewsPart.vue';
+  import QuotePart from '@/components/partials/QuotePart.vue';
   
   export default {
     name: 'Start',
 		components: {
       'services-part': ServicesPart,
-      'news-part': NewsPart
+      'news-part': NewsPart,
+      'quote-part': QuotePart
 		}
   };
-    /*export default {
-        name: 'Home'
-    };*/
-    /*export default {
-        name: 'Home',
-  computed: {
-    username () {
-      // We will see what `params` is shortly
-      return this.$route.params.username
-    }
-  },
-  methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
-}*/
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_variables.scss';
 #home{

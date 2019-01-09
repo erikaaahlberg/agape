@@ -4,9 +4,12 @@ $red: rgb(230, 96, 72);
 $redBright: rgb(238, 129, 109);
 $redDark: rgb(177, 59, 39);
 $white: rgb(245, 226, 226);
-$primary: #773fd0;
-$primaryBright: #aa7bed;
+$primary: #5d9989;
+$primaryBright: #abd0c6;
 $primaryDark: #603a9d;
+/*$primary: #773fd0;
+$primaryBright: #aa7bed;
+$primaryDark: #603a9d;*/
 $primary-invert: findColorInvert($primary);
 
 $lightGrey: #7a7a7a;

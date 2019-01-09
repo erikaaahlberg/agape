@@ -3,17 +3,19 @@
   <h2><i class="fas fa-angle-right"></i> Tjänster</h2>
   <div class="services-wrapper">    
 
-    <div class="service-title flex-center c-red">
+    <div class="service-title flex-center">
       <h3>Coaching</h3>
     </div>
     <div class="text-wrapper">
+      <h3>Coaching</h3>
       <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
-      <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
+      <p>Vi viker dina kläder hur du vill, när du vill.</p>
     </div>
 
     <div class="text-wrapper">
+      <h3>Tarot/runor</h3>
       <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
-      <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
+      <p>Vi viker dina kläder hur du vill, när du vill.</p>
     </div>
 
     <!--<div class="bg-img" :style="{ 
@@ -31,29 +33,26 @@
       'background-size': 'cover'
      }">
     </div>-->
-    <div class="service-title flex-center c-purple">
+    <div class="service-title flex-center">
       <h3>Tarot/runor</h3>
     </div>
-        <div class="service-title flex-center c-red">
+        <div class="service-title flex-center">
       <h3>Workshop</h3>
     </div>
     <div class="text-wrapper">
+      <h3>Workshop</h3>
       <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
-      <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
+      <p>Vi viker dina kläder hur du vill, när du vill.</p>
     </div>
 
     <div class="text-wrapper">
+      <h3>Föreläsning</h3>
       <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
-      <p>Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul. Vi viker dina kläder hur du vill, när du vill. Ring när som helst. Snabbt, långsamt eller mitt emellan - men framför allt kul.</p>
+      <p>Vi viker dina kläder hur du vill, när du vill.</p>
     </div>
 
-    <div class="service-title flex-center c-purple">
-      <h3>Föreläsning<br/>
-      <i class="fas fa-bullseye"></i>
-      <i class="fas fa-burn"></i>
-      <i class="far fa-eye"></i>
-      <i class="fas fa-child"></i>
-      </h3>
+    <div class="service-title flex-center">
+      <h3>Föreläsning</h3>
     </div>
 <!--
     <div class="wrapper-cards">
@@ -80,17 +79,17 @@
 
 <script>
   export default {
-    name: 'ServicesPart',
-    data () {
+    name: 'Services',
+    /*data () {
       return {
         images: {
-          img1: require('@/assets/images/card-image1.jpg'),
+          img1: require('../../assets/images/card-image1.jpg'),
           img2: require('@/assets/images/card-image2.jpg'),
           img3: require('@/assets/images/card-image3.jpg'),
           img4: require('@/assets/images/card-image1.jpg')
         }
       }
-    },
+    },*/
 		components: {
 			'hej': 'hej'
     }
@@ -103,20 +102,39 @@
 
 #services-page{
   .services-wrapper{
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
   }
   .bg-img{
     width: 100%;
-    flex-basis: 50%;
+    flex-basis: 100%;
+    @media (min-width: 768px){
+      flex-basis: 50%;
+    }
   }
   .text-wrapper{
-    flex-basis: 50%;
+    flex-basis: 100%;
     background: $black;
     padding: 30px;
     p{
-      text-transform: none;
+      //text-transform: uppercase;
+      line-height: 2;
+    }
+    h3{      
+      font-size: 2em;
+      color: $white;
+      letter-spacing: 3px;
+      border-bottom: 10px solid black;
+      display: inline-block;
       margin-bottom: 15px;
+      }
+    @media (min-width: 768px){
+      flex-basis: 50%;
+      padding: 100px;
+      h3{
+        display: none;
+      }
     }
   }
   .c-red{
@@ -133,11 +151,30 @@
     }
   }
   .service-title{
+    @media (max-width: 768px){
+      display: none;
+    }
     flex-basis: 50%;
     h3{
       font-size: 4em;
       color: $white;
+      letter-spacing: 3px;
+      border-bottom: 10px solid $black;
     }
+    /*
+    &:nth-child(odd){
+      
+      background: $redBright;
+      color: $black;
+      color: $redBright;
+    }
+    &:nth-child(even){
+      background: $primaryBright;
+      color: $black;
+      h3{
+        color: $primaryBright;
+      }
+    }*/
   }
 }
 
