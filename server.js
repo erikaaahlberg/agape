@@ -34,7 +34,7 @@ app.get('/bookings', (req, res) => {
       `SELECT * FROM bookings`,
       (error, data, fields) => {
         if (error) {
-          console.log('Failed to get all bookings: ' + err);
+          console.log('Failed to get all bookings: ' + error);
           res.sendStatus(500); // Show internal server error
           res.end();
           return;

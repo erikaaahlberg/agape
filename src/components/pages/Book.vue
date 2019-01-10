@@ -67,7 +67,8 @@
                 }
               }
             }
-            return duplicateDates;
+            //return duplicateDates;
+            console.log(duplicateDates);
           },
           filterBookedTimes: function (duplicateDates, bookedDates) {
             console.log('hej');

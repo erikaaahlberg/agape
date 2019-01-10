@@ -1,6 +1,7 @@
 <template>
   <section class="book-input">
     <form @submit.prevent="validateBeforeSubmit">
+      
       <div class="select-wrapper">
         <b-field label="Välj en kategori">
           <b-select v-model="category" placeholder="-" id="category-select" v-validate="'required'">
@@ -44,24 +45,28 @@
         <b-datepicker placeholder="Tryck för att välja" 
           icon-pack="fa" icon="calendar-alt" 
           :min-date="minDate"
-          :max-date="maxDate" v-model="date" 
+          :max-date="maxDate" 
+          v-model="date" 
           v-validate="'required'" 
-          :unselectable-days-of-week="[5, 6]"
-				  :unselectable-dates="minDate">
+          :unselectable-days-of-week="[5, 6]">
         </b-datepicker>
       </b-field>
+      <!--
+				  :unselectable-dates="minDate" -->
 
       <b-field label="Välj tid">
         <b-timepicker placeholder="Tryck för att välja" 
           icon-pack="fa" icon="clock" 
           :min-time="timeFrame.minTime"
           :max-time="timeFrame.maxTime" 
-          :increment-minutes=60 v-model="time" 
-          :unselectable-times=times
-          v-validate="'required'">
+          :increment-minutes=60 
+          v-model="time" 
+          v-validate="'required'"
+          :unselectable-times="time">
         </b-timepicker>
       </b-field>
-
+<!--
+          :unselectable-times=times -->
 
       <div class="btn-wrapper">
         <button type="button" class="btn-purple" v-on:click="onSubmit">Boka nu</button>
@@ -71,7 +76,12 @@
 </template>
 
 <script>
+  import fetchBookings from '@/functions/fetchBookings.js';
+
   export default {
+    mounted: function() {
+      this.excludeBookedTimes();
+    },
     data() {
       const categories = [{
           value: 'coaching',
@@ -83,7 +93,7 @@
         }
       ];
 
-      const times = ["09:00"];
+      const times = this.time;
 
       const today = new Date()
 
@@ -102,15 +112,39 @@
         maxTime: max
       }
 
+      const exclude = new Date();
+      exclude.setHours(9);
+      exclude.setMinutes(0);
+
+      const time = [ exclude ];
+
       return {
         date: new Date(),
         minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
         maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
         timeFrame,
-        categories
+        categories,
+        time
       }
     },
     methods: {
+      excludeBookedTimes: function () {
+        fetchBookings()
+          .then((fetchedBookings) => {
+            console.log(fetchedBookings);
+            const bookings = fetchedBookings.map((row) => {
+              return { 
+                date: row.date, 
+                time: row.time 
+              };
+            });
+              //console.log(booked);
+              console.log(bookings);
+              //this.bookedSessions = bookings;
+              const bookedTimes = this.filterTimeByPickedDate(bookings);
+              //return bookedDates;
+          });
+      },
       collectInput: function () {
         const input = {
           firstName: this.firstName,
@@ -124,6 +158,27 @@
         }
         console.log(input);
         return input;
+      },
+      filterTimeByPickedDate: function (bookedSessions) {
+        const pickedDate = this.date;
+        let bookedTimes = [];
+        /*console.log(pickedDate);
+        console.log(bookedSessions[0].date);*/
+        /*const bookedTimes = bookedSessions.map((row) => {
+          if(row.date === pickedDate) {
+            return row.time;
+          } 
+        });*/
+          console.log(pickedDate);
+          console.log(bookedSessions[0].date);
+        for (let i = 0; i < bookedSessions.length; i++) {
+          /*console.log(pickedDate);
+          console.log(bookedSessions[i].date);
+          /*if (pickedDate === bookedSessions[i].date) {
+            bookedTimes.push(bookedSessions[i].time);
+          }*/
+        }
+        console.log(bookedTimes);
       },
       checkIfEmpty: function (object) {
         for (let key in object) {
@@ -141,7 +196,7 @@
       },
       onSubmit: function () {
         const booking = this.collectInput();
-        //this.sendBooking(booking);
+        this.sendBooking(booking);
       },
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
