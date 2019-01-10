@@ -154,10 +154,21 @@
           category: this.category,
           description: this.description,
           date: this.date,
-          time: this.time
+          time: this.formatTime(this.time)
         }
         console.log(input);
         return input;
+      },
+      formatTime: function (time) {
+        /*const hour = Date.prototype.getHours(time);
+        const min = Date.prototype.getMinutes(time);*/
+        return {
+          hour: Date.prototype.getHours(time),
+          min: Date.prototype.getMinutes(time)
+        };
+      },
+      formatDate: function () {
+
       },
       filterTimeByPickedDate: function (bookedSessions) {
         const pickedDate = this.date;
