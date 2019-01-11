@@ -81,7 +81,7 @@
                 console.log('score?');
                 console.log(res);
             });*/
-            fetch("http://localhost:3001/bookings", {
+            fetch("http://localhost:3001/allBookings", {
               host: 'localhost',
               // port to forward to
               port:   3001,

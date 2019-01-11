@@ -5,7 +5,8 @@
       <div class="select-wrapper">
         <b-field label="Välj en kategori">
           <b-select v-model="category" placeholder="-" id="category-select" v-validate="'required'">
-            <option v-for="option in categories" 
+            <option 
+            v-for="option in categories" 
             :value="option.value" 
             :key="option.value">
               {{ option.title }}
@@ -20,15 +21,33 @@
       </b-field>
 
       <b-field>
-        <b-input placeholder="Efternamn" type="text" v-model="lastName" id="lastname-input" v-validate="'required'"></b-input>
+        <b-input 
+        placeholder="Efternamn" 
+        type="text" 
+        v-model="lastName" 
+        id="lastname-input" 
+        v-validate="'required'"></b-input>
       </b-field>
 
       <b-field>
-        <b-input placeholder="Email" type="email" v-model="email" id="email-input" v-validate="'required'"></b-input>
+        <b-input 
+        placeholder="Email" 
+        type="email" 
+        v-model="email" 
+        id="email-input" 
+        v-validate="'required'">
+        </b-input>
       </b-field>
 
       <b-field>
-        <b-input placeholder="Telefonnummer" type="tel" min="10" max="10" v-model="phone" id="phone-input" v-validate="'required'">
+        <b-input 
+        placeholder="Telefonnummer" 
+        type="tel" 
+        min="10" 
+        max="10" 
+        v-model="phone" 
+        id="phone-input" 
+        v-validate="'required'">
         </b-input>
       </b-field>
 
@@ -37,7 +56,8 @@
           minlength="10" 
           maxlength="100" 
           placeholder="Beskriv kortfattat vad du vill ha hjälp med"
-          v-model="description" id="description-input">
+          v-model="description" 
+          id="description-input">
         </b-input>
       </b-field>
 
@@ -48,6 +68,7 @@
           :max-date="maxDate" 
           v-model="date" 
           v-validate="'required'" 
+          v-on:change="fetchBookingsByDate"
           :unselectable-days-of-week="[5, 6]">
         </b-datepicker>
       </b-field>
@@ -61,8 +82,7 @@
           :max-time="timeFrame.maxTime" 
           :increment-minutes=60 
           v-model="time" 
-          v-validate="'required'"
-          :unselectable-times="time">
+          v-validate="'required'">
         </b-timepicker>
       </b-field>
 <!--
@@ -80,7 +100,7 @@
 
   export default {
     mounted: function() {
-      this.excludeBookedTimes();
+      this.fetchBookingsByDate(this.date);
     },
     data() {
       const categories = [{
@@ -93,19 +113,17 @@
         }
       ];
 
-      const times = this.time;
-
-      const today = new Date()
+      const today = new Date();
 
       /* Min time for timepicker */
-      const min = new Date()
-      min.setHours(9)
-      min.setMinutes(0)
+      const min = new Date();
+      min.setHours(9);
+      min.setMinutes(0);
 
       /* Max time for timepicker */
-      const max = new Date()
-      max.setHours(18)
-      max.setMinutes(0)
+      const max = new Date();
+      max.setHours(18);
+      max.setMinutes(0);
 
       const timeFrame = {
         minTime: min,
@@ -124,26 +142,55 @@
         maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
         timeFrame,
         categories,
-        time
+        bookedSessions: [],
+        bookedTimes: ''
       }
     },
     methods: {
       excludeBookedTimes: function () {
-        fetchBookings()
+        this.fetchBookingsByDate()
           .then((fetchedBookings) => {
             console.log(fetchedBookings);
-            const bookings = fetchedBookings.map((row) => {
+            /*const bookings = fetchedBookings.map((row) => {
               return { 
                 date: row.date, 
                 time: row.time 
               };
-            });
-              //console.log(booked);
+            });*/
+              /*console.log(booked);
               console.log(bookings);
+              const bookedSessions = this.filterBookedTimeByPickedDate(bookings);
+              if (bookedSessions.length > 0) {
+                const formattedTimes = bookedSessions.map((row) => {
+                  return this.formatTimeForTimePicker(row.time);
+                });
+                console.log(formattedTimes);
+                this.bookedTimes = formattedTimes;
+              }
               //this.bookedSessions = bookings;
-              const bookedTimes = this.filterTimeByPickedDate(bookings);
-              //return bookedDates;
+              //const bookedTimes = this.filterTimeByPickedDate(bookings);
+              //return bookedDates;*/
           });
+      },
+      fetchBookingsByDate: function (date) { 
+        console.log('tjenare')
+        return fetch(`http://localhost:3001/bookings/date/${date}`, {
+          host: 'localhost',
+          // port to forward to
+          port:   3001,
+          // path to forward to
+          //path:   '/api/bookings',
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        })
+          .then(response => response.json())
+            .then((fetchedBookings) => {
+              console.log(fetchedBookings);
+              return fetchedBookings;
+            }) 
       },
       collectInput: function () {
         const input = {
@@ -153,43 +200,50 @@
           phone: this.phone,
           category: this.category,
           description: this.description,
-          date: this.date,
-          time: this.formatTime(this.time)
+          date: this.date.toISOString().slice(0,10),
+          time: this.time
+          /*
+          date: this.formatDateForPostRequest(this.date),
+          time: this.formatTimeForPostRequest(this.time)
+           */
         }
-        console.log(input);
         return input;
       },
-      formatTime: function (time) {
-        /*const hour = Date.prototype.getHours(time);
-        const min = Date.prototype.getMinutes(time);*/
-        return {
-          hour: Date.prototype.getHours(time),
-          min: Date.prototype.getMinutes(time)
-        };
+      formatTimeForPostRequest: function (time) {
+        const hour = time.getHours();
+        const min = time.getMinutes();
+        
+        return `${hour}:${min}0`;
       },
-      formatDate: function () {
+      formatDateForPostRequest: function (date) {
+        const year = date.getFullYear(); 
+        const month = date.getMonth() + 1;
+        const day = date.getDate();
 
+        return `${year}-${month}-${day}`;
+        
       },
-      filterTimeByPickedDate: function (bookedSessions) {
-        const pickedDate = this.date;
+      /* Formatting the time to exclude booked sessions in timepicker */
+      formatTimeForTimePicker: function (time) {
+        console.log(time.slice(0,2));
+        const hours = parseInt(time.slice(0,2));
+        const formattedTime = new Date();
+        formattedTime.setHours(hours);
+        formattedTime.setMinutes(0);
+        console.log(formattedTime);
+      },
+      filterBookedTimeByPickedDate: function (bookingsArray) {
+        const pickedDate = this.formatDateForPostRequest(this.date);
         let bookedTimes = [];
-        /*console.log(pickedDate);
-        console.log(bookedSessions[0].date);*/
-        /*const bookedTimes = bookedSessions.map((row) => {
-          if(row.date === pickedDate) {
-            return row.time;
-          } 
-        });*/
-          console.log(pickedDate);
-          console.log(bookedSessions[0].date);
-        for (let i = 0; i < bookedSessions.length; i++) {
-          /*console.log(pickedDate);
-          console.log(bookedSessions[i].date);
-          /*if (pickedDate === bookedSessions[i].date) {
-            bookedTimes.push(bookedSessions[i].time);
-          }*/
+        console.log(pickedDate);
+        for (let i = 0; i < bookingsArray.length; i++) {
+          if (pickedDate === bookingsArray[i].date) {
+            console.log('tjenare');
+            bookedTimes.push(bookingsArray[i].time);
+          }
         }
         console.log(bookedTimes);
+        return bookedTimes;
       },
       checkIfEmpty: function (object) {
         for (let key in object) {
@@ -207,7 +261,8 @@
       },
       onSubmit: function () {
         const booking = this.collectInput();
-        this.sendBooking(booking);
+        console.log(booking);
+        //this.sendBooking(booking);
       },
       validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {

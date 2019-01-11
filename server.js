@@ -49,6 +49,27 @@ app.get('/bookings', (req, res) => {
   );
 });
 
+app.get('/bookings/date/:date', (req, res) => {
+  const date = req.params.date;
+  connection.query(
+      `SELECT date, time FROM bookings WHERE date = ?`, [date],
+      (error, data, fields) => {
+        if (error) {
+          console.log('Failed to get all bookings: ' + error);
+          res.sendStatus(500); // Show internal server error
+          res.end();
+          return;
+        }
+        const bookings = data.map((row) => {
+          return row;
+        });
+        res.json(bookings);
+        res.end();
+        //res.send(data);
+      }
+  );
+});
+
 app.post('/create', (req, res) => {
   console.log(req.body);
 
