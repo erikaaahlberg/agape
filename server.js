@@ -29,6 +29,7 @@ app.listen(3001, () => {
   console.log('Listening to port 3001!')
 })
 
+/* Get all bookings */
 app.get('/bookings', (req, res) => {
   connection.query(
       `SELECT * FROM bookings`,
@@ -49,6 +50,7 @@ app.get('/bookings', (req, res) => {
   );
 });
 
+/* Get all bookings from one date */
 app.get('/bookings/date/:date', (req, res) => {
   const date = req.params.date;
   connection.query(
@@ -69,6 +71,53 @@ app.get('/bookings/date/:date', (req, res) => {
       }
   );
 });
+
+
+/* Get bookings with duplicate dates */
+app.get('/bookings/sorted_by_dates', (req, res) => {
+  connection.query(
+      `SELECT * FROM bookings`,
+      (error, data, fields) => {
+        if (error) {
+          console.log('Failed to get all bookings: ' + error);
+          res.sendStatus(500); // Show internal server error
+          res.end();
+          return;
+        }
+        const bookings = data.map((row) => {
+          return row;
+        });
+        res.json(bookings);
+        res.end();
+        //res.send(data);
+      }
+  );
+});
+
+/*
+
+Columns
+  id,
+  firstName,
+  lastName,
+  email,
+  phone,
+  category,
+  description,
+  date,
+  time,
+  COUNT(date)
+
+SELECT 
+  date,
+  COUNT(date)
+FROM
+    bookings
+GROUP BY date
+HAVING COUNT(date) > 1 
+
+"SELECT date, firstName, COUNT(*) as count FROM bookings GROUP BY date"
+*/
 
 app.post('/create', (req, res) => {
   console.log(req.body);

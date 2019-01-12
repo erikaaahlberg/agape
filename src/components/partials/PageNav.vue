@@ -16,6 +16,7 @@
         <p class="flex-center link-wrapper"><router-link to="/services" class="navbar-item is-tab">Tjänster</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/book" class="navbar-item is-tab">Boka</router-link></p>
+        <p class="flex-center link-wrapper"><router-link to="/admin" class="navbar-item is-tab">Admin</router-link></p>
       </div>
     </div>
   </nav>

@@ -6,6 +6,7 @@ import Book from '@/components/pages/Book.vue';
 import Contact from '@/components/pages/Contact.vue';
 import Art from '@/components/pages/Art.vue';
 import Services from '@/components/pages/Services.vue';
+import Admin from '@/components/pages/Admin.vue';
 
 Vue.use(Router);
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/art',
       name: 'Art',
       component: Art
+    },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: Admin
     },
   ],
 });
