@@ -34,7 +34,7 @@
 </template>
 
 <script>
-  import fetchBookings from '@/functions/fetchBookings.js';
+  //import fetchBookings from '@/functions/fetchBookings.js';
 
   export default {
     props: [

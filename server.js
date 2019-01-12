@@ -74,9 +74,9 @@ app.get('/bookings/date/:date', (req, res) => {
 
 
 /* Get bookings with duplicate dates */
-app.get('/bookings/sorted_by_dates', (req, res) => {
+app.get('/bookings/dates', (req, res) => {
   connection.query(
-      `SELECT * FROM bookings`,
+      `SELECT DISTINCT date FROM bookings`,
       (error, data, fields) => {
         if (error) {
           console.log('Failed to get all bookings: ' + error);

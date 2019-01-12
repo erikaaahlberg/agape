@@ -9,13 +9,13 @@
 </template>
 
 <script>
-  import fetchBookings from '@/functions/fetchBookings.js';
+  //import fetchBookings from '@/functions/fetching/fetchBookings.js';
   import Accordion from '@/components/partials/Accordion.vue';
 
   export default {
-    /*props: [
-      booking
-    ],*/
+    props: [
+      'bookedDates'
+    ],
     components: {
       'accordion': Accordion
     },

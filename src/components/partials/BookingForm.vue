@@ -96,7 +96,7 @@
 </template>
 
 <script>
-  import fetchBookings from '@/functions/fetchBookings.js';
+  import fetchBookings from '@/functions/fetching/fetchBookings.js';
 
   export default {
     mounted: function() {
@@ -190,7 +190,7 @@
             .then((fetchedBookings) => {
               console.log(fetchedBookings);
               return fetchedBookings;
-            }) 
+            }); 
       },
       collectInput: function () {
         const input = {
@@ -210,18 +210,22 @@
         return input;
       },
       formatTimeForPostRequest: function (time) {
+        /* Min will always have the same value */
+        const min = '00';
         const hour = time.getHours();
-        const min = time.getMinutes();
         
-        return `${hour}:${min}0`;
+        return `${hour}:${min}`;
       },
       formatDateForPostRequest: function (date) {
         const year = date.getFullYear(); 
-        const month = date.getMonth() + 1;
+        let month = date.getMonth() + 1;
         const day = date.getDate();
+        
+        if (monthNumber < 10) {
+          month = `0${monthNumber}`;
+        } 
 
         return `${year}-${month}-${day}`;
-        
       },
       /* Formatting the time to exclude booked sessions in timepicker */
       formatTimeForTimePicker: function (time) {

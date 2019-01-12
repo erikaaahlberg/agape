@@ -20,7 +20,7 @@
   import Datepicker from '@/components/partials/DatePicker';
   import BookingForm from '@/components/partials/BookingForm';
   import Timepicker from '@/components/partials/Timepicker';
-  import fetchBookings from '@/functions/fetchBookings.js';
+  import fetchBookings from '@/functions/fetching/fetchBookings.js';
 
   const bodyParser = require('body-parser');
   let cors = require('cors');
