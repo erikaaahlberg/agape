@@ -53,7 +53,7 @@
           }
         ];
       return {
-        items: items
+        bookings: bookings
     }
     },
     methods: {
