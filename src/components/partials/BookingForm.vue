@@ -96,7 +96,8 @@
 </template>
 
 <script>
-  import fetchBookings from '@/functions/fetching/fetchBookings.js';
+  import { fetchBookings } from '@/functions/fetching/getRequests.js';
+  //import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
 
   export default {
     mounted: function() {
@@ -236,16 +237,25 @@
         formattedTime.setMinutes(0);
         console.log(formattedTime);
       },
+      formatStringToDateObject: function (dateString) {
+        const year = dateString.slice(0,4);
+        const month = dateString.slice(5,7);
+        const date = dateString.slice(9,11);
+
+        console.log(`${date}, ${year}, ${month}`);
+      },
       filterBookedTimeByPickedDate: function (bookingsArray) {
         const pickedDate = this.formatDateForPostRequest(this.date);
         let bookedTimes = [];
         console.log(pickedDate);
+
         for (let i = 0; i < bookingsArray.length; i++) {
           if (pickedDate === bookingsArray[i].date) {
             console.log('tjenare');
             bookedTimes.push(bookingsArray[i].time);
           }
         }
+
         console.log(bookedTimes);
         return bookedTimes;
       },

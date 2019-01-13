@@ -1,21 +1,19 @@
 <template>
-  <section>
       <div class="booking" :class="accordionClasses">
-        <li class="booking-header" @click="toggleAccordion"> {{ item.date }} </li>
+        <li class="booking-header" @click="toggleAccordion"> {{ bookingContent.date }} </li>
         <div class="booking-body">
 
-        
         <!--ny komponent-->  
           <div class="booking-content">
-            <h4> {{ item.time }} </h4>
+            <h4> {{ bookingContent.time }} </h4>
 
             <ul class="bookings__list">
-              <li><label for="firstName">Namn:</label> {{ item.firstName }} </li>
-              <li><label for="lastName">Efternamn:</label> {{ item.lastName }} </li>
-              <li><label for="email">Email:</label> {{ item.email }} </li>
-              <li><label for="phone">Telefonnummer:</label> {{ item.phone }} </li>
-              <li><label for="category">Kategori:</label> {{ item.category }} </li>
-              <li><label for="description">Beskrivning:</label> {{ item.description }} </li>
+              <li><label for="firstName">Namn:</label> {{ bookingContent.firstName }} </li>
+              <li><label for="lastName">Efternamn:</label> {{ bookingContent.lastName }} </li>
+              <li><label for="email">Email:</label> {{ bookingContent.email }} </li>
+              <li><label for="phone">Telefonnummer:</label> {{ bookingContent.phone }} </li>
+              <li><label for="category">Kategori:</label> {{ bookingContent.category }} </li>
+              <li><label for="description">Beskrivning:</label> {{ bookingContent.description }} </li>
             </ul>
 
             <div class="btn-wrapper">
@@ -27,10 +25,8 @@
 
         </div>
         <!--/booking-body-->
-        
       </div>
       <!--/booking-->
-  </section>
 </template>
 
 <script>
@@ -38,13 +34,17 @@
 
   export default {
     props: [
-      'item'
+			'dates',
+      'bookingContent'
     ],
     data() {
       return {
         isOpen: false
       }
-    },
+		},
+		mounted: function () {
+			console.log(this.$props.bookingContent);
+		},
     methods: {
       toggleAccordion: function () {
         this.isOpen = !this.isOpen;

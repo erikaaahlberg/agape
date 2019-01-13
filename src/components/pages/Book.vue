@@ -20,7 +20,8 @@
   import Datepicker from '@/components/partials/DatePicker';
   import BookingForm from '@/components/partials/BookingForm';
   import Timepicker from '@/components/partials/Timepicker';
-  import fetchBookings from '@/functions/fetching/fetchBookings.js';
+  import { fetchBookings } from '@/functions/fetching/getRequests.js';
+  import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
 
   const bodyParser = require('body-parser');
   let cors = require('cors');
@@ -40,7 +41,7 @@
         methods: {
            onChildClick: function (value) {
             console.log(this.fromBookingForm = value);
-          },
+           },/*
           fetchBookedDates: function () {
             fetchBookings()
             .then((fetchedBookings) => {
@@ -53,7 +54,7 @@
               //console.log(booked);
               console.log(bookedDates);
             });
-          },
+          },*/
           filterDuplicateDates: function (bookings) {
             /* Check for bookings on the same date */
             const duplicateDates = [];

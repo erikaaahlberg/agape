@@ -1,60 +1,130 @@
 <template>
-  <div class="accordion-wrapper">
-    <ul class="bookings-accordion">
-      <li v-for="booking in bookings">
-        <accordion :item="booking"/>
+<section>
+<!--  <div class="accordion-wrapper">
+    <ul class="booking-accordion">
+      <li v-for="date in bookedDates">
+        <h3>{{ date.date }}</h3>
+        <accordion :dates="bookedDates" :booking="booking"/>
       </li>
     </ul>
+  </div>-->
+   <!-- <div class="accordion-wrapper">
+    <ul class="bookings-accordion">-->
+      <!--<li v-for="date in bookedDates">
+        <h3>{{ date.date }}</h3>
+      </li>  -->
+        <div class="booking" :class="accordionClasses">
+        <li v-for="date in sortedBookings" 
+        :key="date.date" 
+        class="booking-header" 
+        @click="toggleAccordion">
+          {{ date.date }} 
+        </li>
+        <single-booking :allBookings="sortedBookings"/>
+<!--
+        <div class="booking-body" 
+        v-for="booking in allBookings" 
+        :key="booking.id">
+
+          <div class="booking-content">
+            <h4>{{ booking.time }}</h4>
+
+            <ul class="bookings__list">
+              <li><label for="firstName">Namn:</label> {{ booking.firstName }} </li>
+              <li><label for="lastName">Efternamn:</label> {{ booking.lastName }} </li>
+              <li><label for="email">Email:</label> {{ booking.email }} </li>
+              <li><label for="phone">Telefonnummer:</label> {{ booking.phone }} </li>
+              <li><label for="category">Kategori:</label> {{ booking.category }} </li>
+              <li><label for="description">Beskrivning:</label> {{ booking.description }} </li>
+            </ul>
+
+            <div class="btn-wrapper">
+              <a href="#" type="button" class="btn-purple">Redigera</a>
+              <a href="#" type="button" class="btn-red">Ta bort</a>
+            </div>
+          </div>
+
+        </div>-->
+        <!--/booking-body-->
+
+       <!-- <div class="booking-body">
+          <div class="booking-content">
+            <h4>{{ booking.time }}</h4>
+
+            <ul class="bookings__list">
+              <li><label for="firstName">Namn:</label> {{ booking.firstName }} </li>
+              <li><label for="lastName">Efternamn:</label> {{ booking.lastName }} </li>
+              <li><label for="email">Email:</label> {{ booking.email }} </li>
+              <li><label for="phone">Telefonnummer:</label> {{ booking.phone }} </li>
+              <li><label for="category">Kategori:</label> {{ booking.category }} </li>
+              <li><label for="description">Beskrivning:</label> {{ booking.description }} </li>
+            </ul>
+
+            <div class="btn-wrapper">
+              <a href="#" type="button" class="btn-purple">Redigera</a>
+              <a href="#" type="button" class="btn-red">Ta bort</a>
+            </div>
+          </div>
+
+        </div>-->
+        <!--/booking-body-->
+      </div>
+      <!--/booking-->
+       <!-- <accordion :dates="bookedDates" :booking="booking"/>-->
+       
+    <!--</ul>
+  </div>-->
+
+        
+  <!--
+      <div class="accordion-wrapper">
+    <ul class="booking-accordion">
+        <div class="booking" :class="accordionClasses">
+          <li class="booking-header" @click="toggleAccordion" v-for="date in bookedDates"> 
+            {{ date.date }} 
+          </li>
+        <accordion :item="booking"/>
+        </div>
+    </ul>
   </div>
+  -->
+  </section>
 </template>
 
 <script>
-  //import fetchBookings from '@/functions/fetching/fetchBookings.js';
+  //import { fetchBookings } from '@/functions/fetching/getRequests.js';
+  //import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
   import Accordion from '@/components/partials/Accordion.vue';
+  import BookingContent from '@/components/partials/BookingContent.vue';
 
   export default {
     props: [
-      'bookedDates'
+      'sortedBookings'
     ],
     components: {
-      'accordion': Accordion
+      'single-booking': BookingContent
     },
-    data() {
-        const bookings = [
-          {
-            firstName: 'namn',
-            lastName: 'efternamn',
-            email: 'email',
-            phone: 'telefon',
-            category: 'kategori',
-            description: 'beskrivning',
-            date: '24 Mars 2019',
-            time: '12.00'
-          },
-          {
-            firstName: 'namn',
-            lastName: 'efternamn',
-            email: 'email',
-            phone: 'telefon',
-            category: 'kategori',
-            description: 'beskrivning',
-            date: '24 Mars 2019',
-            time: '12.00'
-          },
-          {
-            firstName: 'namn',
-            lastName: 'efternamn',
-            email: 'email',
-            phone: 'telefon',
-            category: 'kategori',
-            description: 'beskrivning',
-            date: '24 Mars 2019',
-            time: '12.00'
-          }
-        ];
+    mounted: function () {
+      //this.fetchDates();
+      //const bookade = this.$props.allBookings;
+      console.log('hej');
+      //console.log(this.$props.bookedDates);
+      //this.sortByDate();
+    },
+    computed: {
+      accordionClasses: function () {
+        return {
+          'is-closed': !this.isOpen,
+          'is-primary': this.isOpen,
+          'is-dark': !this.isOpen
+        };
+      }
+    },
+    data: function () {
       return {
-        bookings: bookings
-    }
+        isOpen: false,
+        bookingsSortedByDate: []
+      }
     },
     methods: {
       /*accordionActions: function () {
@@ -75,10 +145,73 @@
       },*/
       toggleAccordion: function () {
         this.isOpen = !this.isOpen;
+      },      
+      sortByDate: function () {
+        const bookedDates = this.$props.bookedDates;
+        const bookings = this.$props.allBookings;
+        console.log(bookedDates);
+        console.log(bookedDates);
+        let sorted = [];
+        let content = [];
+        let date = '';
+
+        //console.log(bookings);
+        
+          /*const newArray = bookings.map((row) => {
+            return row.date;
+          });*/
+          //console.log(newArray);
+        /*for (let i = 0; i < bookedDates.length; i++) {
+          //content = [];
+          sorted.push(
+            {
+              date: bookedDates[i],
+              bookings: []
+            }
+          );
+          /*
+          let found = bookings.find(function(element) {
+            return element;
+          });
+          console.log(found);*/
+          //sorted[i].bookings.push(found);
+          //console.log(sorted[i].date);
+          /*bookings.forEach(function(row, index) {
+            console.log(row);
+          });
+          for (let v = 0; v < bookings.length; v++) {
+            let k = 0;
+          //console.log(sorted[i].date);
+            //console.log(bookedDates[i].date);
+            //console.log(bookings[v]);
+            //if (bookings[v].date === sorted[i].date) {
+              //console.log('tjena');
+              //content.push(bookings[v]);
+              //sorted[i].content.push(content);
+            //}
+          }
+          /*console.log(content);
+          sorted[i].content.push(content);*/
+        //}
+        //console.log(sorted);
+          /*for (let v = 0; v < bookings.length; v++) {
+            let k = 0;
+            if (bookings[v].date === sorted[i].date) {
+              console.log('tjena');
+              content.push(bookings[v]);
+              sorted[i].content.push(content);
+            }
+          }*/
+
+        //console.log(bookings);
       },
-      openItem: function(item){
-        item.isopen = !item.isopen
-      }/*,
+      isValueInArray: function (value, arrayOfObjects, key) {
+        const newArray = array.map((row) => {
+          return row.key === value;
+        });
+        console.log(newArray);
+      }
+      /*,
     
     setClass: function(item){
         if (item.isopen == true ) {
@@ -98,16 +231,7 @@
                                  easing: "easeInBack"},
                                 {complete: done})
     }*/
-  }, 
-    computed: {
-      accordionClasses: function () {
-        return {
-          'is-closed': !this.isOpen,
-          'is-primary': this.isOpen,
-          'is-dark': !this.isOpen
-        };
-      }
-    }
+  }
   }
 
 </script>
@@ -160,52 +284,5 @@
   .is-closed .booking-body {
     max-height: 0;
   }
-
-
-  /* Vue accordion 2 */
-  /*li {
-  list-style:none;
-  cursor:pointer;
-  font: 22px/48px 'Cantata One', serif;
-}
-li>div {
-  font: 14px/22px 'Noto Sans', serif;
-  padding-bottom:20px;
-}
-
-.item {
-  overflow:hidden;
-  width:600px;
-}
-
-.arrow_box {
-  width:10px;
-  height:10px;
-  transition: all .3s;
-  padding-bottom:0px;
-  position:absolute;
-  margin:20px 0px 0px -15px;
-  
-}
-
-
-.arrow_box:after, .arrow_box:before {
-	border: solid transparent;
-	content: " ";
-	position: absolute;
-}
-
-.arrow_box:after {
-	border-width: 5px;
-}
-.arrow_box:before {
-	border-left-color: #000;
-	border-width: 5px;
-}
-
-.arrow_box--open{
-   transform: rotateZ(90deg);
-   transform-origin: 50% 50%;
-}*/
 
 </style>
