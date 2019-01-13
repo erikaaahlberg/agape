@@ -29,9 +29,24 @@
 </template>
 <script>
 export default {
-    props: [
-      'bookingContent'
-    ]
+  props: [
+    'bookingContent',
+    'isOpen'
+  ],/*
+      computed: {
+      accordionClasses: function () {
+        return {
+          'is-closed': !this.isOpen,
+          'is-primary': this.isOpen,
+          'is-dark': !this.isOpen
+        };
+      }
+      }/*,
+    data: function () {
+      return {
+        isOpen: false
+      }
+    }*/
 }
 </script>
 <style lang="scss">
