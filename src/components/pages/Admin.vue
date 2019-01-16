@@ -33,6 +33,7 @@
 
             fetchBookings()
               .then((fetchedBookings) => {
+                this.updateBooking(fetchedBookings[0]);
                 this.sortedBookings = this.addContentToObject(dateObject, fetchedBookings);
               });
           });
@@ -74,9 +75,41 @@
         })
         .then(() => {
           console.log('yes');
+          this.sortBookings();
         });
-      }
-    }
+      },
+      updateBooking: function ($event) {
+        const requestBody = { 
+          id: $event.id,         
+          firstName: $event.firstName,
+          lastName: $event.lastName,
+          email: $event.email,
+          phone: $event.phone,
+          category: $event.category,
+          description: $event.description,
+          date: $event.date,
+          time: $event.time
+        }
+        console.log(requestBody);
+        fetch("http://localhost:3001/bookings/update", {
+              headers: { "Content-Type": "application/json" },
+              method: "PUT",
+              body: JSON.stringify(requestBody),
+            })
+              .then((response) => {
+                if (response.ok) {
+
+                } else {
+                  const message = "Det gick inte att uppdatera. Försök igen.";
+                  //this.triggerShowModal(message, true);
+                }
+              })
+              .then(() => {
+                console.log('yes');
+                //this.updateAdminState();
+              });
+              }
+            }
   }
 
 </script>

@@ -36,6 +36,10 @@ export default {
   methods: {
     getIdToDelete: function (bookingId) {
       this.$emit('getIdToDelete', bookingId);
+    },
+    getInputToUpdate: function (input) {
+      console.log('hej');
+    }
       /*const requestBody = {
         id: bookingId,
       };
@@ -56,7 +60,7 @@ export default {
           console.log('yes');
           //this.updateAdminState();
         });*/
-    }
+    
   }/*
       computed: {
       accordionClasses: function () {
