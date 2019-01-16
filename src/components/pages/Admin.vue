@@ -2,7 +2,7 @@
   <section id="admin-page">
     <h2><i class="fas fa-angle-right"></i> Bokningar</h2>
     <div class="bookings-wrapper section-padding">
-      <booking :sortedBookings="sortedBookings" />
+      <bookings :sortedBookings="sortedBookings" v-on:emitIdToDelete="deleteBooking($event)"/>
     </div>
   </section>
 </template>
@@ -10,7 +10,7 @@
 <script>
   import { fetchBookings } from '@/functions/fetching/getRequests.js';
   import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
-  import DisplayBooking from '@/components/partials/DisplayBooking.vue';
+  import DisplayBookings from '@/components/partials/DisplayBookings.vue';
 
   export default {
     data: function () {
@@ -19,7 +19,7 @@
       }
     },
     components: {
-      'booking': DisplayBooking
+      'bookings': DisplayBookings
     },
     mounted: function () {
       this.sortBookings();
@@ -53,6 +53,27 @@
             date: row.date,
             content: []
           }
+        });
+      },
+      deleteBooking: function ($event) {
+        const requestBody = {
+          id: $event,
+        };
+
+      fetch("http://localhost:3001/bookings/delete", {
+        headers: { "Content-Type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify(requestBody),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return;
+          }
+          const message = "Det gick inte att ta bort bokningen. Försök igen.";
+          //this.triggerShowModal(message, true);
+        })
+        .then(() => {
+          console.log('yes');
         });
       }
     }

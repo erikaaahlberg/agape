@@ -18,7 +18,7 @@
 
             <div class="btn-wrapper">
               <a href="#" type="button" class="btn-purple">Redigera</a>
-              <a href="#" type="button" class="btn-red">Ta bort</a>
+              <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
           </div>
         <!--/ny-->
@@ -32,7 +32,32 @@ export default {
   props: [
     'bookingContent',
     'isOpen'
-  ],/*
+  ],
+  methods: {
+    getIdToDelete: function (bookingId) {
+      this.$emit('getIdToDelete', bookingId);
+      /*const requestBody = {
+        id: bookingId,
+      };
+
+      fetch("http://localhost:3001/bookings/delete", {
+        headers: { "Content-Type": "application/json" },
+        method: "DELETE",
+        body: JSON.stringify(requestBody),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return;
+          }
+          const message = "Det gick inte att ta bort bokningen. Försök igen.";
+          //this.triggerShowModal(message, true);
+        })
+        .then(() => {
+          console.log('yes');
+          //this.updateAdminState();
+        });*/
+    }
+  }/*
       computed: {
       accordionClasses: function () {
         return {

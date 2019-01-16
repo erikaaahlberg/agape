@@ -11,7 +11,7 @@
           {{ date.date }} 
         </li>
         </ul>
-        <single-booking :bookingContent="content"/>
+        <single-booking :bookingContent="content" v-on:getIdToDelete="emitIdToDelete($event)"/>
       </div>
       </div>
         
@@ -47,6 +47,9 @@
       toggleAction: function (content) {
         this.isOpen = !this.isOpen;
         this.content = content;
+      },
+      emitIdToDelete: function ($event) {
+        this.$emit('emitIdToDelete', $event);
       }
     }
   }

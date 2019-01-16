@@ -125,7 +125,7 @@ app.post('/bookings/create', (req, res) => {
 
 
 /* Update booking */
-app.put('/api/update_booking', (req, res) => {
+app.put('/bookings/update', (req, res) => {
   const id = '';
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -157,7 +157,7 @@ app.put('/api/update_booking', (req, res) => {
 /* Delete booking */
 app.delete('/bookings/delete', (req, res) => {
   const id = req.body.id;
-
+console.log(id);
   const queryString =
     `DELETE from bookings
     WHERE id = ?`
