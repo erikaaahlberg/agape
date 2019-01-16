@@ -1,24 +1,24 @@
 <template>
 <section>
       <div class="accordion-wrapper">
-        <ul class="bookings-accordion">
           <div class="booking" 
         :class="accordionClasses">
+        <ul class="bookings-accordion">
         <li v-for="date in sortedBookings" 
         :key="date.date" 
         class="booking-header" 
         @click="toggleAction(date.content)">
           {{ date.date }} 
         </li>
+        </ul>
         <single-booking :bookingContent="content"/>
       </div>
-        </ul>
       </div>
         
   </section>
 </template>
 <script>
-  import Accordion from '@/components/partials/Accordion.vue';
+  //import Accordion from '@/components/partials/Accordion.vue';
   import BookingContent from '@/components/partials/BookingContent.vue';
 
   export default {
@@ -55,7 +55,7 @@
 <style lang="scss">
   @import '@/scss/_variables.scss';
 
-  .booking-content {
+/*  .booking-content {
     background: $black;
     padding: 20px 50px;
 
@@ -78,24 +78,31 @@
         margin-right: 5px;
       }
     }
-  }
+  }*/
 
   /* Vue accordion */
   .booking {
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto; 
+    width: 100%;
+    display: flex;
+  }
+  .bookings-accordion {
+    flex-basis: 20%;
   }
 
   .booking-header {
     cursor: pointer;
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-bottom: 5px;
   }
 
   .booking-body {
+    flex-basis: 80%;
     padding: 0;
-    //max-height: 10em;
+    max-height: 100%;
     overflow: hidden;
-    transition: 0.3s ease all;
+    transition: max-height 0.5s ease-in-out;
   }
 
   .is-closed .booking-body {

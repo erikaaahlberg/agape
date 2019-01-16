@@ -7,7 +7,7 @@
           <div class="booking-content">
             <h4>{{ content.time }}</h4>
 
-            <ul class="bookings__list">
+            <ul class="booking-list">
               <li><label for="firstName">Namn:</label> {{ content.firstName }} </li>
               <li><label for="lastName">Efternamn:</label> {{ content.lastName }} </li>
               <li><label for="email">Email:</label> {{ content.email }} </li>
@@ -50,5 +50,32 @@ export default {
 }
 </script>
 <style lang="scss">
+  @import '@/scss/_variables.scss';
+  section {
+    width: 100%;
+      .booking-content {
+      background: $black;
+      padding: 20px 50px;
 
+      ul {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        li {
+          margin: 5px;
+
+          label {
+            letter-spacing: 1.5px;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .btn-wrapper {
+        a {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
 </style>

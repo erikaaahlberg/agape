@@ -1,6 +1,4 @@
 <template>
-      <div class="booking" :class="accordionClasses">
-        <li class="booking-header" @click="toggleAccordion"> {{ bookingContent.date }} </li>
         <div class="booking-body">
 
         <!--ny komponent-->  
@@ -25,8 +23,6 @@
 
         </div>
         <!--/booking-body-->
-      </div>
-      <!--/booking-->
 </template>
 
 <script>
