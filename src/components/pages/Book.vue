@@ -104,7 +104,7 @@
               console.log($event);
               let requestBody = $event;
               console.log(requestBody);
-              fetch("http://localhost:3001/create", {
+              fetch("http://localhost:3001/bookings/create", {
                 method: 'POST',
                 headers: {
                   'Accept': 'application/json, text/plain, */*',

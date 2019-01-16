@@ -94,32 +94,9 @@ app.get('/bookings/dates', (req, res) => {
   );
 });
 
-/*
 
-Columns
-  id,
-  firstName,
-  lastName,
-  email,
-  phone,
-  category,
-  description,
-  date,
-  time,
-  COUNT(date)
-
-SELECT 
-  date,
-  COUNT(date)
-FROM
-    bookings
-GROUP BY date
-HAVING COUNT(date) > 1 
-
-"SELECT date, firstName, COUNT(*) as count FROM bookings GROUP BY date"
-*/
-
-app.post('/create', (req, res) => {
+/* Create booking */
+app.post('/bookings/create', (req, res) => {
   console.log(req.body);
 
   const id = '';
@@ -145,3 +122,79 @@ app.post('/create', (req, res) => {
   })
   res.end();
 });
+
+
+/* Update booking */
+app.put('/api/update_booking', (req, res) => {
+  const id = '';
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  const email = req.body.email;
+  const phone = req.body.phone;
+  const category = req.body.category;
+  const description = req.body.description;
+  const date = req.body.date;
+  const time = req.body.time;
+
+  const queryString =
+    `UPDATE bookings
+    SET firstName= ?, lastName= ?, email=?, phone=?, category= ?, description= ?,date=?, time= ?
+    WHERE id = ?`
+
+  connection.query(`UPDATE bookings
+  SET firstName= ?, lastName= ?, email=?, phone=?, category= ?, description= ?,date=?, time= ?
+  WHERE id = ?`, [firstName, lastName, email, phone, category, description, date, time, id], (err, results, fields) => {
+    if(err){
+      console.log('Failed to update booking: ' + err);
+      res.sendStatus(500) // Show user internal server error
+      res.end();
+      return;
+    }
+  })
+  res.end();
+});
+
+/* Delete booking */
+app.delete('/bookings/delete', (req, res) => {
+  const id = req.body.id;
+
+  const queryString =
+    `DELETE from bookings
+    WHERE id = ?`
+
+  connection.query(`DELETE from bookings
+    WHERE id = ?`, [id], (err, results, fields) => {
+    if(err){
+      console.log('Failed to delete booking: ' + err);
+      res.sendStatus(500) // Show user internal server error
+      res.end();
+      return;
+    }
+  })
+  res.end();
+});
+
+/*
+
+Columns
+  id,
+  firstName,
+  lastName,
+  email,
+  phone,
+  category,
+  description,
+  date,
+  time,
+  COUNT(date)
+
+SELECT 
+  date,
+  COUNT(date)
+FROM
+    bookings
+GROUP BY date
+HAVING COUNT(date) > 1 
+
+"SELECT date, firstName, COUNT(*) as count FROM bookings GROUP BY date"
+*/
