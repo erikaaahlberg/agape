@@ -59,3 +59,21 @@ export function fetchBookedDates() {
 				return fetchedDates;
 			});
 }
+export function fetchBookingsByDate (date) { 
+  return fetch(`http://localhost:3001/bookings/date/${date}`, {
+    host: 'localhost',
+    // port to forward to
+    port:   3001,
+    // path to forward to
+    //path:   '/api/bookings',
+    method: 'GET',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+      .then((fetchedBookings) => {
+        return fetchedBookings;
+      }); 
+}

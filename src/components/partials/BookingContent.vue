@@ -6,17 +6,18 @@
         <!--ny komponent-->  
           <div class="booking-content">
             <h4>{{ content.time }}</h4>
-
             <ul class="booking-list">
               <li>
                 <label for="firstName">Namn:</label>
                   <b-field>
                     <b-input 
-                    :placeholder=content.firstName 
+                    :placeholder="content.firstName"
+                    :value="booking.firstName"
+                    @input="booking.firstName = $event"
                     type="text" 
-                    v-model="firstName" 
-                    id="email-input" 
-                    use-html5-validation>
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
                     </b-input>
                 </b-field> 
               </li>
@@ -24,12 +25,13 @@
                 <label for="lastName">Efternamn:</label>
                   <b-field>
                     <b-input 
-                    :placeholder=content.lastName 
+                    :placeholder="content.lastName"
+                    :value="booking.lastName"
+                    @input="booking.lastName = $event" 
                     type="text" 
-                    v-model="lastName" 
-                    id="email-input" 
                     use-html5-validation
-                    :disabled=true>
+                    :disabled="isDisabled"
+                    :class="inputClasses">
                     </b-input>
                 </b-field> 
               </li>
@@ -37,11 +39,13 @@
                 <label for="email">Email:</label>
                   <b-field>
                     <b-input 
-                    :placeholder=content.email 
+                    :placeholder="content.email" 
+                    :value="booking.email"
+                    @input="booking.email = $event"
                     type="email" 
-                    v-model="email" 
-                    id="email-input" 
-                    use-html5-validation>
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
                     </b-input>
                 </b-field> 
               </li>
@@ -49,11 +53,13 @@
                 <label for="phone">Telefonnummer:</label> 
                   <b-field>
                     <b-input 
-                    :placeholder=content.phone 
+                    :placeholder="content.phone"
+                    :value="booking.phone"
+                    @input="booking.phone = $event"
                     type="tel" 
-                    v-model="phone" 
-                    id="email-input" 
-                    use-html5-validation>
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
                     </b-input>
                 </b-field> 
               </li>
@@ -61,11 +67,13 @@
                 <label for="category">Kategori:</label> 
                   <b-field>
                     <b-input 
-                    :placeholder=content.category 
-                    type="text" 
-                    v-model="category" 
-                    id="email-input" 
-                    use-html5-validation>
+                    :placeholder="content.category"
+                    :value="booking.category"
+                    @input="booking.category = $event" 
+                    type="text"  
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
                     </b-input>
                 </b-field> 
               </li>
@@ -73,18 +81,51 @@
                 <label for="description">Beskrivning:</label>
                   <b-field>
                     <b-input 
-                    :placeholder=content.description 
+                    :placeholder="content.description"
+                    :value="booking.description"
+                    @input="booking.description = $event" 
+                    type="text"  
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
+                    </b-input>
+                </b-field> 
+              </li>
+              <li>
+                <label for="phone">Datum:</label> 
+                  <b-field>
+                    <b-input 
+                    :placeholder="content.date"
+                    :value="booking.date"
+                    @input="booking.date = $event"
                     type="text" 
-                    v-model="description" 
-                    id="email-input" 
-                    use-html5-validation>
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
+                    </b-input>
+                </b-field> 
+              </li>
+              <li>
+                <label for="phone">Tid:</label> 
+                  <b-field>
+                    <b-input 
+                    :placeholder="content.time" 
+                    :value="booking.time"
+                    @input="booking.time = $event"
+                    type="text" 
+                    use-html5-validation
+                    :disabled="isDisabled"
+                    :class="inputClasses">
                     </b-input>
                 </b-field> 
               </li>
             </ul>
-
+{{updatedBooking}}
+{{booking}}
+{{isDisabled}}
             <div class="btn-wrapper">
-              <a href="#" type="button" class="btn-purple">Redigera</a>
+              <a href="#" type="button" :class="saveButton.classes" id="saveUpdatedBookingBtn" v-on:click.prevent="saveBooking">Spara</a>
+              <a href="#" type="button"  :class="editButton.classes" id="editBookingBtn" v-on:click.prevent="editBooking(content)">Redigera</a>
               <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
           </div>
@@ -95,17 +136,123 @@
 				</section>
 </template>
 <script>
+import { hideElement } from '@/functions/helpers.js';
+import { displayElement } from '@/functions/helpers.js';
+
 export default {
+  data () {
+    return {
+      booking: {
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        category: '',
+        description: '',
+        date: '',
+        time: ''
+      },      
+      updatedBooking: {
+        id: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        category: '',
+        description: '',
+        date: '',
+        time: ''
+      },/*
+      booking: {
+        id: '',
+        firstName: this.$props.bookingContent.id,
+        lastName: this.$props.bookingContent.id,
+        email: this.$props.bookingContent.id,
+        phone: this.$props.bookingContent.id,
+        category: this.$props.bookingContent.id,
+        description: this.$props.bookingContent.id,
+        date: this.$props.bookingContent.id,
+        time: this.$props.bookingContent.id
+      },*/
+      saveButton: {
+        classes: 'btn-purple hidden'
+      },
+      editButton: {
+        classes: 'btn-purple'
+      },
+      isDisabled: true
+    }
+  },
   props: [
     'bookingContent',
     'isOpen'
   ],
+  computed: {
+    changeDisplayedButton: function (button) {
+      console.log(button);
+      this.button.display = !this.button.display;
+
+      if (this.button.display) {
+          this.button.classes = 'btn-purple';
+      } else {
+          this.button.classes = 'btn-purple hidden';
+      }
+    },
+    getInputToUpdate: function (bookingId) {
+      this.newBooking = {
+        id: bookingId,
+        firstName: this.content.firstName,
+        /*lastName: this.lastName,
+        email: this.email,
+        phone: this.phone,
+        category: this.category,
+        description: this.description,
+        date: this.date,
+        time: this.time*/
+        }
+    },
+    handleInput: function (key, value) {
+      this.updatedBooking.key = value;
+    },
+    inputClasses: function () {
+      if (this.isDisabled) {
+        return 'input';
+      } else {
+        return 'input input--edit';
+      }
+    }
+  },
   methods: {
     getIdToDelete: function (bookingId) {
       this.$emit('getIdToDelete', bookingId);
     },
     getInputToUpdate: function (input) {
       console.log('hej');
+    },
+    saveBooking: function () {
+      this.isDisabled = 0;
+      this.saveButton.classes = 'btn-purple hidden';
+      this.editButton.classes = 'btn-purple';
+    },
+    clickAction: function () {
+      this.isVisible = !this.isVisible;
+    },
+    editBooking: function (bookingToEdit) {
+      this.booking = {
+        id: bookingToEdit.id,
+        firstName: bookingToEdit.firstName,
+        lastName: bookingToEdit.lastName,
+        email: bookingToEdit.email,
+        phone: bookingToEdit.phone,
+        category: bookingToEdit.category,
+        description: bookingToEdit.description,
+        date: bookingToEdit.date,
+        time: bookingToEdit.time
+      }
+      this.isDisabled = false;
+      this.editButton.classes = 'btn-purple hidden';
+      this.saveButton.classes = 'btn-purple';
     }
       /*const requestBody = {
         id: bookingId,
@@ -161,6 +308,7 @@ export default {
           margin: 5px;
           text-transform: none;
           letter-spacing: 1.5px;
+          display: flex;
           label {
             display: inline-block;
             letter-spacing: 1.5px;
@@ -169,12 +317,15 @@ export default {
             font-size: 1.1em;
           }
           .field {
+            width: 100%;
             display: inline-block;
           }
-          input {
+          .input {
             background: transparent;
             border: none;
-            margin-top: -7px;
+            margin-top: -4px;
+            margin-left: 5px;
+            //width: 100%;
             //display: inline-block;
             //border-bottom: 1px solid $lightGrey;
             //border-radius: 0px;
@@ -186,6 +337,11 @@ export default {
             &:focus {
               border-color: none;
               box-shadow: none;
+            }
+            &--edit {
+              background: black;
+              padding: 3px;
+              width: 100%;
             }
           }
           input:-webkit-autofill,input:-webkit-internal, input:-webkit-selected,

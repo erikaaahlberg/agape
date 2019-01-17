@@ -60,11 +60,6 @@ $family-sans-serif: "Hind", sans-serif;
   margin-bottom: 20px;
 }
 
-/* Display */
-.hidden{
-  display: none;
-}
-
 /* Buttons */
 .btn-purple {
   @include button($primaryBright, $black, 'transparent', $primary, $white, 'transparent');
@@ -95,6 +90,7 @@ $family-sans-serif: "Hind", sans-serif;
     }
   }
 }
+
 /* Text color */
 .c-green{
   color: $primary;
@@ -107,6 +103,11 @@ $family-sans-serif: "Hind", sans-serif;
 }
 .c-red-bright{
   color: $redBright;
+}
+
+/* Display */
+.hidden {
+  display: none;
 }
 
 #app {
