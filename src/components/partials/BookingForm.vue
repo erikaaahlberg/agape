@@ -52,7 +52,8 @@
       </b-field>
 
       <b-field class="textarea-wrapper">
-        <b-input type="textarea" 
+        <b-input 
+          type="textarea" 
           minlength="10" 
           maxlength="100" 
           placeholder="Beskriv kortfattat vad du vill ha hjälp med"
