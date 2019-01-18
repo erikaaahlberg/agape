@@ -124,6 +124,7 @@
 {{booking}}
             <div class="btn-wrapper">
               <a href="#" type="button" :class="saveButton" v-on:click="saveUpdatedBooking">Spara</a>
+              <a href="#" type="button" :class="saveButton" v-on:click.prevent="cancelEdit">Avbryt</a>
               <a href="#" type="button" :class="editButton" v-on:click.prevent="editBooking(content, index)">Redigera</a>
               <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
@@ -278,12 +279,13 @@ export default {
     saveUpdatedBooking: function () {
       this.$emit('saveUpdatedBooking', this.booking);
       this.edit = false;
+      this.displayAllBookings();
       //this.isDisabled = true;
       /*this.saveButton.classes = 'btn-purple hidden';
-      this.editButton.classes = 'btn-purple';*/
+      this.editButton.classes = 'btn-purple';
       for (let item of this.$refs.items) {
         this.displayElement(item);
-      }
+      }*/
     },
     /*clickAction: function () {
       this.isVisible = !this.isVisible;
@@ -295,6 +297,11 @@ export default {
       closeModal: function() {
         this.isModalVisible = false;
       },*/
+    displayAllBookings: function () {
+      for (let item of this.$refs.items) {
+        this.displayElement(item);
+      }
+    },
     hideElement: function (element) {
       element.style.display = 'none';
     },
@@ -309,44 +316,7 @@ export default {
         }
       }
       /* Set this.booking to the selected booking */
-        this.booking = {
-          id: selectedBooking.id,
-          firstName: selectedBooking.firstName,
-          lastName: selectedBooking.lastName,
-          email: selectedBooking.email,
-          phone: selectedBooking.phone,
-          category: selectedBooking.category,
-          description: selectedBooking.description,
-          date: selectedBooking.date,
-          time: selectedBooking.time
-        }
-      /*for (let item of this.$refs.items) {
-        console.log(item);
-      }*/
-      //this.$refs.items[selectedIndex].classList.remove('hidden');
-      /*
-      for (let value of this.$props.bookingContent) {
-        if (value.id === selectedBooking) {
-          console.log(selectedBooking);
-          console.log(value.id);
-
-          /* Set this.booking to the selected booking */
-          /*
-          this.booking = {
-            id: value.id,
-            firstName: value.firstName,
-            lastName: value.lastName,
-            email: value.email,
-            phone: value.phone,
-            category: value.category,
-            description: value.description,
-            date: value.date,
-            time: value.time
-          }
-        }
-      }
-      /* Set this.booking to selected booking to edit */
-      /*this.booking = {
+      this.booking = {
         id: selectedBooking.id,
         firstName: selectedBooking.firstName,
         lastName: selectedBooking.lastName,
@@ -356,10 +326,27 @@ export default {
         description: selectedBooking.description,
         date: selectedBooking.date,
         time: selectedBooking.time
-      }*/
-      /*this.isDisabled = false;
-      this.editButton.classes = 'btn-purple hidden';
-      this.saveButton.classes = 'btn-purple';*/
+      }
+    },
+    cancelEdit: function () {
+      this.edit = false;
+      this.clearBooking();
+      this.displayAllBookings();
+    },
+    clearBooking: function () {
+      if (!this.edit) {
+        this.booking = {
+          id: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          category: '',
+          description: '',
+          date: '',
+          time: ''
+        }
+      }
     }
       /*const requestBody = {
         id: bookingId,
