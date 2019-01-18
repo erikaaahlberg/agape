@@ -1,9 +1,8 @@
 <template>
 <section>
-        <div class="booking-body" 
+    <div class="booking-body" 
         v-for="content in bookingContent" 
         :key="content.id">
-        {{content[content.id]}}
         <!--ny komponent-->  
           <div class="booking-content">
             <h4>{{ content.time }}</h4>
@@ -123,8 +122,8 @@
             </ul>
 {{booking}}
             <div class="btn-wrapper">
-              <a href="#" type="button" :class="saveButton.classes" id="saveUpdatedBookingBtn" v-on:click.prevent="saveUpdatedBooking">Spara</a>
-              <a href="#" type="button"  :class="editButton.classes" id="editBookingBtn" v-on:click.prevent="editBooking(content.id)">Redigera</a>
+              <a href="#" type="button" :class="saveButton.classes" v-on:click.prevent="saveUpdatedBooking">Spara</a>
+              <a href="#" type="button" :class="editButton.classes" v-on:click.prevent="editBooking(content.id)">Redigera</a>
               <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
           </div>
