@@ -126,7 +126,7 @@ app.post('/bookings/create', (req, res) => {
 
 /* Update booking */
 app.put('/bookings/update', (req, res) => {
-  const id = '';
+  const id = req.body.id;
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
   const email = req.body.email;

@@ -83,7 +83,7 @@
       },
       updateBooking: function ($event) {
         console.log($event);
-        /*const requestBody = { 
+        const requestBody = { 
           id: $event.id,         
           firstName: $event.firstName,
           lastName: $event.lastName,
@@ -111,7 +111,8 @@
               .then(() => {
                 console.log('yes');
                 //this.updateAdminState();
-              });*/
+                this.sortBookings();
+              });
               }
             }
   }

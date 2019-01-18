@@ -4,8 +4,6 @@
         v-for="(content, index) in bookingContent" 
         :key="content.id"
         :index="index">
-        <!--ny komponent-->  
-        {{ index }}
           <div class="booking-content" ref="items"
           :id="'booking-' + content.id">
             <h4>{{ content.time }}</h4>
@@ -125,13 +123,11 @@
             </ul>
 {{booking}}
             <div class="btn-wrapper">
-              <a href="#" type="button" :class="saveButton.classes" v-on:click.prevent="saveUpdatedBooking">Spara</a>
-              <a href="#" type="button" :class="editButton.classes" v-on:click.prevent="editBooking(content.id, index)">Redigera</a>
+              <a href="#" type="button" :class="saveButton" v-on:click="saveUpdatedBooking">Spara</a>
+              <a href="#" type="button" :class="editButton" v-on:click.prevent="editBooking(content, index)">Redigera</a>
               <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
           </div>
-        <!--/ny-->
-
         </div>
         <!--/booking-body-->
 				</section>
@@ -198,16 +194,16 @@ export default {
         description: this.$props.bookingContent.id,
         date: this.$props.bookingContent.id,
         time: this.$props.bookingContent.id
-      },*/
+      },
       saveButton: {
         classes: 'btn-purple hidden'
       },
       editButton: {
         classes: 'btn-purple'
-      },
-      /*bookingContentClasses: 'booking-content',*/
+      },*/
+      /*bookingContentClasses: 'booking-content',
       selectedIndex: '',
-      isDisabled: true,
+      isDisabled: true,*/
       edit: false
     }
   },
@@ -216,34 +212,36 @@ export default {
     'isOpen'
   ],
   computed: {
-    changeDisplayedButton: function (button) {
-      console.log(button);
-      this.button.display = !this.button.display;
-
-      if (this.button.display) {
-          this.button.classes = 'btn-purple';
+    /*displayButton: function () {
+      return [
+        {
+          saveButton: {
+            'btn-purple hidden': this.edit,
+            'btn-purple': !this.edit
+          },
+          editButton: {
+            'btn-purple hidden': !this.edit,
+            'btn-purple': this.edit
+          }
+        }
+      ];
+    },*/
+    editButton: function () {
+      if (this.edit) {
+        return 'hidden';
       } else {
-          this.button.classes = 'btn-purple hidden';
+          return 'btn-purple';
+        }
+    },
+    saveButton: function () {
+      if (this.edit) {
+        return 'btn-purple';
+      } else {
+        return 'hidden';
       }
     },
-    bookingContentClasses: function () {
-
-        return {
-          'booking-content': !this.edit,
-          'hidden': this.edit
-        }
-        /*
-      if (index === this.selectedIndex) {
-        return {
-          'booking-content': this.edit,
-          'hidden': !this.edit
-        }
-      } else {
-        return {
-          'booking-content': !this.edit,
-          'hidden': this.edit
-        }
-      }*/
+    isDisabled: function () {
+      return !this.edit;
     }
     /*,
     getInputToUpdate: function (bookingId) {
@@ -263,7 +261,7 @@ export default {
       this.updatedBooking.key = value;
     }*/,
     inputClasses: function () {
-      if (this.isDisabled) {
+      if (!this.edit) {
         return 'input';
       } else {
         return 'input input--edit';
@@ -279,9 +277,10 @@ export default {
     },
     saveUpdatedBooking: function () {
       this.$emit('saveUpdatedBooking', this.booking);
-      this.isDisabled = true;
-      this.saveButton.classes = 'btn-purple hidden';
-      this.editButton.classes = 'btn-purple';
+      this.edit = false;
+      //this.isDisabled = true;
+      /*this.saveButton.classes = 'btn-purple hidden';
+      this.editButton.classes = 'btn-purple';*/
       for (let item of this.$refs.items) {
         this.displayElement(item);
       }
@@ -303,15 +302,24 @@ export default {
       element.style.display = 'block';
     },
     editBooking: function (selectedBooking, selectedIndex) {
-      console.log(selectedBooking);
-      //this.bookingContentClasses = 'hidden';
-      console.log(this.$refs.items[selectedIndex]);
-      console.log(this.$refs.items);
+      this.edit = true;
       for (let i = 0; i < this.$refs.items.length; i++) {
         if (i !== selectedIndex) {
           this.hideElement(this.$refs.items[i]);
         }
       }
+      /* Set this.booking to the selected booking */
+        this.booking = {
+          id: selectedBooking.id,
+          firstName: selectedBooking.firstName,
+          lastName: selectedBooking.lastName,
+          email: selectedBooking.email,
+          phone: selectedBooking.phone,
+          category: selectedBooking.category,
+          description: selectedBooking.description,
+          date: selectedBooking.date,
+          time: selectedBooking.time
+        }
       /*for (let item of this.$refs.items) {
         console.log(item);
       }*/
@@ -349,9 +357,9 @@ export default {
         date: selectedBooking.date,
         time: selectedBooking.time
       }*/
-      this.isDisabled = false;
+      /*this.isDisabled = false;
       this.editButton.classes = 'btn-purple hidden';
-      this.saveButton.classes = 'btn-purple';
+      this.saveButton.classes = 'btn-purple';*/
     }
       /*const requestBody = {
         id: bookingId,
