@@ -11,7 +11,10 @@
           {{ date.date }} 
         </li>
         </ul>
-        <single-booking :bookingContent="content" v-on:getIdToDelete="emitIdToDelete($event)"/>
+        <single-booking 
+        :bookingContent="content" 
+        v-on:getIdToDelete="emitIdToDelete($event)"
+        v-on:saveUpdatedBooking="emitBookingToUpdate($event)"/>
       </div>
       </div>
         
@@ -50,6 +53,9 @@
       },
       emitIdToDelete: function ($event) {
         this.$emit('emitIdToDelete', $event);
+      },
+      emitBookingToUpdate: function ($event) {
+        this.$emit('emitBookingToUpdate', $event);
       }
     }
   }

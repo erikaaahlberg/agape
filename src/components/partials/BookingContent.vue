@@ -3,6 +3,7 @@
         <div class="booking-body" 
         v-for="content in bookingContent" 
         :key="content.id">
+        {{content[content.id]}}
         <!--ny komponent-->  
           <div class="booking-content">
             <h4>{{ content.time }}</h4>
@@ -120,12 +121,10 @@
                 </b-field> 
               </li>
             </ul>
-{{updatedBooking}}
 {{booking}}
-{{isDisabled}}
             <div class="btn-wrapper">
-              <a href="#" type="button" :class="saveButton.classes" id="saveUpdatedBookingBtn" v-on:click.prevent="saveBooking">Spara</a>
-              <a href="#" type="button"  :class="editButton.classes" id="editBookingBtn" v-on:click.prevent="editBooking(content)">Redigera</a>
+              <a href="#" type="button" :class="saveButton.classes" id="saveUpdatedBookingBtn" v-on:click.prevent="saveUpdatedBooking">Spara</a>
+              <a href="#" type="button"  :class="editButton.classes" id="editBookingBtn" v-on:click.prevent="editBooking(content.id)">Redigera</a>
               <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
           </div>
@@ -198,7 +197,8 @@ export default {
       } else {
           this.button.classes = 'btn-purple hidden';
       }
-    },
+    }
+    /*,
     getInputToUpdate: function (bookingId) {
       this.newBooking = {
         id: bookingId,
@@ -209,12 +209,12 @@ export default {
         category: this.category,
         description: this.description,
         date: this.date,
-        time: this.time*/
+        time: this.time
         }
     },
     handleInput: function (key, value) {
       this.updatedBooking.key = value;
-    },
+    }*/,
     inputClasses: function () {
       if (this.isDisabled) {
         return 'input';
@@ -230,26 +230,50 @@ export default {
     getInputToUpdate: function (input) {
       console.log('hej');
     },
-    saveBooking: function () {
+    saveUpdatedBooking: function () {
       this.isDisabled = 0;
       this.saveButton.classes = 'btn-purple hidden';
       this.editButton.classes = 'btn-purple';
+      this.$emit('saveUpdatedBooking', this.booking);
     },
-    clickAction: function () {
+    /*clickAction: function () {
       this.isVisible = !this.isVisible;
-    },
-    editBooking: function (bookingToEdit) {
-      this.booking = {
-        id: bookingToEdit.id,
-        firstName: bookingToEdit.firstName,
-        lastName: bookingToEdit.lastName,
-        email: bookingToEdit.email,
-        phone: bookingToEdit.phone,
-        category: bookingToEdit.category,
-        description: bookingToEdit.description,
-        date: bookingToEdit.date,
-        time: bookingToEdit.time
+    },*/
+    editBooking: function (selectedBooking) {
+      console.log(selectedBooking);
+      /*
+      for (let value of this.$props.bookingContent) {
+        if (value.id === selectedBooking) {
+          console.log(selectedBooking);
+          console.log(value.id);
+
+          /* Set this.booking to the selected booking */
+          /*
+          this.booking = {
+            id: value.id,
+            firstName: value.firstName,
+            lastName: value.lastName,
+            email: value.email,
+            phone: value.phone,
+            category: value.category,
+            description: value.description,
+            date: value.date,
+            time: value.time
+          }
+        }
       }
+      /* Set this.booking to selected booking to edit */
+      /*this.booking = {
+        id: selectedBooking.id,
+        firstName: selectedBooking.firstName,
+        lastName: selectedBooking.lastName,
+        email: selectedBooking.email,
+        phone: selectedBooking.phone,
+        category: selectedBooking.category,
+        description: selectedBooking.description,
+        date: selectedBooking.date,
+        time: selectedBooking.time
+      }*/
       this.isDisabled = false;
       this.editButton.classes = 'btn-purple hidden';
       this.saveButton.classes = 'btn-purple';

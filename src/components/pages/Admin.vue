@@ -2,7 +2,10 @@
   <section id="admin-page">
     <h2><i class="fas fa-angle-right"></i> Bokningar</h2>
     <div class="bookings-wrapper section-padding">
-      <bookings :sortedBookings="sortedBookings" v-on:emitIdToDelete="deleteBooking($event)"/>
+      <bookings 
+      :sortedBookings="sortedBookings" 
+      v-on:emitIdToDelete="deleteBooking($event)"
+      v-on:emitBookingToUpdate="updateBooking($event)"/>
     </div>
   </section>
 </template>
@@ -33,7 +36,7 @@
 
             fetchBookings()
               .then((fetchedBookings) => {
-                this.updateBooking(fetchedBookings[0]);
+                //this.updateBooking(fetchedBookings[0]);
                 this.sortedBookings = this.addContentToObject(dateObject, fetchedBookings);
               });
           });
@@ -79,7 +82,8 @@
         });
       },
       updateBooking: function ($event) {
-        const requestBody = { 
+        console.log($event);
+        /*const requestBody = { 
           id: $event.id,         
           firstName: $event.firstName,
           lastName: $event.lastName,
@@ -107,7 +111,7 @@
               .then(() => {
                 console.log('yes');
                 //this.updateAdminState();
-              });
+              });*/
               }
             }
   }
