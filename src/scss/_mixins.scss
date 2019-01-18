@@ -1,21 +1,123 @@
-@mixin button($background, $text, $border, $bgHover, $textHover, $borderHover){
-    cursor: pointer;
-    color: $text;
-    border: 2px solid $border;
-    display: inline-block;
-    background: $background;
-    font-size: 0.75rem;
-    padding: 7px 20px;
-    border-radius: 5em;
-    font-size: 1em;
-    font-weight: 600;
-    letter-spacing: 1.2px;
-    font-family: 'Hind', sans-serif;
-    text-transform: uppercase;
-    &:hover{
-        background: $bgHover;
-        color: $textHover;
-        border: 2px solid $borderHover;
-        transition: all .3s ease-in-out;
-    }
+/* Texts */
+@mixin title {
+	color: $white;
+	width: 100%;
+	background: $black;
+	border-bottom: 1px solid $lightGrey;
+	padding: 5px;
+	padding-top: 10px;
+	padding-left: 30px;
+	text-transform: uppercase;
+	font-size: 2rem;
+	text-align: left;
+  i.fa-angle-right{
+		color: $red;
+	}
+}
+
+/* Buttons and links */
+@mixin button($background, $text, $border, $bgHover, $textHover, $borderHover) {
+  cursor: pointer;
+  color: $text;
+  border: 2px solid $border;
+  display: inline-block;
+  background: $background;
+  font-size: 0.75rem;
+  padding: 7px 20px;
+  border-radius: 5em;
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  font-family: 'Hind', sans-serif;
+  text-transform: uppercase;
+
+  &:hover {
+    background: $bgHover;
+    color: $textHover;
+    border: 2px solid $borderHover;
+    transition: all .3s ease-in-out;
+  }
+}
+
+/* Form elements */
+@mixin form-input {
+	input {
+		background: transparent;
+		border: none;
+		border-bottom: 1px solid $lightGrey;
+		border-radius: 0px;
+		color: white;
+		font-family: 'Hind', sans-serif;
+		letter-spacing: 1.5px;
+		padding-left: 0rem;
+		padding-bottom: 5px;
+		&:active,
+		&:focus {
+			background: transparent;
+			border-bottom: 1px solid $white;
+			box-shadow: none;
+			border-radius: 0px;
+		}
+	}
+}
+
+@mixin form-label {
+	label {
+		font-size: 1.2em;
+		color: $white;
+		letter-spacing: 1.5px;
+		text-transform: uppercase;
+		text-align: left;
+	}
+}
+
+@mixin form-placeholder {
+	::-webkit-input-placeholder {
+		/* Chrome/Opera/Safari */
+		color: $mediumGrey;
+		font-family: 'Hind', sans-serif;
+		letter-spacing: 1.5px;
+	}
+	::-moz-placeholder {
+		/* Firefox 19+ */
+		color: $mediumGrey;
+		font-family: 'Hind', sans-serif;
+		letter-spacing: 1.5px;
+	}
+	:-ms-input-placeholder {
+		/* IE 10+ */
+		color: $mediumGrey;
+		font-family: 'Hind', sans-serif;
+		letter-spacing: 1.5px;
+	}
+	:-moz-placeholder {
+		/* Firefox 18- */
+		color: $mediumGrey;
+		font-family: 'Hind', sans-serif;
+		letter-spacing: 1.5px;
+	}
+}
+
+/* Grid */
+@mixin flex-center {
+	.flex-center {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+	}
+}
+
+/* Margins and paddings */
+@mixin section-padding {
+	padding: 30px 50px;
+	max-width: 1400px;
+	margin: auto;
+	margin-top: 40px;
+	margin-bottom: 50px;
 }

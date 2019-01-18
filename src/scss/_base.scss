@@ -5,7 +5,7 @@
     height: 100%;
     background: black;
     font-family: 'Hind', sans-serif;
-    color: white;
+    color: $white;
   }
   h1{
       font-size: 3em;
@@ -27,7 +27,4 @@
       line-height: 1.8;
       letter-spacing: 1.5px;
       font-size: 1em;  
-  }
-  i.fa-angle-right{
-      color: $red;
   }

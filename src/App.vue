@@ -1,23 +1,23 @@
 <template>
   <div id="app">
-    <page-nav />
+    <main-nav />
     <hero />
     <router-view />
-    <page-footer />  
+    <main-footer />  
   </div>
 </template>
 
 <script>
-  import PageNav from '@/components/partials/PageNav.vue';
+  import MainNav from '@/components/partials/MainNav.vue';
   import Hero from '@/components/partials/HeroImage.vue';
-  import PageFooter from '@/components/partials/PageFooter.vue';
+  import MainFooter from '@/components/partials/MainFooter.vue';
 
   export default {
     name: 'App',
     components: {
-      'page-nav': PageNav,
+      'main-nav': MainNav,
       'hero': Hero,
-      'page-footer': PageFooter
+      'main-footer': MainFooter
     }
   };
 
@@ -79,21 +79,18 @@
 
   /* Links */
   .link-green {
-    color: $primaryBright;
+    color: $primary;
     font-weight: 600;
     letter-spacing: 1.5px;
     text-transform: none;
-
     i.fa-angle-right {
       position: relative;
       bottom: -2px;
       color: $redBright;
       font-size: 1.2em;
     }
-
     &:hover {
-      color: $primary;
-
+      color: $primaryBright;
       i.fa-angle-right {
         color: $red;
       }
@@ -137,6 +134,10 @@
       padding: 5px;
       padding-top: 10px;
       padding-left: 30px;
+    }
+    
+    i.fa-angle-right{
+        color: $red;
     }
   }
 

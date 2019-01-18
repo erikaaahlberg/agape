@@ -16,6 +16,7 @@
     "@chenfengyuan/vue-carousel": "^0.1.1",
     "@fortawesome/fontawesome-free": "^5.5.0",
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "buefy": "^0.7.1",
     "cors": "^2.8.5",
     "express-vue": "^5.8.2",
@@ -24,7 +25,8 @@
     "vee-validate": "^2.1.4",
     "vue": "^2.5.21",
     "vue-axios": "^2.1.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-session": "^1.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

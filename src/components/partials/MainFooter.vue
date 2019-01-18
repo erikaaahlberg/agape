@@ -1,5 +1,5 @@
 <template>
-  <section id="page-footer">
+  <section id="main-footer">
     <footer>
       <div class="footer-wrapper">
         <div class="column">
@@ -54,7 +54,7 @@ import ContactList from '@/components/partials/ContactList.vue';
 import SocialMediaList from '@/components/partials/SocialMediaList.vue';
 
   export default {
-		name: 'PageFooter',
+		name: 'MainFooter',
 		components: {
 			'contact-list': ContactList,
 			'social-media-list': SocialMediaList
@@ -66,7 +66,7 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
 <style lang="scss">
   @import '@/scss/_variables.scss';
 
-  #page-footer {
+  #main-footer {
     .footer-wrapper {
       color: $black;
       width: 100%;

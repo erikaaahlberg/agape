@@ -3,21 +3,25 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import VueSession from 'vue-session';
 
 /* Buefy */
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+/* Vee validate */
+import VeeValidate from 'vee-validate';
+
 /* Slider */
 import VueCarousel from '@chenfengyuan/vue-carousel';
 
 
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+//import axios from 'axios'
+//import VueAxios from 'vue-axios'
  
-Vue.use(VueAxios, axios)
+//Vue.use(VueAxios, axios);
+Vue.use(VueSession);
 
-import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate, {
   events: ''
 });
@@ -29,8 +33,8 @@ Vue.use(Buefy, {
   defaultTimeFormatter: 'HH:mm'
 })
 
-Vue.prototype.HOST = '/api';
-Vue.config.productionTip = false;
+//Vue.prototype.HOST = '/api';
+//Vue.config.productionTip = false;
 //Vue.component(VueCarousel.name, VueCarousel);
 /* eslint-disable no-new */
 new Vue({

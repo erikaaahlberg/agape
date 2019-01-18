@@ -134,7 +134,6 @@
 				</section>
 </template>
 <script>
-  import Modal from '@/components/partials/Modal.vue';
 
 /*
 ,

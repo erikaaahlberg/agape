@@ -26,7 +26,8 @@
         type="text" 
         v-model="lastName" 
         id="lastname-input" 
-        v-validate="'required'"></b-input>
+        v-validate="'required'">
+        </b-input>
       </b-field>
 
       <b-field>
