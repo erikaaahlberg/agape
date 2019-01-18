@@ -5,17 +5,6 @@
   :imgUrl="imgBackgroundUrl"
   :text="text"
   />
-  <!--<div class="section-padding">
-    <div class="flex-wrapper">
-      <div class="bg-img"></div>
-      <div class="text-wrapper">
-        <p>blablablbaabla blablablbaabl abla blablba ablablab lablbaabla blablablbaab lablablablbaab lablablablbaabla blab lablba ablabl ablablb aablablabl ablbaablab lablablbaa </p>
-        <p>blablablbaabla blablablbaabl abla blablba ablablab lablbaabla blablablbaab lablablablbaab lablablablbaabla blab lablba ablabl ablablb aablablabl ablbaablab lablablbaa </p>
-        <p>blablablbaabla blablablbaabl abla blablba ablablab lablbaabla blablablbaab lablablablbaab lablablablbaabla blab lablba ablabl ablablb aablablabl ablbaablab lablablbaa </p>
-        <p>blablablbaabla blablablbaabl abla blablba ablablab lablbaabla blablablbaab lablablablbaab lablablablbaabla blab lablba ablabl ablablb aablablabl ablbaablab lablablbaa </p>
-      </div>
-    </div>
-  </div>-->
 </section>
 </template>
 

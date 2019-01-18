@@ -31,8 +31,7 @@ Vue.use(Buefy, {
 
 Vue.prototype.HOST = '/api';
 Vue.config.productionTip = false;
-Vue.component(VueCarousel.name, VueCarousel);
-
+//Vue.component(VueCarousel.name, VueCarousel);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

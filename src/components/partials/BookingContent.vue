@@ -1,10 +1,13 @@
 <template>
 <section>
     <div class="booking-body" 
-        v-for="content in bookingContent" 
-        :key="content.id">
+        v-for="(content, index) in bookingContent" 
+        :key="content.id"
+        :index="index">
         <!--ny komponent-->  
-          <div class="booking-content">
+        {{ index }}
+          <div class="booking-content" ref="items"
+          :id="'booking-' + content.id">
             <h4>{{ content.time }}</h4>
             <ul class="booking-list">
               <li>
@@ -123,7 +126,7 @@
 {{booking}}
             <div class="btn-wrapper">
               <a href="#" type="button" :class="saveButton.classes" v-on:click.prevent="saveUpdatedBooking">Spara</a>
-              <a href="#" type="button" :class="editButton.classes" v-on:click.prevent="editBooking(content.id)">Redigera</a>
+              <a href="#" type="button" :class="editButton.classes" v-on:click.prevent="editBooking(content.id, index)">Redigera</a>
               <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
             </div>
           </div>
@@ -134,8 +137,39 @@
 				</section>
 </template>
 <script>
-import { hideElement } from '@/functions/helpers.js';
-import { displayElement } from '@/functions/helpers.js';
+  import Modal from '@/components/partials/Modal.vue';
+
+/*
+,
+    data() {
+      return {
+        isModalVisible: false,
+      };
+    },
+    methods: {
+      showModal() {
+        this.isModalVisible = true;
+      },
+      closeModal() {
+        this.isModalVisible = false;
+      }
+    }
+     
+     
+         
+    <button
+      type="button"
+      class="btn"
+      @click="showModal"
+    >
+      Open Modal!
+    </button>
+
+    <modal
+      v-show="isModalVisible"
+      @close="closeModal"
+    />
+    */
 
 export default {
   data () {
@@ -150,18 +184,10 @@ export default {
         description: '',
         date: '',
         time: ''
-      },      
-      updatedBooking: {
-        id: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        category: '',
-        description: '',
-        date: '',
-        time: ''
-      },/*
+      },
+        isModalVisible: false,
+      /*
+
       booking: {
         id: '',
         firstName: this.$props.bookingContent.id,
@@ -179,7 +205,10 @@ export default {
       editButton: {
         classes: 'btn-purple'
       },
-      isDisabled: true
+      /*bookingContentClasses: 'booking-content',*/
+      selectedIndex: '',
+      isDisabled: true,
+      edit: false
     }
   },
   props: [
@@ -196,6 +225,25 @@ export default {
       } else {
           this.button.classes = 'btn-purple hidden';
       }
+    },
+    bookingContentClasses: function () {
+
+        return {
+          'booking-content': !this.edit,
+          'hidden': this.edit
+        }
+        /*
+      if (index === this.selectedIndex) {
+        return {
+          'booking-content': this.edit,
+          'hidden': !this.edit
+        }
+      } else {
+        return {
+          'booking-content': !this.edit,
+          'hidden': this.edit
+        }
+      }*/
     }
     /*,
     getInputToUpdate: function (bookingId) {
@@ -222,24 +270,52 @@ export default {
       }
     }
   },
-  methods: {
+  methods: {/*
+    bookingContentClasses: function () {
+      return 'booking-content';
+    },*/
     getIdToDelete: function (bookingId) {
       this.$emit('getIdToDelete', bookingId);
     },
-    getInputToUpdate: function (input) {
-      console.log('hej');
-    },
     saveUpdatedBooking: function () {
-      this.isDisabled = 0;
+      this.$emit('saveUpdatedBooking', this.booking);
+      this.isDisabled = true;
       this.saveButton.classes = 'btn-purple hidden';
       this.editButton.classes = 'btn-purple';
-      this.$emit('saveUpdatedBooking', this.booking);
+      for (let item of this.$refs.items) {
+        this.displayElement(item);
+      }
     },
     /*clickAction: function () {
       this.isVisible = !this.isVisible;
-    },*/
-    editBooking: function (selectedBooking) {
+    },
+    
+      showModal: function () {
+        this.isModalVisible = true;
+      },
+      closeModal: function() {
+        this.isModalVisible = false;
+      },*/
+    hideElement: function (element) {
+      element.style.display = 'none';
+    },
+    displayElement: function (element) {
+      element.style.display = 'block';
+    },
+    editBooking: function (selectedBooking, selectedIndex) {
       console.log(selectedBooking);
+      //this.bookingContentClasses = 'hidden';
+      console.log(this.$refs.items[selectedIndex]);
+      console.log(this.$refs.items);
+      for (let i = 0; i < this.$refs.items.length; i++) {
+        if (i !== selectedIndex) {
+          this.hideElement(this.$refs.items[i]);
+        }
+      }
+      /*for (let item of this.$refs.items) {
+        console.log(item);
+      }*/
+      //this.$refs.items[selectedIndex].classList.remove('hidden');
       /*
       for (let value of this.$props.bookingContent) {
         if (value.id === selectedBooking) {
