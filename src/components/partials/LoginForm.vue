@@ -25,7 +25,8 @@
       </b-field>
       <button 
       type="button" 
-      class="btn btn-purple">
+      class="btn btn-purple"
+      @click="hashPassword">
         Logga in
       </button>
     </form>
@@ -45,7 +46,7 @@
     },
    methods: {
       hashPassword: function ($event) {
-        this.password = bcrypt.hashSync($event, salt);
+        const hash = bcrypt.hashSync("HejaLiv1", salt);
         console.log(hash);
       }
     }

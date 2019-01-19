@@ -3,7 +3,6 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import VueSession from 'vue-session';
 
 /* Buefy */
 import Buefy from 'buefy'
@@ -20,7 +19,6 @@ import VueCarousel from '@chenfengyuan/vue-carousel';
 //import VueAxios from 'vue-axios'
  
 //Vue.use(VueAxios, axios);
-Vue.use(VueSession);
 
 Vue.use(VeeValidate, {
   events: ''
