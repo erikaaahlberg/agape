@@ -107,7 +107,7 @@
   .modal-body {
     position: relative;
     padding: 20px 10px;
-    @include section-padding;
+    @include section;
   }
 
   .btn-green {

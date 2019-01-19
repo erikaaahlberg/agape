@@ -1,8 +1,10 @@
 <template>
   <div class="list-wrapper">
-    <ul class="social-media">
+    <ul class="social-media-list">
       <li>
-        <a href="https://www.facebook.com/thewisdomofaman"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://www.facebook.com/thewisdomofaman">
+          <i class="fab fa-facebook-square"></i>
+        </a>
       </li>
       <li>
         <a href="tel:0760505813">
@@ -10,8 +12,9 @@
         </a>
       </li>
       <li>
-        <a href="https://www.linkedin.com/in/karljgreen/">
-          <i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/in/karljgreen">
+          <i class="fab fa-linkedin"></i>
+        </a>
       </li>
     </ul>
   </div>
@@ -23,14 +26,4 @@
 
 </script>
 <style lang="scss">
-        .social-media {
-          i {
-						font-size: 2em;
-						margin: 3px;
-						margin-top: 0px;
-					}
-					li {
-          display: inline-block;
-        	}
-				}
 </style>

@@ -291,10 +291,8 @@ app.post('/admin/login', (req, res) => {
             res.send({
               success: true,
               message: `Kör hårt babe!`,
-              user: {
-                username: results[0].username,
-                email: results[0].email
-              }
+              username: results[0].username,
+              email: results[0].email
             });
           } else {
             res.send({

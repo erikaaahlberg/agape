@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <trust-bar/>
     <main-nav />
     <hero />
     <router-view />
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+  import TrustBar from '@/components/partials/TrustBar.vue';
   import MainNav from '@/components/partials/MainNav.vue';
   import Hero from '@/components/partials/HeroImage.vue';
   import MainFooter from '@/components/partials/MainFooter.vue';
@@ -15,6 +17,7 @@
   export default {
     name: 'App',
     components: {
+      'trust-bar': TrustBar,
       'main-nav': MainNav,
       'hero': Hero,
       'main-footer': MainFooter
@@ -66,19 +69,21 @@
 
   /* Buttons */
   .btn-purple {
-    @include button($primaryBright, $black, 'transparent', $primary, $white, 'transparent');
+    @include button($primaryBright, $black, $primary, $white);
   }
 
   .btn-red {
-    @include button($redBright, $black, 'transparent', $red, $white, 'transparent');
+    @include button($redBright, $black, $red, $white);
   }
 
   .btn-transparent {
-    @include button('transparent', $white, $primary, 'transparent', $primary, $primary);
+    @include button($white, $primary, $primary, $primary);
   }
 
   /* Links */
   .link-green {
+    @include link ($primaryBright, $primary);
+    /*
     color: $primary;
     font-weight: 600;
     letter-spacing: 1.5px;
@@ -95,6 +100,11 @@
         color: $red;
       }
     }
+    */
+  }
+  
+  .link-red {
+    @include link ($redBright, $red);
   }
 
   /* Text color */
@@ -135,7 +145,7 @@
       padding-top: 10px;
       padding-left: 30px;
     }
-    
+
     i.fa-angle-right{
         color: $red;
     }

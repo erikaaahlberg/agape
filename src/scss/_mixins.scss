@@ -16,10 +16,11 @@
 }
 
 /* Buttons and links */
-@mixin button($background, $text, $border, $bgHover, $textHover, $borderHover) {
+@mixin button($background, $text, $bgHover, $textHover) {
+	align-content: center;
   cursor: pointer;
   color: $text;
-  border: 2px solid $border;
+  border: none;
   display: inline-block;
   background: $background;
   font-size: 0.75rem;
@@ -34,10 +35,27 @@
   &:hover {
     background: $bgHover;
     color: $textHover;
-    border: 2px solid $borderHover;
     transition: all .3s ease-in-out;
   }
 }
+
+@mixin link ($text, $textHover) {
+	color: $text;
+	font-weight: 600;
+	letter-spacing: 1.2px;
+	text-transform: uppercase;
+	i.fa-angle-right {
+		position: relative;
+		bottom: -2px;
+		color: $red;
+		font-size: 1.2em;
+	}
+	&:hover {
+		color: $textHover;
+		transition: color .2s ease-in-out;
+	}
+}
+
 
 /* Form elements */
 @mixin form-input {
@@ -114,7 +132,7 @@
 }
 
 /* Margins and paddings */
-@mixin section-padding {
+@mixin section {
 	padding: 30px 50px;
 	max-width: 1400px;
 	margin: auto;
