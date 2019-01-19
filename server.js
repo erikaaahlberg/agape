@@ -7,7 +7,7 @@ const proxy = require('http-proxy-middleware');
 const router = express.Router();
 
 /* Login */
-const session = require("express-session");
+//const session = require("express-session");
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
@@ -17,21 +17,29 @@ const apiProxy = proxy('/api', {
 
 app.use('/api', apiProxy);
 app.use('/api', router);
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
-app.use(cors());
+
+app.use(cors({
+  origin: ["http://localhost:8080"],
+  methods:['GET','POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
+/*
 app.use(session({
-  secret: "thepolyglotdeveloper",
+  secret: "itHurtzWhenAhPee",
   cookie: {
     secure: true,
     maxAge: 60000
   },
   saveUninitialized: true,
   resave: true
-}));
+}));*/
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -182,7 +190,7 @@ app.delete('/bookings/delete', (req, res) => {
     WHERE id = ?`, [id], (err, results, fields) => {
     if (err) {
       console.log('Failed to delete booking: ' + err);
-      res.sendStatus(500) // Show user internal server error
+      res.sendStatus(500); // Show user internal server error
       res.end();
       return;
     }
@@ -193,35 +201,50 @@ app.delete('/bookings/delete', (req, res) => {
 
 /* ----- Session handlers for Admin login ----- */
 /* Set session variable accessible for all functions */
-let thisSession = '';
+/*let currentSession;
 
 /* Check for on going session */
-app.get('/', (req, res) => {
-  console.log(req);
-  
-  thisSession = req.session;
-  if (thisSession.username) {
+/*app.get('/', (req, res) => {
+
+  currentSession = req.session;
+  //console.log(currentSession);
+  if (currentSession.username) {
     connection.query(
       `SELECT id, username, email 
-      FROM admin WHERE id = ?`, [session.id], 
-      (error, results, fields) => {
-        if (error) {
-          console.log('Ingen är inloggad!');
-          res.sendStatus(500); // Show internal server error
+      FROM admin WHERE id= ?`, [currentSession.id], 
+      (err, data, fields) => {
+        if (err) {
+          console.log('Något gick fel!');
+          const response = {
+            active: false,
+            message: 'Ingen är inloggad!'
+          }; 
+          console.log(response);
+          res.json(response);
           res.end();
-          return {
-            active: false
-          };
         }
-        const activeSession = {
-            active: true,
-            id: results.id,
-            username: results.username,
-            email: results.email
-        };
-        res.json(activeSession);
-        console.log('inloggad');
-        res.end();
+        if (data && data.length > 0) {
+          const fetchedUser = data.map((row) => {
+            return {
+              active: true,
+              id: row.id,
+              username: row.username,
+              email: row.email
+            };
+          });
+          currentSession = fetchedUser;
+          //res.send(currentSession);
+          res.json(currentSession);
+          res.end();
+        } else {
+          const response = {
+            active: false,
+            message: 'Data kunde ej hittas'
+          }; 
+          console.log(response);
+          res.json(response);
+          res.end();
+        }
         
         /*if (results) {
           res.send({
@@ -233,139 +256,58 @@ app.get('/', (req, res) => {
           res.send({
             success: false
           });
-        }*/
+        }
       }
     );
   }
-});
+  res.end();
+});*/
 
 
 /* Login */
 app.post('/admin/login', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-
+  
   connection.query(
     `SELECT * FROM admin WHERE username = ?`, [username],
     (error, results, fields) => {
+      console.log(results);
+      if (error) {
+        console.log('Det funkar inte att logga in: ' + error);
+        res.sendStatus(500); // Show user internal server error
+        res.end();
+        return;
+      }
       if (results.length > 0) {
-        bcrypt.compare(password, results[0].password, function(err, res) {
+        bcrypt.compare(password, results[0].password, function(err, result) {
           if (err) {
             res.send({
               success: false,
-              message: 'Felaktigt lösenord, påt igen ba!'
+              message: 'Något gick väldigt fel, inte ens Erika vet vad.'
             });
-            res.end();
           }
-          thisSession = res.map((row) => {
-            return {
-              active: true,
-              id: row.id,
-              username: row.username,
-              email: row.email
-            }
-          });
-          res.json(thisSession);
-          res.end();
-
-        /*bcrypt.compare(password, results[0].password, function (err, result) {
-          if (result === true) {
-            if (results[0].active === 1) {
-              // Sets the user id for session.
-              sess = req.session;
-              sess.user_id = results[0].id;
-              // Success response sent to React app.
-              res.send({
-                success: true,
-                user_id: results[0].id,
-                label_name: results[0].label_name
-              });
-            } else {
-              // If password is not correct.
-              res.send({
-                success: false,
-                message: 'Your account is not activated yet'
-              });
-            }
+          if (result) {
+            res.send({
+              success: true,
+              message: `Kör hårt babe!`,
+              user: {
+                username: results[0].username,
+                email: results[0].email
+              }
+            });
           } else {
-            // If password is not correct.
             res.send({
               success: false,
-              message: 'Your password is not correct'
+              message: 'Fel lösenord, påt igen ba!'
             });
-          }*/
+          }
         });
-      } else {
-        // If login fails.
-        res.send({
-          success: false,
-          message: 'Your e-mail or password is not correct'
-        });
-        res.end();
       }
     }
   );
 });
 
-
-/*
-
-// Log in user.
-app.post('/login', (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-
-    connection.query(
-        `SELECT id, label_name, password, active FROM users WHERE email = '${email}'`, 
-        (error, results, fields) => { 
-            if (results.length !== 0) {
-                // Bcrypt is matching the password against the result-hashed-password.
-                bcrypt.compare(password, results[0].password, function (err, result) {
-                    if (result === true) {
-                        if (results[0].active === 1) {
-                            // Sets the user id for session.
-                            sess = req.session;
-                            sess.user_id=results[0].id;
-                            // Success response sent to React app.
-                            res.send({
-                                success: true,
-                                user_id: results[0].id,
-                                label_name: results[0].label_name
-                            });                           
-                        } else {
-                            // If password is not correct.
-                            res.send({
-                                success: false,
-                                message: 'Your account is not activated yet'
-                            });
-                        }
-                    } else {
-                        // If password is not correct.
-                        res.send({
-                            success: false,
-                            message: 'Your password is not correct'
-                        });
-                    }
-                });              
-            } else {
-                // If login fails.
-                res.send({
-                    success: false,
-                    message: 'Your e-mail or password is not correct'
-                });
-            }
-        }
-    );
-});
-
-// Log out user.
-app.post('/logout', (req,res) => {
-    req.session.destroy();
-    res.send(true);
-});
-
-
-*/
 
 /*
 

@@ -8,7 +8,7 @@
         <b-input 
         placeholder="Användarnamn" 
         type="text" 
-        v-model="username"
+        v-model="userInput.username"
         use-html5-validation>
         </b-input>
       </b-field>
@@ -19,14 +19,14 @@
         <b-input 
         placeholder="Lösenord" 
         type="password" 
-        @input="hashPassword($event)"
+        v-model="userInput.password"
         use-html5-validation>
         </b-input>
       </b-field>
       <button 
       type="button" 
       class="btn btn-purple"
-      @click="hashPassword">
+      @click="emitInput">
         Logga in
       </button>
     </form>
@@ -34,20 +34,28 @@
 </template>
 
 <script>
-  let bcrypt = require('bcryptjs');
-  let salt = bcrypt.genSaltSync(10);
+  //let bcrypt = require('bcryptjs');
+  //let salt = bcrypt.genSaltSync(10);
 
   export default {
     data() {
       return {
-        'username': '',
-        'password': ''
+        userInput: {
+          'username': '',
+          'password': ''
+        }
       }
     },
-   methods: {
-      hashPassword: function ($event) {
+    props: [
+      'message'
+    ],
+    methods: {
+      /*hashPassword: function ($event) {
         const hash = bcrypt.hashSync("HejaLiv1", salt);
         console.log(hash);
+      }*/
+      emitInput: function () {
+        this.$emit('emitInput', this.userInput);
       }
     }
   }

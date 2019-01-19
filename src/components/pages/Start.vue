@@ -24,7 +24,7 @@
       'services-part': ServicesPart,
       'news-part': NewsPart,
       'quote-part': QuotePart
-		}
+    }
   };
 </script>
 

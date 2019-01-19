@@ -5,14 +5,16 @@
     </a>
     <modal v-show="isModalVisible" @close="closeModal">
       <h1 slot="title"><i class="fas fa-angle-right"></i> Logga in</h1>
-      <login-form slot="body" />
+      <login-form slot="body" v-on:emitInput="login" message=""/>
     </modal>
   </div>
 </template>
 <script>
-  let bcrypt = require('bcryptjs');
+  const bcrypt = require('bcryptjs');
   import Modal from '@/components/partials/Modal.vue';
   import LoginForm from '@/components/partials/LoginForm.vue';
+  import Router from '@/router/index.js';
+
   /*
   ,
       data() {
@@ -51,7 +53,8 @@
     },
     data() {
       return {
-        isModalVisible: false
+        isModalVisible: false,
+        message: ''
       }
     },
     methods: {
@@ -67,11 +70,11 @@
         this.isModalVisible = false;
       },
       login: function ($event) {
-        const user = {
+        const requestBody = {
           username: $event.username,
           password: $event.password
         }
-
+        //console.log(requestBody);
         fetch("http://localhost:3001/admin/login", {
             method: 'POST',
             headers: {
@@ -83,14 +86,24 @@
               credentials: 'omit',
               redirect: 'follow'
             })
-              .then((response) => {
-                console.log("Logged in")
-                router.push("/dashboard")
+            .then(response => response.json())
+              .then((login) => {
+                console.log(login);
+                this.message = login.message;
+                if (login.success) {
+                  this.$session.start();
+                }
               })
                 .catch((errors) => {
-                  console.log("Cannot log in")
-                })
-                
+                  console.log(errors);
+                });
+              /*.then((response) => {
+                console.log(response);
+                //router.push("/dashboard")
+              })
+              */
+        /*this.$session.start();
+        console.log(this.$session.exists()); */       
       }
     }
   }
