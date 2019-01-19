@@ -92,28 +92,14 @@
 				text-align: right;
 				.status {
 					text-transform: none;
-					//font-style: italic;
 					letter-spacing: 0.1rem;
 					margin-right: 0.5rem;
 				}
 				.trustbar-btn-green {
 					@include button($primary, $black, $primaryBright, $white);
-					text-shadow: 1px 1px 5px $primaryDark;
-					&:hover {
-						text-shadow: none;
-					}
 				}
 				.trustbar-btn-red {
-					@include button($red, $black, $redBright, $white);
-					text-shadow: 1px 1px 5px $redDark;
-					&:hover {
-						text-shadow: none;
-					}
-				}
-				.trustbar-btn {
-					padding: 0.12rem 0.5rem;
-					border-radius: 0.2rem;
-					letter-spacing: 0.08rem;
+					@include button($redBright, $black, $red, $white);
 				}
 			}
 		}

@@ -14,7 +14,7 @@
               <i class="fas fa-times"></i>
             </button>
           </header>
-          <section class="modal-body" id="modalDescription">
+          <section class="modal-body">
             <slot name="body">
               Något blev fel
             </slot>
@@ -27,7 +27,7 @@
 
 <script>
   export default {
-    name: 'modal',
+    name: 'Modal',
     methods: {
       close() {
         this.$emit('close');
@@ -54,6 +54,7 @@
 
   .modal-backdrop {
     @include flex-center;
+    z-index: 35;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -64,14 +65,16 @@
 
   .modal {
     background: transparent;
-    overflow-x: auto;
+    //overflow-x: auto;
     display: flex;
     flex-direction: column;
   }
     .slots-wrapper {
       background: black;
+      z-index: 40;
       width: 60%;
       height: auto;
+      overflow-x: auto;
     }
 
   .modal-header {
@@ -110,7 +113,7 @@
     @include section;
   }
 
-  .btn-green {
+  .buttn-green {
     color: white;
     background: #4AAE9B;
     border: 1px solid #4AAE9B;

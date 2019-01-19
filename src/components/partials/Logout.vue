@@ -8,14 +8,14 @@
     </a>
     <modal v-show="isModalVisible" @close="closeModal">
       <h1 slot="title"><i class="fas fa-angle-right"></i> Logga ut</h1>
-      <div slot="body">
+      <div id="logout-confirm-question" slot="body">
         <p class="question">
           Är du säker på att du vill logga ut?
         </p>
-        <a href="#" type="button" class="link-green" @click="logout">
+        <a href="#" type="button" class="btn-purple" @click="logout">
           Fortsätt
         </a>
-        <a href="#" type="button" class="link-red" @click="closeModal">
+        <a href="#" type="button" class="btn-red" @click="closeModal">
           Avbryt
         </a>
       </div>
@@ -96,6 +96,20 @@
 
   .logout-link-wrapper {
     display: inline-block;
+  }
+  #logout-confirm-question {
+    text-align: center;
+    padding: 0px;
+    p {
+      margin-bottom: 2rem;
+    }
+    
+    a {
+      margin-right: 0.5rem;
+      &:nth-last-child() {
+      margin-right: 0rem;
+    }
+    }
   }
 
 </style>
