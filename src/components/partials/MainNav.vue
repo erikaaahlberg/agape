@@ -2,8 +2,12 @@
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <img :src="logoUrl" id="logotype-img-top">
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" @click="isOpen = !isOpen"
-        v-bind:class="{'is-active': isOpen}">
+      <a role="button" 
+      class="navbar-burger" 
+      aria-label="menu" 
+      aria-expanded="false" 
+      @click="isOpen = !isOpen"
+      v-bind:class="{'is-active': isOpen}">
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -16,26 +20,30 @@
         <p class="flex-center link-wrapper"><router-link to="/services" class="navbar-item is-tab">Tjänster</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link></p>
         <p class="flex-center link-wrapper"><router-link to="/book" class="navbar-item is-tab">Boka</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/admin" class="navbar-item is-tab">Admin</router-link></p>
-        <p class="flex-center link-wrapper"><login-link/></p>
-        <p class="flex-center link-wrapper">{{ this.$session.get('username') }}</p>
+        <p :class="adminLinkClasses"><router-link to="/admin" class="navbar-item is-tab">Admin</router-link></p>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-  import Login from './Login.vue';
   export default {
     name: 'PageNav',
     data() {
       return {
         isOpen: false,
-        logoUrl: require('@/assets/images/logo.png')
+        logoUrl: require('@/assets/images/logo.png'),
+        isAdmin: this.$session.exists()
       }
     },
-    components: {
-      'login-link': Login
+    computed: {
+      adminLinkClasses: function () {
+        if (this.isAdmin) {
+          return 'flex-center link-wrapper';
+        } else {
+          return 'hidden';
+        }
+      }
     }
   };
 

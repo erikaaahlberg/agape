@@ -3,10 +3,10 @@
     <div class="modal-backdrop">
       <div class="modal" 
 			role="dialog" 
-			aria-labelledby="modalTitle" 
+			aria-labelledby="modalHeader" 
 			aria-describedby="modalDescription">
         <div class="slots-wrapper">
-          <header class="modal-header">
+          <header class="modal-header" id="modalHeader">
             <slot name="title">
               Hoppsan
             </slot>

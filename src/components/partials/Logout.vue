@@ -23,9 +23,7 @@
   </div>
 </template>
 <script>
-  //const bcrypt = require('bcryptjs');
   import Modal from '@/components/partials/Modal.vue';
-  //import LoginForm from '@/components/partials/LoginForm.vue';
   import Router from '@/router/index.js';
 
   /*
@@ -86,13 +84,13 @@
         this.isModalVisible = false;
       },
       logout: function ($event) {
-        //this.$session.destroy();
         console.log('hejdååå');
+        //this.$session.destroy();
       }
     }
   }
-
 </script>
+
 <style lang="scss">
   @import '@/scss/_variables.scss';
 

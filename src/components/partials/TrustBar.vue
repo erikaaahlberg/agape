@@ -97,14 +97,14 @@
 					margin-right: 0.5rem;
 				}
 				.trustbar-btn-green {
-					@include button($primary, $white, $primaryBright, $black);
+					@include button($primary, $black, $primaryBright, $white);
 					text-shadow: 1px 1px 5px $primaryDark;
 					&:hover {
 						text-shadow: none;
 					}
 				}
 				.trustbar-btn-red {
-					@include button($red, $white, $redBright, $black);
+					@include button($red, $black, $redBright, $white);
 					text-shadow: 1px 1px 5px $redDark;
 					&:hover {
 						text-shadow: none;
