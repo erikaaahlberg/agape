@@ -10,28 +10,13 @@ Vue.use(VueSession);
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
-/* Vee validate */
-import VeeValidate from 'vee-validate';
-
-/* Slider */
-import VueCarousel from '@chenfengyuan/vue-carousel';
-
-
-//import axios from 'axios'
-//import VueAxios from 'vue-axios'
- 
-//Vue.use(VueAxios, axios);
-
-
-Vue.use(VeeValidate, {
-  events: ''
-});
 
 Vue.use(Buefy, {
   defaultIconPack: 'fas',
   defaultDayNames: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'],
   defaultUnselectableDaysOfWeek: ['Lör', 'Sön'],
-  defaultTimeFormatter: 'HH:mm'
+  defaultTimeFormatter: 'HH:mm',
+  defaultTimeParser: 'HH:mm'
 })
 
 //Vue.prototype.HOST = '/api';
