@@ -66,10 +66,12 @@
   @import '@/scss/_main.scss';
 
   .login-form {
-    @include form-input;
-    @include form-placeholder;
-    @include form-label;
+    @include form-placeholder($mediumGrey);
+    input {
+      @include form-input;
+    }
     .label {
+      @include form-label;
       margin-bottom: 0px;
       &:not(:last-child) {
         margin-bottom: 0px;
