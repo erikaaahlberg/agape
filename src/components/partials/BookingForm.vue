@@ -1,14 +1,11 @@
 <template>
   <section class="book-input">
     <form @submit.prevent="validateBeforeSubmit">
-      
+
       <div class="select-wrapper">
         <b-field label="Välj en kategori">
           <b-select v-model="category" placeholder="-" id="category-select" v-validate="'required'">
-            <option 
-            v-for="option in categories" 
-            :value="option.value" 
-            :key="option.value">
+            <option v-for="option in categories" :value="option.value" :key="option.value">
               {{ option.title }}
             </option>
           </b-select>
@@ -21,56 +18,29 @@
       </b-field>
 
       <b-field>
-        <b-input 
-        placeholder="Efternamn" 
-        type="text" 
-        v-model="lastName" 
-        id="lastname-input" 
-        v-validate="'required'">
+        <b-input placeholder="Efternamn" type="text" v-model="lastName" id="lastname-input" v-validate="'required'">
         </b-input>
       </b-field>
 
       <b-field>
-        <b-input 
-        placeholder="Email" 
-        type="email" 
-        v-model="email" 
-        id="email-input" 
-        v-validate="'required'">
+        <b-input placeholder="Email" type="email" v-model="email" id="email-input" v-validate="'required'">
         </b-input>
       </b-field>
 
       <b-field>
-        <b-input 
-        placeholder="Telefonnummer" 
-        type="tel" 
-        min="10" 
-        max="10" 
-        v-model="phone" 
-        id="phone-input" 
-        v-validate="'required'">
+        <b-input placeholder="Telefonnummer" type="tel" min="10" max="10" v-model="phone" id="phone-input" v-validate="'required'">
         </b-input>
       </b-field>
 
       <b-field class="textarea-wrapper">
-        <b-input 
-          type="textarea" 
-          minlength="10" 
-          maxlength="100" 
-          placeholder="Beskriv kortfattat vad du vill ha hjälp med"
-          v-model="description" 
-          id="description-input">
+        <b-input type="textarea" minlength="10" maxlength="100" placeholder="Beskriv kortfattat vad du vill ha hjälp med"
+          v-model="description" id="description-input">
         </b-input>
       </b-field>
 
       <b-field label="Välj ett datum">
-        <b-datepicker placeholder="Tryck för att välja" 
-          icon-pack="fa" icon="calendar-alt" 
-          :min-date="minDate"
-          :max-date="maxDate" 
-          v-model="date" 
-          v-validate="'required'" 
-          v-on:change="fetchBookingsByDate"
+        <b-datepicker placeholder="Tryck för att välja" icon-pack="fa" icon="calendar-alt" :min-date="minDate"
+          :max-date="maxDate" v-model="date" v-validate="'required'" v-on:change="fetchBookingsByDate"
           :unselectable-days-of-week="[5, 6]">
         </b-datepicker>
       </b-field>
@@ -78,16 +48,11 @@
 				  :unselectable-dates="minDate" -->
 
       <b-field label="Välj tid">
-        <b-timepicker placeholder="Tryck för att välja" 
-          icon-pack="fa" icon="clock" 
-          :min-time="timeFrame.minTime"
-          :max-time="timeFrame.maxTime" 
-          :increment-minutes=60 
-          v-model="time" 
-          v-validate="'required'">
+        <b-timepicker placeholder="Tryck för att välja" icon-pack="fa" icon="clock" :min-time="timeFrame.minTime"
+          :max-time="timeFrame.maxTime" :increment-minutes=60 v-model="time" v-validate="'required'">
         </b-timepicker>
       </b-field>
-<!--
+      <!--
           :unselectable-times=times -->
 
       <div class="btn-wrapper">
@@ -98,11 +63,13 @@
 </template>
 
 <script>
-  import { fetchBookings } from '@/functions/fetching/getRequests.js';
+  import {
+    fetchBookings
+  } from '@/functions/fetching/getRequests.js';
   //import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
 
   export default {
-    mounted: function() {
+    mounted: function () {
       this.fetchBookingsByDate(this.date);
     },
     data() {
@@ -137,7 +104,7 @@
       exclude.setHours(9);
       exclude.setMinutes(0);
 
-      const time = [ exclude ];
+      const time = [exclude];
 
       return {
         date: new Date(),
@@ -160,40 +127,40 @@
                 time: row.time 
               };
             });*/
-              /*console.log(booked);
-              console.log(bookings);
-              const bookedSessions = this.filterBookedTimeByPickedDate(bookings);
-              if (bookedSessions.length > 0) {
-                const formattedTimes = bookedSessions.map((row) => {
-                  return this.formatTimeForTimePicker(row.time);
-                });
-                console.log(formattedTimes);
-                this.bookedTimes = formattedTimes;
-              }
-              //this.bookedSessions = bookings;
-              //const bookedTimes = this.filterTimeByPickedDate(bookings);
-              //return bookedDates;*/
+            /*console.log(booked);
+            console.log(bookings);
+            const bookedSessions = this.filterBookedTimeByPickedDate(bookings);
+            if (bookedSessions.length > 0) {
+              const formattedTimes = bookedSessions.map((row) => {
+                return this.formatTimeForTimePicker(row.time);
+              });
+              console.log(formattedTimes);
+              this.bookedTimes = formattedTimes;
+            }
+            //this.bookedSessions = bookings;
+            //const bookedTimes = this.filterTimeByPickedDate(bookings);
+            //return bookedDates;*/
           });
       },
-      fetchBookingsByDate: function (date) { 
+      fetchBookingsByDate: function (date) {
         console.log('tjenare')
         return fetch(`http://localhost:3001/bookings/date/${date}`, {
-          host: 'localhost',
-          // port to forward to
-          port:   3001,
-          // path to forward to
-          //path:   '/api/bookings',
-          method: 'GET',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        })
+            host: 'localhost',
+            // port to forward to
+            port: 3001,
+            // path to forward to
+            //path:   '/api/bookings',
+            method: 'GET',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+          })
           .then(response => response.json())
-            .then((fetchedBookings) => {
-              console.log(fetchedBookings);
-              return fetchedBookings;
-            }); 
+          .then((fetchedBookings) => {
+            console.log(fetchedBookings);
+            return fetchedBookings;
+          });
       },
       collectInput: function () {
         const input = {
@@ -203,7 +170,7 @@
           phone: this.phone,
           category: this.category,
           description: this.description,
-          date: this.date.toISOString().slice(0,10),
+          date: this.date.toISOString().slice(0, 10),
           time: this.time
           /*
           date: this.formatDateForPostRequest(this.date),
@@ -216,33 +183,33 @@
         /* Min will always have the same value */
         const min = '00';
         const hour = time.getHours();
-        
+
         return `${hour}:${min}`;
       },
       formatDateForPostRequest: function (date) {
-        const year = date.getFullYear(); 
+        const year = date.getFullYear();
         let month = date.getMonth() + 1;
         const day = date.getDate();
-        
+
         if (monthNumber < 10) {
           month = `0${monthNumber}`;
-        } 
+        }
 
         return `${year}-${month}-${day}`;
       },
       /* Formatting the time to exclude booked sessions in timepicker */
       formatTimeForTimePicker: function (time) {
-        console.log(time.slice(0,2));
-        const hours = parseInt(time.slice(0,2));
+        console.log(time.slice(0, 2));
+        const hours = parseInt(time.slice(0, 2));
         const formattedTime = new Date();
         formattedTime.setHours(hours);
         formattedTime.setMinutes(0);
         console.log(formattedTime);
       },
       formatStringToDateObject: function (dateString) {
-        const year = dateString.slice(0,4);
-        const month = dateString.slice(5,7);
-        const date = dateString.slice(9,11);
+        const year = dateString.slice(0, 4);
+        const month = dateString.slice(5, 7);
+        const date = dateString.slice(9, 11);
 
         console.log(`${date}, ${year}, ${month}`);
       },
@@ -311,29 +278,21 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        @include form-placeholder($lightGrey);
 
         .select-wrapper {
           display: block;
           width: 100%;
-          margin-bottom: 40px;
-          padding-bottom: 30px;
-          border-bottom: 1px solid $white;
-
-          select {
-            background: black;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: white;
-          }
-          .select:not(.is-multiple):not(.is-loading)::after{
-            border-color: $primary;
-          }
+          margin-bottom: 4rem;
+          padding-bottom: 3rem;
+          border-bottom: 0.1rem solid $white;
+          @include form-select;
         }
 
         .btn-wrapper {
           width: 100%;
           text-align: center;
-          margin-top: 40px;
+          margin-top: 4rem;
 
           button {
             border-color: none;
@@ -343,53 +302,22 @@
 
         .input,
         .textarea {
-          background: transparent;
+          @include form-input;
+          /*background: transparent;
           border: none;
-          border-bottom: 1px solid $lightGrey;
-          border-radius: 0px;
+          border-bottom: 0.1rem solid $lightGrey;
+          border-radius: 0rem;
           color: white;
           font-family: 'Hind', sans-serif;
-          letter-spacing: 1.5px;
-          padding-bottom: 5px;
-
+          letter-spacing: 1.5rem;
+          padding-bottom: 5rem;
           &:active,
           &:focus {
             background: transparent;
-            border-bottom: 1px solid $white;
+            border-bottom: 1rem solid $white;
             box-shadow: none;
-            border-radius: 0px;
-          }
-        }
-        ::-webkit-input-placeholder {
-          /* Chrome/Opera/Safari */
-          color: $lightGrey;
-          font-family: 'Hind', sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-        }
-
-        ::-moz-placeholder {
-          /* Firefox 19+ */
-          color: $lightGrey;
-          font-family: 'Hind', sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-        }
-
-        :-ms-input-placeholder {
-          /* IE 10+ */
-          color: $lightGrey;
-          font-family: 'Hind', sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
-        }
-
-        :-moz-placeholder {
-          /* Firefox 18- */
-          color: $lightGrey;
-          font-family: 'Hind', sans-serif;
-          text-transform: uppercase;
-          letter-spacing: 1.5px;
+            border-radius: 0rem;
+          }*/
         }
 
         .field {
@@ -397,9 +325,10 @@
         }
 
         .label {
-          font-size: 1.2em;
+          @include form-label;
+          /*font-size: 1.2em;
           color: $white;
-          letter-spacing: 1.5px;
+          letter-spacing: 1.5rem;*/
         }
 
         .textarea-wrapper {
@@ -409,20 +338,20 @@
         /* Timepicker and datepicker */
         .icon i {
           color: $mediumGrey;
-          margin-right: 5px;
+          margin-right: 0.5rem;
         }
 
         .dropdown-content {
           background: $black;
-
-          select {
+          @include form-select;
+          /*select {
             background: black;
             font-family: 'hind', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.5rem;
             font-size: 1.1em;
             color: $white;
-          }
+          }*/
         }
 
         .title-label {
@@ -430,13 +359,24 @@
           width: 100%;
         }
 
-        /* Datepicker */
-        .datepicker {
-          font-family: 'Hind', sans-serif;
 
+
+        /* Datepicker */
+        .datepicker,
+        .timepicker {
+        .control {
+          input {
+            padding-left: 2.25rem;
+          }
+        }
+        }
+        .datepicker {
+
+          //font-family: 'Hind', sans-serif;
           .dropdown-content {
             background: $black;
-            .select:not(.is-multiple):not(.is-loading)::after{
+
+            .select:not(.is-multiple):not(.is-loading)::after {
               border-color: $primary;
             }
           }
@@ -446,12 +386,12 @@
             .pagination-previous,
             .pagination-next {
               border: none;
-              font-size: 1.5em;
+              font-size: 1.5rem;
             }
 
             .pagination-previous i {
               color: $primary;
-              margin-bottom: -4px;
+              margin-bottom: -0.4rem;
             }
 
             .pagination-next i {
@@ -463,24 +403,27 @@
           .datepicker-cell {
             &.is-unselectable {
               color: #4a4a4a;
-              font-size: 1.1em;
-              letter-spacing: 2px;
+              font-size: 1.1rem;
+              letter-spacing: 0.2rem;
             }
 
             &.is-selectable {
               color: white;
-              font-size: 1.1em;
-              letter-spacing: 2px;
+              font-size: 1.1rem;
+              letter-spacing: 0.2rem;
             }
 
             &.is-selectable:hover {
               background: $secondary;
-              font-size: 1.1em;
+              font-size: 1.1rem;
             }
 
-            &.is-today {
-              border: 2px solid $primary;
-              font-size: 1.5em;
+            /*&.is-today {
+              border: none;
+              background: $primary;
+            }*/
+            &.is-selected{
+              border: none;
               background: $primary;
             }
           }
@@ -489,7 +432,7 @@
         /* Timepicker */
         .timepicker {
           .dropdown-content {
-            padding: 5px 10px 10px 10px;
+            padding: 0.5rem 1rem 1rem 1rem;
           }
         }
       }
@@ -503,15 +446,15 @@
 .book-input textarea{
 	background: transparent;
 	border: none;
-	border-bottom: 1px solid rgb(193, 163, 87);
-	border-radius: 0px;
+	border-bottom: 1rem solid rgb(193, 163, 87);
+	border-radius: 0rem;
 	}
 .input,
 .textarea{
 	background: transparent;
 	border: none;
-	border-bottom: 1px solid rgb(193, 163, 87);
-	border-radius: 0px;
+	border-bottom: 1rem solid rgb(193, 163, 87);
+	border-radius: 0rem;
 }
 b-input:focus,
 textarea:focus,
@@ -522,8 +465,8 @@ textarea:focus,
 	background: transparent;
 	border: none;
 	outline: none !important;
-	border-bottom: 1px solid red;
-	border-radius: 0px;
+	border-bottom: 1rem solid red;
+	border-radius: 0rem;
 }*/
 
 </style>

@@ -70,7 +70,6 @@
   letter-spacing: 0.15rem;
   padding-left: 0rem;
   padding-bottom: 0.5rem;
-
   &:active,
   &:focus {
     outline: none;
@@ -88,6 +87,17 @@
 	}
 }
 
+@mixin form-select {
+	select {
+		background: black;
+		text-transform: uppercase;
+		letter-spacing: 0.15rem;
+		color: $white;
+	}
+	.select:not(.is-multiple):not(.is-loading)::after{
+		border-color: $primary;
+	}
+}
 @mixin form-label {
   font-size: 1.2rem;
   color: $white;

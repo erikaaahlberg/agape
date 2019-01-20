@@ -94,6 +94,7 @@
 					text-transform: none;
 					letter-spacing: 0.1rem;
 					margin-right: 0.5rem;
+					color: $lightGrey;
 				}
 				.trustbar-btn-green {
 					@include button($primaryBright, $black, $primary, $white);
