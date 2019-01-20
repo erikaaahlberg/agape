@@ -4,7 +4,6 @@ import Start from '@/components/pages/Start.vue';
 import About from '@/components/pages/About.vue';
 import Book from '@/components/pages/Book.vue';
 import Contact from '@/components/pages/Contact.vue';
-import Art from '@/components/pages/Art.vue';
 import Services from '@/components/pages/Services.vue';
 import Admin from '@/components/pages/Admin.vue';
 
@@ -37,11 +36,6 @@ export default new Router({
       path: '/book',
       name: 'Book',
       component: Book
-    },
-    {
-      path: '/art',
-      name: 'Art',
-      component: Art
     },
     {
       path: '/admin',

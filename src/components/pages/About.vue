@@ -38,7 +38,7 @@ export default {
       background-position: center;
       background-repeat: no-repeat;
     }
-    @media(min-width: 768px){
+    @include ipad {
       display: flex;
       .bg-img{
         flex-basis: 50%;
@@ -46,7 +46,7 @@ export default {
       .text-wrapper{
         background: $black;
         flex-basis: 50%;
-        padding: 50px;
+        padding: 5rem;
       }
     }
   }

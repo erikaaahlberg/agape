@@ -110,7 +110,6 @@
               })
               .then(() => {
                 console.log('yes');
-                //this.updateAdminState();
                 this.sortBookings();
               });
               }

@@ -226,120 +226,16 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_main.scss';
-#book-page{
-  .form-wrapper{
-    border-top: 1px solid $primaryBright;
-    background: $black;
-    padding: 50px;
-    max-width: 1000px;
-    margin: auto;
-  }}
-  /*
-  .btn-wrapper{
-    text-align: center;
-    margin-top: 20px;
-    button{
-      border-color: none;
-      border-style: none;
+  @import '@/scss/_main.scss';
+
+  #book-page{
+    .form-wrapper{
+      border-top: 0.1rem solid $primaryBright;
+      background: $black;
+      padding: 5rem;
+      max-width: 100rem;
+      margin: auto;
     }
   }
-  .input,
-  .textarea{
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid $lightGrey;
-    border-radius: 0px;
-    color: white;
-    font-family: 'Hind', sans-serif;
-    letter-spacing: 1.5px;
-    padding-bottom: 5px;
-  }
-  input.input:focus,
-  textarea.textarea:focus,
-  input.input:active,
-  textarea.textarea:active{
-    background: transparent;
-    /*border: none;
-    outline: none;
-    border-bottom: 1px solid $white;
-    box-shadow: none;
-    border-radius: 0px;
-  }
-    ::-webkit-input-placeholder { /* Chrome/Opera/Safari 
-    color: $lightGrey;
-    font-family: 'Hind', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-  ::-moz-placeholder { /* Firefox 19+
-    color: $lightGrey;
-    font-family: 'Hind', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-  :-ms-input-placeholder { /* IE 10+ 
-    color: $lightGrey;
-    font-family: 'Hind', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-  :-moz-placeholder { /* Firefox 18- 
-    color: $lightGrey;
-    font-family: 'Hind', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-  }
-  .field{
-    flex-basis: 45%;
-  }
-  .label{
-    font-size: 1.2em;
-    color: $white;
-    letter-spacing: 1.5px;
-  }
-  
-  /* Timepicker and datepicker 
-  .icon i{
-    color: $mediumGrey;
-    margin-right: 5px;
-  }
-  .dropdown-content{
-    background: $black;
-  }
-  .pickers-wrapper{
-    width: 100%;
-    display: flex; 
-    justify-content: space-between;
-				select {
-					background: black;
-					font-family: 'hind', sans-serif;
-					text-transform: uppercase;
-					letter-spacing: 1.5px;
-					font-size: 1.1em;
-					color: $white;
-				}
-  }
-}
-
-/*.field{
-  flex-basis: 45%;
-}
-.book-input{
-	flex-basis: 100%;
-}
-
-	.datepicker-wrapper{
-    width: 50%;
-		flex-basis: 45%;
-	}*/
-
-/*.input,
-.textarea{
-	background: transparent;
-	border: none;
-	border-bottom: 1px solid rgb(193, 163, 87);
-	border-radius: 0px;
-}*/
 
 </style>
