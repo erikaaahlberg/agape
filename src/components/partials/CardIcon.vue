@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 
 .card-black{
     background: $black;

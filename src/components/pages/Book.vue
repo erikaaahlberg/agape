@@ -226,7 +226,7 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 #book-page{
   .form-wrapper{
     border-top: 1px solid $primaryBright;

@@ -29,9 +29,9 @@
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Hind:400,600,700');
   /*@import "~bulma/sass/utilities/_all";*/
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
   @import '@/scss/_base.scss';
-  @import '@/scss/_mixins.scss';
+  @import '@/scss/_main.scss';
   // Custom variables go here
   $family-sans-serif: "Hind",
   sans-serif;
@@ -73,7 +73,7 @@
   }
 
   .btn-red {
-    @include button($redBright, $black, $red, $white);
+    @include button($secondaryBright, $black, $secondary, $white);
   }
 
   .btn-transparent {
@@ -91,20 +91,20 @@
     i.fa-angle-right {
       position: relative;
       bottom: -2px;
-      color: $redBright;
+      color: $secondaryBright;
       font-size: 1.2em;
     }
     &:hover {
       color: $primaryBright;
       i.fa-angle-right {
-        color: $red;
+        color: $secondary;
       }
     }
     */
   }
   
   .link-red {
-    @include link ($redBright, $red);
+    @include link ($secondaryBright, $secondary);
   }
 
   /* Text color */
@@ -117,11 +117,11 @@
   }
 
   .c-red {
-    color: $red;
+    color: $secondary;
   }
 
   .c-red-bright {
-    color: $redBright;
+    color: $secondaryBright;
   }
 
   /* Display */
@@ -147,7 +147,7 @@
     }
 
     i.fa-angle-right{
-        color: $red;
+        color: $secondary;
     }
   }
 

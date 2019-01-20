@@ -139,7 +139,7 @@
   }
   .c-red{
     h3{
-      border-bottom: 10px solid $red;
+      border-bottom: 10px solid $secondary;
       letter-spacing: 2px;
     }
   }
@@ -164,9 +164,9 @@
     /*
     &:nth-child(odd){
       
-      background: $redBright;
+      background: $secondaryBright;
       color: $black;
-      color: $redBright;
+      color: $secondaryBright;
     }
     &:nth-child(even){
       background: $primaryBright;

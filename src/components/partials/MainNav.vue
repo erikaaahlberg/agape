@@ -81,7 +81,7 @@
     }
 		.navbar-item{
 			&.is-active{
-				border-bottom: 3px solid $red;
+				border-bottom: 3px solid $secondary;
 			}
 		}
 		.link-wrapper{
@@ -130,14 +130,14 @@
 		}
 		}
 		&.router-link-exact-active{
-			border-bottom: 3px solid $red;
+			border-bottom: 3px solid $secondary;
 			padding-bottom: 2px;
 			padding-top: 7px;
 			
 		}
 		&.router-link-exact-active:hover{
 			color: $white;
-			border-bottom: 3px solid $red;
+			border-bottom: 3px solid $secondary;
 			padding-bottom: 2px;
 			padding-top: 7px;
 			

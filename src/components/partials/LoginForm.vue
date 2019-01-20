@@ -62,8 +62,8 @@
 
 </script>
 <style lang="scss">
-  @import '@/scss/_variables.scss';
-  @import '@/scss/_mixins.scss';
+  @import '@/scss/_main.scss';
+  @import '@/scss/_main.scss';
 
   .login-form {
     @include form-input;

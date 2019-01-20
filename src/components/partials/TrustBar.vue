@@ -43,8 +43,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-	@import '@/scss/_variables.scss';
-	@import '@/scss/_mixins.scss';
+	@import '@/scss/_main.scss';
+	@import '@/scss/_main.scss';
 	
 	.trustbar {
 		width: 100%;
@@ -99,7 +99,7 @@
 					@include button($primaryBright, $black, $primary, $white);
 				}
 				.trustbar-btn-red {
-					@include button($redBright, $black, $red, $white);
+					@include button($secondaryBright, $black, $secondary, $white);
 				}
 			}
 		}

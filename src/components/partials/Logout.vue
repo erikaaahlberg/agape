@@ -94,7 +94,7 @@
 </script>
 
 <style lang="scss">
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
 
   .logout-link-wrapper {
     display: inline-block;

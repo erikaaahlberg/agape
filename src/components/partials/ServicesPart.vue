@@ -78,10 +78,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 #services-part{
   /*@media (min-width: 1200px){
-    border-top: 1px solid $redBright;
+    border-top: 1px solid $secondaryBright;
     border-bottom: 1px solid $primaryBright; 
   }*/
   .intro-text{
@@ -136,9 +136,9 @@
         flex-basis: 25%;
         margin: 0px;
         margin-bottom: 0px !important;
-        /*border-top: 1px solid $redBright;
+        /*border-top: 1px solid $secondaryBright;
         border-right: 1px solid $primaryBright;
-        border-bottom: 1px solid $redBright;
+        border-bottom: 1px solid $secondaryBright;
         border-left: 1px solid $primaryBright;*/
       }
     /*i{

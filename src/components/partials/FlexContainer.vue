@@ -7,9 +7,9 @@
             'background-repeat': 'no-repeat',
             'background-size': 'cover'
             }"></div>
-      <div class="text-wrapper">
-        <p v-html="text"></p>
-      </div>
+      <section class="body-wrapper">
+        <slot name="body"></slot>
+      </section>
     </div>
   </div>
 </template>
@@ -18,7 +18,6 @@
   export default {
     name: 'FlexContainer',
     props: [
-      'text',
       'imgUrl'
     ]
   };
@@ -27,7 +26,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
 
  .flex-wrapper {
       width: 100%;
@@ -45,7 +44,7 @@
           flex-basis: 50%;
         }
 
-        .text-wrapper {
+        .body-wrapper {
           background: $black;
           flex-basis: 50%;
           padding: 50px;

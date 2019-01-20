@@ -303,7 +303,7 @@
 </script>
 
 <style lang="scss">
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
 
   #book-page {
     .book-input {
@@ -455,7 +455,7 @@
             }
 
             .pagination-next i {
-              color: $red;
+              color: $secondary;
             }
 
           }
@@ -474,7 +474,7 @@
             }
 
             &.is-selectable:hover {
-              background: $red;
+              background: $secondary;
               font-size: 1.1em;
             }
 

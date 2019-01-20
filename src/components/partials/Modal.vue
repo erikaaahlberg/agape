@@ -38,8 +38,8 @@
 </script>
 
 <style lang="scss">
-  @import '@/scss/_variables.scss';
-  @import '@/scss/_mixins.scss';
+  @import '@/scss/_main.scss';
+  @import '@/scss/_main.scss';
 
   /* Transitions */
   .modal-fade-enter,
@@ -98,7 +98,7 @@
       cursor: pointer;
       font-weight: bold;
       color: $white;
-      background: $red;
+      background: $secondary;
       @media (max-width: 992px) {
         font-size: 1rem;
         min-width: 1.5rem;

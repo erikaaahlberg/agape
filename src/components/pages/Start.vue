@@ -29,7 +29,7 @@
 </script>
 
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 #home{
   h2{
     width: 100%;

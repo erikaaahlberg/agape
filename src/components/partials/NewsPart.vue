@@ -64,7 +64,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 #news-part{
   .wrapper-news-cards{
     width: 100%;

@@ -246,7 +246,7 @@
 
 </script>
 <style lang="scss">
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
 
   section {
     width: 100%;

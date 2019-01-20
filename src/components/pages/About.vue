@@ -1,10 +1,10 @@
 <template>
 <section id="about-page">
   <h2><i class="fas fa-angle-right"></i> Om Agape</h2>
-  <about-container 
-  :imgUrl="imgBackgroundUrl"
-  :text="text"
-  />
+  <about-container
+  :imgUrl="imgBackgroundUrl">
+    <p slot="body">här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle. här e kalle här e kalle här e kalle här e faktiskt kalle.</p>
+  </about-container>
 </section>
 </template>
 
@@ -25,9 +25,9 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
+
 #about-page{
   .flex-wrapper{
     width: 100%;

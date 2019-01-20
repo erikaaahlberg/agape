@@ -68,7 +68,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 .card{
   .wrapper-card-text {
     //padding: 30px 30px 10px 30px;

@@ -109,7 +109,7 @@
 
 </script>
 <style lang="scss">
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
 
   .login-link-wrapper {
     display: inline-block;

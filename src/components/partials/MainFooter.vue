@@ -36,13 +36,13 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
 </script>
 
 <style lang="scss">
-  @import '@/scss/_variables.scss';
+  @import '@/scss/_main.scss';
 
   .main-footer {
     .footer-wrapper {
       color: $black;
       width: 100%;
-      background: $red;
+      background: $secondary;
       display: flex;
       flex-direction: column;
       @media (min-width: 992px) {

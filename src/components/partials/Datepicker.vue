@@ -47,7 +47,7 @@
 </script>
 
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
   #book {
 		.datepicker{
 			font-family: 'Hind', sans-serif;
@@ -65,7 +65,7 @@
     			margin-bottom: -4px;
 				}				
 				.pagination-next i{
-					color: $red;
+					color: $secondary;
 				}
 				
 			}
@@ -81,7 +81,7 @@
 				letter-spacing: 2px;
 				}
 				&.is-selectable:hover{
-					background: $red;
+					background: $secondary;
 					font-size: 1.1em;
 				}
 				&.is-today{

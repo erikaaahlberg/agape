@@ -47,7 +47,7 @@ import NewsPart from './NewsPart.vue';
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '@/scss/_variables.scss';
+@import '@/scss/_main.scss';
 .wrapper-cards{
     width: 100%;
     display: flex;

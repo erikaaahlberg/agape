@@ -1,38 +1,14 @@
-$black: rgb(29, 29, 29);
-$gold: rgb(193, 163, 87);
-$red: rgb(230, 96, 72);
-$redBright: rgb(238, 129, 109);
-$redDark: rgb(177, 59, 39);
-$white: rgb(245, 226, 226);
+/* Accent colors */
+$secondary: rgb(230, 96, 72);
+$secondaryBright: rgb(238, 129, 109);
+$secondaryDark: rgb(177, 59, 39);
 $primary: #5d9989;
 $primaryBright: #abd0c6;
 $primaryDark: #2f463f;
-/*$primary: #773fd0;
-$primaryBright: #aa7bed;
-$primaryDark: #603a9d;*/
-$primary-invert: findColorInvert($primary);
 
+/* Other colors */
+$black: rgb(29, 29, 29);
+$white: rgb(245, 226, 226);
 $lightGrey: #7a7a7a;
 $mediumGrey: #4a4a4a;
-
-$twitter: #4099FF;
-$twitter-invert: findColorInvert($twitter);
-
-// Setup $colors to use as bulma classes (e.g. 'is-twitter')
-/*$colors: (
-    "white": ($white, $black),
-    "black": ($black, $white),
-    "light": ($light, $light-invert),
-    "dark": ($dark, $dark-invert),
-    "primary": ($purple, $purple-invert),
-    "info": ($info, $info-invert),
-    "success": ($success, $success-invert),
-    "warning": ($warning, $warning-invert),
-    "danger": ($danger, $danger-invert),
-    "twitter": ($twitter, $twitter-invert)
-);*/
-
-// Links
-$link: $primary;
-$link-invert: $primary-invert;
-$link-focus-border: none;
+$gold: rgb(193, 163, 87);
