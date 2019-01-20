@@ -303,21 +303,6 @@
         .input,
         .textarea {
           @include form-input;
-          /*background: transparent;
-          border: none;
-          border-bottom: 0.1rem solid $lightGrey;
-          border-radius: 0rem;
-          color: white;
-          font-family: 'Hind', sans-serif;
-          letter-spacing: 1.5rem;
-          padding-bottom: 5rem;
-          &:active,
-          &:focus {
-            background: transparent;
-            border-bottom: 1rem solid $white;
-            box-shadow: none;
-            border-radius: 0rem;
-          }*/
         }
 
         .field {
@@ -326,9 +311,6 @@
 
         .label {
           @include form-label;
-          /*font-size: 1.2em;
-          color: $white;
-          letter-spacing: 1.5rem;*/
         }
 
         .textarea-wrapper {
@@ -344,14 +326,6 @@
         .dropdown-content {
           background: $black;
           @include form-select;
-          /*select {
-            background: black;
-            font-family: 'hind', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 1.5rem;
-            font-size: 1.1em;
-            color: $white;
-          }*/
         }
 
         .title-label {
@@ -364,15 +338,14 @@
         /* Datepicker */
         .datepicker,
         .timepicker {
-        .control {
-          input {
-            padding-left: 2.25rem;
+          .control {
+            input {
+              padding-left: 2.25rem;
+            }
           }
         }
-        }
-        .datepicker {
 
-          //font-family: 'Hind', sans-serif;
+        .datepicker {
           .dropdown-content {
             background: $black;
 
@@ -418,11 +391,7 @@
               font-size: 1.1rem;
             }
 
-            /*&.is-today {
-              border: none;
-              background: $primary;
-            }*/
-            &.is-selected{
+            &.is-selected {
               border: none;
               background: $primary;
             }
