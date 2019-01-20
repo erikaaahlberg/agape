@@ -41,8 +41,8 @@
     data() {
       return {
         userInput: {
-          'username': '',
-          'password': ''
+          username: '',
+          password: ''
         }
       }
     },
@@ -79,6 +79,10 @@
       &:not(:last-child) {
         margin-bottom: 2rem;
       }
+    }
+    button {
+      display: block;
+      margin: auto;
     }
   }
 </style>

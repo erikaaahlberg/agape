@@ -45,6 +45,11 @@
         }
       }
     }
+    /*,
+    mounted: function (){
+
+      this.$session.destroy()
+    }*/
   };
 
 </script>

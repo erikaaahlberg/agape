@@ -11,6 +11,7 @@ import Admin from '@/components/pages/Admin.vue';
 Vue.use(Router);
 
 export default new Router({
+  base: '/',
   routes: [
     {
       path: '/',
@@ -49,11 +50,3 @@ export default new Router({
     },
   ],
 });
-
-/*const router = new VueRouter({
-  routes // short for `routes: routes`
-})
-
-const app = new Vue({
-  router
-}).$mount('#app')*/

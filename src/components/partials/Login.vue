@@ -60,7 +60,7 @@
     },
     computed: {
       logInClass: function () {
-        if (this.isAdmin) {
+        if (this.isAdmin === true ) {
           return 'hidden';
         } else {
             return 'login-link-wrapper';
@@ -92,11 +92,12 @@
             })
             .then(response => response.json())
               .then((login) => {
-                //this.message = login.message;
+                console.log(login);
                 if (login.success) {
                   this.$session.start();
                   this.$session.set('username', login.username);
                   this.$session.set('email', login.email);
+                  this.$router.go();
                 }
               })
                 .catch((errors) => {

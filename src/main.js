@@ -38,9 +38,20 @@ Vue.use(Buefy, {
 //Vue.config.productionTip = false;
 //Vue.component(VueCarousel.name, VueCarousel);
 /* eslint-disable no-new */
+/*router.beforEach((to, from, next) => {
+  const reqSession = to.matched.some(route => route.meta.requiresSession)
+  if (!reqSession) next()
+
+  if (router.app.$session.exists()) {
+    next();
+  } else {
+    next({ path: '/' });
+  }
+});*/
+
 new Vue({
   el: '#app',
-  /*render: h => h(App)*/
+  render: h => h(App),
   router,
   components: { App },
   template: '<App/>'

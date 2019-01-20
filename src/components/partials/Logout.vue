@@ -24,7 +24,7 @@
 </template>
 <script>
   import Modal from '@/components/partials/Modal.vue';
-  import Router from '@/router/index.js';
+  //import Router from '@/router/index.js';
 
   /*
   ,
@@ -69,7 +69,7 @@
     },
     computed: {
       logoutClass: function () {
-        if (!this.isAdmin) {
+        if (this.isAdmin === false) {
           return 'hidden';
         } else {
           return 'logout-link-wrapper';
@@ -83,9 +83,11 @@
       closeModal: function () {
         this.isModalVisible = false;
       },
-      logout: function ($event) {
+      logout: function () {
         console.log('hejdååå');
-        //this.$session.destroy();
+        this.$session.destroy();
+        this.closeModal();
+        this.$router.go();
       }
     }
   }

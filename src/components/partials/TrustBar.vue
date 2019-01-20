@@ -96,7 +96,7 @@
 					margin-right: 0.5rem;
 				}
 				.trustbar-btn-green {
-					@include button($primary, $black, $primaryBright, $white);
+					@include button($primaryBright, $black, $primary, $white);
 				}
 				.trustbar-btn-red {
 					@include button($redBright, $black, $red, $white);
