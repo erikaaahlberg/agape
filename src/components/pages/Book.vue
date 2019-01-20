@@ -237,5 +237,4 @@ axios.post('/api/create_booking', {requestBody}).then((res) => {
       margin: auto;
     }
   }
-
 </style>
