@@ -117,7 +117,7 @@
 					category: '',
 					description: '',
 					date: new Date(),
-					time: ''
+					time: new Date()
 					/*
 					date: this.formatDateForPostRequest(this.date),
 					time: this.formatTimeForPostRequest(this.time)
@@ -189,13 +189,19 @@
 				}
 				return input;*/
 			},
-			formatTimeForPostRequest: function (time) {
+			formatTimeForPostRequest: function (date) {
 				/* Min will always have the same value */
 				const min = '00';
+				const hour = date.getHours();
+				return `${hour}:${min}`;
+			}/*,
+			formatTimeForPostRequest: function (time) {
+				/* Min will always have the same value */
+				/*const min = '00';
 				const hour = time.getHours();
 
 				return `${hour}:${min}`;
-			},
+		}*/,
 			formatDateForPostRequest: function (date) {
 				const year = date.getFullYear();
 				let month = date.getMonth() + 1;
@@ -400,35 +406,5 @@
 			}
 		}
 	}
-
-	/*.book-input input{
-	flex-basis: 45%;
-}
-.book-input input,
-.book-input textarea{
-	background: transparent;
-	border: none;
-	border-bottom: 1rem solid rgb(193, 163, 87);
-	border-radius: 0rem;
-	}
-.input,
-.textarea{
-	background: transparent;
-	border: none;
-	border-bottom: 1rem solid rgb(193, 163, 87);
-	border-radius: 0rem;
-}
-b-input:focus,
-textarea:focus,
-.input:focus,
-.textarea:focus,
-.control:focus,
-#booking-form input:focus{
-	background: transparent;
-	border: none;
-	outline: none !important;
-	border-bottom: 1rem solid red;
-	border-radius: 0rem;
-}*/
 
 </style>
