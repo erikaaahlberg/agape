@@ -74,11 +74,11 @@ app.get('/bookings', (req, res) => {
   );
 });
 
-/* Get all bookings from one date */
+/* Get all bookings from one date, in the future admin is supposed to be able to get bookings by date */
 app.get('/bookings/date/:date', (req, res) => {
   const date = req.params.date;
   connection.query(
-    `SELECT date, time FROM bookings WHERE date = ?`, [date],
+    `SELECT * FROM bookings WHERE date = ?`, [date],
     (error, data, fields) => {
       if (error) {
         console.log('Failed to get all bookings: ' + error);

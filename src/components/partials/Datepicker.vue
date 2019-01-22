@@ -7,7 +7,7 @@
 		:min-date="minDate"
     :max-date="maxDate" 
 		v-model="date" 
-		@input="emitSelectedDate(date)" 
+		@input="emitSelectedDate" 
 		:unselectable-days-of-week="[5, 6]"
     required>
     </b-datepicker>

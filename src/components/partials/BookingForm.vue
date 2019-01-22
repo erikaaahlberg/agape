@@ -37,8 +37,9 @@
 					v-model="booking.description" required>
 				</b-input>
 			</b-field>
-			<date-picker v-on:emitSelectedDate="formatDateForPostRequest($event)"/>
-			<time-picker v-on:emitSelectedTime="time = $event"/>
+			<date-picker v-on:emitSelectedDate="excludeBookedTimes($event)"/>
+			<time-picker v-on:emitSelectedTime="collectInput($event)" :disabled="timePicker.isDisabled"
+			:unselectable="timePicker.bookedTimes"/>
 <!--
 			<b-field label="Välj ett datum">
 				<b-datepicker placeholder="Tryck här för att välja datum" icon-pack="fa" icon="calendar-alt"   :min-date="minDate"
@@ -58,6 +59,7 @@
 			</b-field>
 			
 					:unselectable-times=times -->
+					{{timePicker}}
 
 			<div class="btn-wrapper">
 				<button type="button" class="btn-purple" @click="onSubmit">Boka nu</button>
@@ -112,7 +114,6 @@
 				maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
 				timeFrame,
 				categories,
-				bookedTimes: [],
 				booking: {
 					firstName: '',
 					lastName: '',
@@ -126,61 +127,55 @@
 					date: this.formatDateForPostRequest(this.date),
 					time: this.formatTimeForPostRequest(this.time)
 					 */
-				}
+				},
+				timePicker: {
+					isDisabled: true,
+					bookedTimes: []
+				} 
 			}
 		},
 		components: {
       'date-picker': Datepicker,
       'time-picker': Timepicker
 		},
+		computed: {
+			updateTimePicker: function () {
+				if (this.booking.date !== '') {
+					this.timePicker.isDisabled = false;
+				}
+			},
+			getBookedTimes: function () {
+				if (this.booking.date !== '') {
+					console.log(this.booking.date);
+					/*fetchBookingsByDate(this.booking.date)
+						.then((fetchedTimes => {
+							console.log(fetchedTimes);
+						}));*/
+				}
+			}
+		},
 		methods: {
 			excludeBookedTimes: function (date) {
-				fetchBookingsByDate(date)
-					.then((fetchedTimes) => {
-						console.log(fetchedTimes);
-						/*const bookings = fetchedBookings.map((row) => {
-							return { 
-								date: row.date, 
-								time: row.time 
-							};
-						});*/
-						/*console.log(booked);
-						console.log(bookings);
-						const bookedSessions = this.filterBookedTimeByPickedDate(bookings);
-						if (bookedSessions.length > 0) {
-							const formattedTimes = bookedSessions.map((row) => {
-								return this.formatTimeForTimePicker(row.time);
-							});
-							console.log(formattedTimes);
-							this.bookedTimes = formattedTimes;
-						}
-						//this.bookedSessions = bookings;
-						//const bookedTimes = this.filterTimeByPickedDate(bookings);
-						//return bookedDates;*/
-					});
-			},
-			fetchBookingsByDate: function (date) {
-				console.log('tjenare')
-				return fetch(`http://localhost:3001/bookings/date/${date}`, {
-						host: 'localhost',
-						// port to forward to
-						port: 3001,
-						// path to forward to
-						//path:   '/api/bookings',
-						method: 'GET',
-						headers: {
-							'Accept': 'application/json',
-							'Content-Type': 'application/json'
-						}
-					})
-					.then(response => response.json())
+				const formattedDate = this.formatDateForPostRequest(date);
+				fetchBookingsByDate(formattedDate)
 					.then((fetchedBookings) => {
 						console.log(fetchedBookings);
-						return fetchedBookings;
+						if (fetchedBookings.length > 0) {
+							const bookedTimes = this.filterTimes(fetchedBookings);
+							console.log(bookedTimes);
+							this.timePicker.bookedTimes.push(bookedTimes);
+						}
+						this.booking.date = formattedDate;
 					});
 			},
-			collectInput: function () {
-				console.log('hej');
+			filterTimes: function (bookings) {
+				const times = bookings.map((row) => {
+					return this.formatTimeForTimePicker(row.time);
+				});
+				return times;
+			},
+			collectInput: function ($event) {
+				console.log($event);
 				/*const input = {
 					firstName: this.firstName,
 					lastName: this.lastName,
@@ -215,8 +210,8 @@
 				let month = date.getMonth() + 1;
 				const day = date.getDate();
 
-				if (monthNumber < 10) {
-					month = `0${monthNumber}`;
+				if (month < 10) {
+					month = `0${month}`;
 				}
 
 				return `${year}-${month}-${day}`;
@@ -228,7 +223,7 @@
 				const formattedTime = new Date();
 				formattedTime.setHours(hours);
 				formattedTime.setMinutes(0);
-				console.log(formattedTime);
+				return formattedTime;
 			},
 			formatStringToDateObject: function (dateString) {
 				const year = dateString.slice(0, 4);

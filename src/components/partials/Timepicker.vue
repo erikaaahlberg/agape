@@ -5,10 +5,11 @@
 		icon-pack="fa" icon="clock"   
 		:min-time="minTime"
 		:max-time="maxTime" 
-		:increment-minutes="60" 
-		v-model="time" 
-		@input="emitSelectedTime" 
-		required>
+		:increment-minutes="60"
+		@input="emitSelectedTime($event)"
+		:unselectable-times="unselectable"
+		required
+		:disabled="disabled">
 		</b-timepicker>
 	</b-field>
 </template>
@@ -25,8 +26,18 @@
 			max.setMinutes(0)
 			return {
 				minTime: min,
-				maxTime: max,
-				time: new Date()
+				maxTime: max
+			}
+		},
+		props: [
+			'disabled',
+			'unselectable'
+		],
+		computed: {
+			isUnselectable: function () {
+				if (this.$props.unselectable.length > 0) {
+					console.log('hej');
+				}
 			}
 		},
 		methods: {
@@ -34,12 +45,11 @@
 				/* Min will always have the same value */
 				const min = '00';
 				const hour = date.getHours();
-				
 				return `${hour}:${min}`;
 			},
-			emitSelectedTime: function () {
-				const formattedTime = this.formatTimeForPostRequest(this.time);
-				this.$emit('emitSelectedTime', formattedTime);
+			emitSelectedTime: function ($event) {
+				//const formattedTime = this.formatTimeForPostRequest($event);
+				this.$emit('emitSelectedTime', $event);
 			}
 		}
 	}
