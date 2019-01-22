@@ -10,9 +10,9 @@
 </template>
 
 <script>
-  //import Datepicker from '@/components/partials/DatePicker';
-  import BookingForm from '@/components/partials/BookingForm';
-  //import Timepicker from '@/components/partials/Timepicker';
+  import BookingForm from '@/components/partials/BookingForm.vue';
+  //import Datepicker from '@/components/partials/DatePicker.vue';
+  //import Timepicker from '@/components/partials/Timepicker.vue';
   import { fetchBookings } from '@/functions/fetching/getRequests.js';
   import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
 

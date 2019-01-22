@@ -7,7 +7,7 @@
 		:min-date="minDate"
     :max-date="maxDate" 
 		v-model="date" 
-		@input="fetchBookingsByDate" 
+		@input="emitSelectedDate(date)" 
 		:unselectable-days-of-week="[5, 6]"
     required>
     </b-datepicker>
@@ -16,6 +16,7 @@
 
 <script>
   export default {
+    name: 'Datepicker',
     data() {
       const today = new Date()
       return {
@@ -82,7 +83,6 @@
       .pagination-next i {
         color: $secondary;
       }
-
     }
 
     .datepicker-cell {

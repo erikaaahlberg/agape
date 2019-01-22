@@ -15,8 +15,8 @@ Vue.use(Buefy, {
   defaultIconPack: 'fas',
   defaultDayNames: ['Mån', 'Tis', 'Ons', 'Tor', 'Fre', 'Lör', 'Sön'],
   defaultUnselectableDaysOfWeek: ['Lör', 'Sön'],
-  defaultTimeFormatter: 'HH:mm',
-  defaultTimeParser: 'HH:mm'
+  defaultTimeFormatter: 'HH:mm'/*,
+  defaultTimeParser: 'HH:mm'*/
 })
 
 //Vue.prototype.HOST = '/api';

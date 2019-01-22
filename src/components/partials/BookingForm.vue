@@ -37,7 +37,9 @@
 					v-model="booking.description" required>
 				</b-input>
 			</b-field>
-
+			<date-picker v-on:emitSelectedDate="formatDateForPostRequest($event)"/>
+			<time-picker v-on:emitSelectedTime="time = $event"/>
+<!--
 			<b-field label="Välj ett datum">
 				<b-datepicker placeholder="Tryck här för att välja datum" icon-pack="fa" icon="calendar-alt"   :min-date="minDate"
 					:max-date="maxDate" 
@@ -47,18 +49,18 @@
 					required>
 				</b-datepicker>
 			</b-field>
-			<!--
-					:unselectable-dates="minDate" -->
+			
+					:unselectable-dates="minDate" 
 
 			<b-field label="Välj en tid">
 				<b-timepicker placeholder="Tryck här för att välja tid" icon-pack="fa" icon="clock" :min-time="timeFrame.minTime" :max-time="timeFrame.maxTime" :increment-minutes=60 v-model="booking.time" required>
 				</b-timepicker>
 			</b-field>
-			<!--
+			
 					:unselectable-times=times -->
 
 			<div class="btn-wrapper">
-				<button type="button" class="btn-purple" v-on:click="onSubmit">Boka nu</button>
+				<button type="button" class="btn-purple" @click="onSubmit">Boka nu</button>
 			</div>
 		</form>
 	</section>
@@ -66,6 +68,8 @@
 
 <script>
 	import { fetchBookingsByDate } from '@/functions/fetching/getRequests.js';
+  import Datepicker from './DatePicker.vue';
+  import Timepicker from './Timepicker.vue';
 	//import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
 
 	export default {
@@ -116,14 +120,18 @@
 					phone: '',
 					category: '',
 					description: '',
-					date: new Date(),
-					time: new Date()
+					date: '',
+					time: ''
 					/*
 					date: this.formatDateForPostRequest(this.date),
 					time: this.formatTimeForPostRequest(this.time)
 					 */
 				}
 			}
+		},
+		components: {
+      'date-picker': Datepicker,
+      'time-picker': Timepicker
 		},
 		methods: {
 			excludeBookedTimes: function (date) {
@@ -193,7 +201,7 @@
 				/* Min will always have the same value */
 				const min = '00';
 				const hour = date.getHours();
-				return `${hour}:${min}`;
+				this.time = `${hour}:${min}`;
 			}/*,
 			formatTimeForPostRequest: function (time) {
 				/* Min will always have the same value */
