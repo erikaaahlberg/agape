@@ -11,6 +11,8 @@
 		required
 		:disabled="disabled">
 		</b-timepicker>
+		{{unselectable}}
+		{{disabled}}
 	</b-field>
 </template>
 
@@ -33,13 +35,6 @@
 			'disabled',
 			'unselectable'
 		],
-		computed: {
-			isUnselectable: function () {
-				if (this.$props.unselectable.length > 0) {
-					console.log('hej');
-				}
-			}
-		},
 		methods: {
 			formatTimeForPostRequest: function (date) {
 				/* Min will always have the same value */
@@ -48,8 +43,8 @@
 				return `${hour}:${min}`;
 			},
 			emitSelectedTime: function ($event) {
-				//const formattedTime = this.formatTimeForPostRequest($event);
-				this.$emit('emitSelectedTime', $event);
+				const formattedTime = this.formatTimeForPostRequest($event);
+				this.$emit('emitSelectedTime', formattedTime);
 			}
 		}
 	}

@@ -6,8 +6,8 @@
 		icon="calendar-alt" 
 		:min-date="minDate"
     :max-date="maxDate" 
-		v-model="date" 
-		@input="emitSelectedDate" 
+		:value="date" 
+		@input="emitSelectedDate($event)" 
 		:unselectable-days-of-week="[5, 6]"
     required>
     </b-datepicker>
@@ -24,12 +24,39 @@
         minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
         maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate())
       }
-		},
+    },
+    computed: {
+      formatDate: function (date) {
+				const year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				const day = date.getDate();
+
+				if (month < 10) {
+					month = `0${month}`;
+				}
+        console.log(`${year}-${month}-${day}`);
+				//return `${year}-${month}-${day}`;
+      }
+    },
 		methods: {
-			emitSelectedDate: function () {
-				this.$emit('emitSelectedDate', this.date);
-			}
-		}
+			emitSelectedDate: function (date) {
+        /*const formattedDate = this.formatDateForPostRequest(date);
+        console.log(formattedDate);*/
+        /* Emit a date formatted as the dates in the database to fetch booked times on selected date */
+				this.$emit('emitSelectedDate', this.formatDateForPostRequest(date));
+			},
+      formatDateForPostRequest: function (date) {
+          const year = date.getFullYear();
+          let month = date.getMonth() + 1;
+          const day = date.getDate();
+
+          if (month < 10) {
+            month = `0${month}`;
+          }
+
+          return `${year}-${month}-${day}`;
+      }
+    }
   }
 </script>
 

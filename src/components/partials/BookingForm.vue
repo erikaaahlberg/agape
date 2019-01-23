@@ -62,7 +62,7 @@
 					{{timePicker}}
 
 			<div class="btn-wrapper">
-				<button type="button" class="btn-purple" @click="onSubmit">Boka nu</button>
+				<button type="button" class="btn-purple" @click="sendBooking">Boka nu</button>
 			</div>
 		</form>
 	</section>
@@ -86,15 +86,15 @@
 				}
 			];
 
-			const today = new Date();
+			//const today = new Date();
 
 			/* Min time for timepicker */
-			const min = new Date();
+			/*const min = new Date();
 			min.setHours(9);
 			min.setMinutes(0);
 
 			/* Max time for timepicker */
-			const max = new Date();
+			/*const max = new Date();
 			max.setHours(18);
 			max.setMinutes(0);
 
@@ -110,9 +110,9 @@
 			const time = [exclude];*/
 
 			return {
-				minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
+				/*minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
 				maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
-				timeFrame,
+				timeFrame,*/
 				categories,
 				booking: {
 					firstName: '',
@@ -123,10 +123,6 @@
 					description: '',
 					date: '',
 					time: ''
-					/*
-					date: this.formatDateForPostRequest(this.date),
-					time: this.formatTimeForPostRequest(this.time)
-					 */
 				},
 				timePicker: {
 					isDisabled: true,
@@ -135,37 +131,28 @@
 			}
 		},
 		components: {
-      'date-picker': Datepicker,
-      'time-picker': Timepicker
+	  'date-picker': Datepicker,
+	  'time-picker': Timepicker
 		},
 		computed: {
 			updateTimePicker: function () {
-				if (this.booking.date !== '') {
-					this.timePicker.isDisabled = false;
-				}
-			},
-			getBookedTimes: function () {
-				if (this.booking.date !== '') {
-					console.log(this.booking.date);
-					/*fetchBookingsByDate(this.booking.date)
-						.then((fetchedTimes => {
-							console.log(fetchedTimes);
-						}));*/
-				}
+				console.log('hej');
 			}
 		},
 		methods: {
 			excludeBookedTimes: function (date) {
-				const formattedDate = this.formatDateForPostRequest(date);
-				fetchBookingsByDate(formattedDate)
+				this.booking.date = date;
+				fetchBookingsByDate(date)
 					.then((fetchedBookings) => {
-						console.log(fetchedBookings);
+						let bookedTimes = [];
+
+						/* Formatting the times in this component instead of Timepicker because this mapping has to be done to filter the times */
 						if (fetchedBookings.length > 0) {
-							const bookedTimes = this.filterTimes(fetchedBookings);
-							console.log(bookedTimes);
-							this.timePicker.bookedTimes.push(bookedTimes);
+							bookedTimes = this.filterTimes(fetchedBookings);
 						}
-						this.booking.date = formattedDate;
+						/* Timepicker is abled when booked times is excluded */
+						this.timePicker.bookedTimes = bookedTimes;
+						this.timePicker.isDisabled = false;
 					});
 			},
 			filterTimes: function (bookings) {
@@ -221,6 +208,7 @@
 				console.log(time.slice(0, 2));
 				const hours = parseInt(time.slice(0, 2));
 				const formattedTime = new Date();
+				console.log(hours);
 				formattedTime.setHours(hours);
 				formattedTime.setMinutes(0);
 				return formattedTime;
