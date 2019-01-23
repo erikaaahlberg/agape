@@ -94,9 +94,19 @@
 		letter-spacing: 0.15rem;
 		color: $white;
 	}
-	.select:not(.is-multiple):not(.is-loading)::after{
+  .select:not(.is-multiple),
+  :not(.is-loading)::after{
+    border-color: $primary;
+    &.is-loading,
+    &.is-multiple,
+    &.is-loading,
+    &::after{
+      border-color: $primary;
+    }
+  } 
+  .select::after{
 		border-color: $primary;
-	}
+  }
 }
 @mixin form-label {
   font-size: 1.2rem;

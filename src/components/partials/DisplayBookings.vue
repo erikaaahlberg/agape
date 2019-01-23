@@ -21,7 +21,6 @@
   </section>
 </template>
 <script>
-  //import Accordion from '@/components/partials/Accordion.vue';
   import BookingContent from '@/components/partials/BookingContent.vue';
 
   export default {

@@ -3,21 +3,21 @@
     <span class="status">
       <i class="fas fa-angle-right"></i> Inloggad som {{ this.$session.get('username') }}
     </span>
-    <a href="#" type="button" class="trustbar-btn trustbar-btn-red" @click="showModal">
+    <button type="button" class="trustbar-btn trustbar-btn-red" @click="showModal">
       Logga ut
-    </a>
+    </button>
     <modal v-show="isModalVisible" @close="closeModal">
       <h1 slot="title"><i class="fas fa-angle-right"></i> Logga ut</h1>
-      <div id="logout-confirm-question" slot="body">
+      <div class="modal-confirm-question" slot="body">
         <p class="question">
           Är du säker på att du vill logga ut?
         </p>
-        <a href="#" type="button" class="btn-purple" @click="logout">
+        <button type="button" class="btn-purple" @click="logout">
           Fortsätt
-        </a>
-        <a href="#" type="button" class="btn-red" @click="closeModal">
+        </button>
+        <button type="button" class="btn-red" @click="closeModal">
           Avbryt
-        </a>
+        </button>
       </div>
     </modal>
   </div>
@@ -99,19 +99,19 @@
   .logout-link-wrapper {
     display: inline-block;
   }
-  #logout-confirm-question {
+  /*.modal-confirm-question {
     text-align: center;
     padding: 0px;
     p {
       margin-bottom: 2rem;
     }
     
-    a {
+    button {
       margin-right: 0.5rem;
       &:nth-last-child() {
       margin-right: 0rem;
+      }
     }
-    }
-  }
+  }*/
 
 </style>

@@ -38,33 +38,22 @@
 				</b-input>
 			</b-field>
 			<date-picker v-on:emitSelectedDate="excludeBookedTimes($event)"/>
-			<time-picker v-on:emitSelectedTime="collectInput($event)" :disabled="timePicker.isDisabled"
+			<time-picker v-on:emitSelectedTime="booking.time = $event" :disabled="timePicker.isDisabled"
 			:unselectable="timePicker.bookedTimes"/>
-<!--
-			<b-field label="Välj ett datum">
-				<b-datepicker placeholder="Tryck här för att välja datum" icon-pack="fa" icon="calendar-alt"   :min-date="minDate"
-					:max-date="maxDate" 
-					v-model="booking.date" 
-					v-on:change="fetchBookingsByDate"
-					:unselectable-days-of-week="[5, 6]"
-					required>
-				</b-datepicker>
-			</b-field>
-			
-					:unselectable-dates="minDate" 
-
-			<b-field label="Välj en tid">
-				<b-timepicker placeholder="Tryck här för att välja tid" icon-pack="fa" icon="clock" :min-time="timeFrame.minTime" :max-time="timeFrame.maxTime" :increment-minutes=60 v-model="booking.time" required>
-				</b-timepicker>
-			</b-field>
-			
-					:unselectable-times=times -->
-					{{timePicker}}
 
 			<div class="btn-wrapper">
-				<button type="button" class="btn-purple" @click="sendBooking">Boka nu</button>
+				<button type="button" class="btn-purple" @click="checkBooking">Boka nu</button>
 			</div>
 		</form>
+
+		<modal v-show="modal.isVisible" @close="modal.isVisible = false">
+      <h1 slot="title"><i class="fas fa-angle-right"></i> Error</h1>
+      <div class="modal-error-message" slot="body">
+				<p>{{ modal.message }}</p>
+				<button type="button" class="btn-purple" @click="modal.isVisible = false">Ok</button>
+			</div>
+    </modal>
+
 	</section>
 </template>
 
@@ -72,7 +61,7 @@
 	import { fetchBookingsByDate } from '@/functions/fetching/getRequests.js';
   import Datepicker from './DatePicker.vue';
   import Timepicker from './Timepicker.vue';
-	//import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
+	import Modal from './Modal.vue';
 
 	export default {
 		data() {
@@ -85,34 +74,8 @@
 					title: 'Tarot / Runor'
 				}
 			];
-
-			//const today = new Date();
-
-			/* Min time for timepicker */
-			/*const min = new Date();
-			min.setHours(9);
-			min.setMinutes(0);
-
-			/* Max time for timepicker */
-			/*const max = new Date();
-			max.setHours(18);
-			max.setMinutes(0);
-
-			const timeFrame = {
-				minTime: min,
-				maxTime: max
-			}
-
-			/*let exclude = new Date();
-			exclude.setHours(9);
-			exclude.setMinutes(0);
-
-			const time = [exclude];*/
-
+	
 			return {
-				/*minDate: new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
-				maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate()),
-				timeFrame,*/
 				categories,
 				booking: {
 					firstName: '',
@@ -127,19 +90,25 @@
 				timePicker: {
 					isDisabled: true,
 					bookedTimes: []
-				} 
+				},
+				modal: {
+        	isVisible: false,
+					message: ''
+				}
 			}
 		},
 		components: {
 	  'date-picker': Datepicker,
-	  'time-picker': Timepicker
-		},
-		computed: {
-			updateTimePicker: function () {
-				console.log('hej');
-			}
+		'time-picker': Timepicker,
+		'modal': Modal
 		},
 		methods: {
+      showModal: function () {
+        this.modal.isVisible = true;
+      },
+      closeModal: function () {
+        this.modal.isVisible = false;
+      },
 			excludeBookedTimes: function (date) {
 				this.booking.date = date;
 				fetchBookingsByDate(date)
@@ -161,102 +130,43 @@
 				});
 				return times;
 			},
-			collectInput: function ($event) {
-				console.log($event);
-				/*const input = {
-					firstName: this.firstName,
-					lastName: this.lastName,
-					email: this.email,
-					phone: this.phone,
-					category: this.category,
-					description: this.description,
-					date: this.date.toISOString().slice(0, 10),
-					time: this.time
-					/*
-					date: this.formatDateForPostRequest(this.date),
-					time: this.formatTimeForPostRequest(this.time)
-					 
-				}
-				return input;*/
-			},
-			formatTimeForPostRequest: function (date) {
-				/* Min will always have the same value */
-				const min = '00';
-				const hour = date.getHours();
-				this.time = `${hour}:${min}`;
-			}/*,
-			formatTimeForPostRequest: function (time) {
-				/* Min will always have the same value */
-				/*const min = '00';
-				const hour = time.getHours();
-
-				return `${hour}:${min}`;
-		}*/,
-			formatDateForPostRequest: function (date) {
-				const year = date.getFullYear();
-				let month = date.getMonth() + 1;
-				const day = date.getDate();
-
-				if (month < 10) {
-					month = `0${month}`;
-				}
-
-				return `${year}-${month}-${day}`;
-			},
 			/* Formatting the time to exclude booked sessions in timepicker */
 			formatTimeForTimePicker: function (time) {
-				console.log(time.slice(0, 2));
 				const hours = parseInt(time.slice(0, 2));
 				const formattedTime = new Date();
-				console.log(hours);
 				formattedTime.setHours(hours);
 				formattedTime.setMinutes(0);
 				return formattedTime;
 			},
-			formatStringToDateObject: function (dateString) {
-				const year = dateString.slice(0, 4);
-				const month = dateString.slice(5, 7);
-				const date = dateString.slice(9, 11);
-
-				console.log(`${date}, ${year}, ${month}`);
-			},
-			filterBookedTimeByPickedDate: function (bookingsArray) {
-				const pickedDate = this.formatDateForPostRequest(this.date);
-				let bookedTimes = [];
-				console.log(pickedDate);
-
-				for (let i = 0; i < bookingsArray.length; i++) {
-					if (pickedDate === bookingsArray[i].date) {
-						console.log('tjenare');
-						bookedTimes.push(bookingsArray[i].time);
-					}
-				}
-
-				console.log(bookedTimes);
-				return bookedTimes;
-			},
 			checkIfEmpty: function (object) {
+				let emptyFields = [];
 				for (let key in object) {
 					console.log(key);
-					console.log(object.key);
 					if (object.key !== '' && object.key !== 'undefined') {
-						return true;
-					} else {
-						return false;
+						emptyFields.push(key);
 					}
 				}
+				if (emptyFields.length > 0) {
+					return emptyFields;
+				} else { 
+					return false;
+				}
 			},
-			sendBooking: function (booking) {
-				this.$emit('sendBooking', booking);
+			checkBooking: function () {
+				/* Getting the empty values to continue on this function and print what inputs are missing */
+				const isEmpty = this.checkIfEmpty(this.booking);
+				if (isEmpty.length > 0) {
+					this.modal.message = 'Alla fält måste vara ifyllda!';
+					this.modal.isVisible = true;
+				} else {
+					this.sendBooking();
+				}
 			},
-			onSubmit: function () {
-				//const booking = this.collectInput();
-				console.log('hejsan');
-				//this.sendBooking(booking);
+			sendBooking: function () {
+				this.$emit('sendBooking', this.booking);
 			}
 		}
 	}
-
 </script>
 
 <style lang="scss">

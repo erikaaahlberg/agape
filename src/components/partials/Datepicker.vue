@@ -40,8 +40,6 @@
     },
 		methods: {
 			emitSelectedDate: function (date) {
-        /*const formattedDate = this.formatDateForPostRequest(date);
-        console.log(formattedDate);*/
         /* Emit a date formatted as the dates in the database to fetch booked times on selected date */
 				this.$emit('emitSelectedDate', this.formatDateForPostRequest(date));
 			},

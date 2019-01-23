@@ -65,7 +65,6 @@
 
   .modal {
     background: transparent;
-    //overflow-x: auto;
     display: flex;
     flex-direction: column;
   }
@@ -113,11 +112,17 @@
     @include section;
   }
 
-  .buttn-green {
-    color: white;
-    background: #4AAE9B;
-    border: 1px solid #4AAE9B;
-    border-radius: 2px;
+    .modal-confirm-question,
+    .modal-error-message {
+    text-align: center;
+    padding: 0px;
+    p {
+      margin-bottom: 2rem;
+      font-size: 1.3rem;
+    }
+    button {
+      margin: 0.2rem;
+    }
   }
 
 </style>
