@@ -21,7 +21,6 @@
 
 <script>
 
-      /*<h5 class="sub-title">{{ date }} {{ time }} {{ place }}</h5>*/
   export default {
     name: 'Card',
     data () {
@@ -40,36 +39,15 @@
       'imgUrl',
       'link'
     ]
-    /*,
-    mounted: {
-      beforeCreate: function () {
-        this.$options.components.Card = require('@/components/partials/Card.vue').default
-      }
-    }*/
   };
-  /*export default {
-        name: 'Home',
-  computed: {
-    username () {
-      // We will see what `params` is shortly
-      return this.$route.params.username
-    }
-  },
-  methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
-}*/
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_main.scss';
-.card{
+
+.card {
+  
   .wrapper-card-text {
     //padding: 30px 30px 10px 30px;
     padding: 30px;

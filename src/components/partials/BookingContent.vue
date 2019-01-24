@@ -100,10 +100,12 @@
         edit: false
       }
     },
+
     props: [
       'bookingContent',
       'isOpen'
     ],
+
     computed: {
       editButton: function () {
         if (this.edit) {
@@ -112,6 +114,7 @@
           return 'btn-purple';
         }
       },
+      
       saveButton: function () {
         if (this.edit) {
           return 'btn-purple';
@@ -119,9 +122,11 @@
           return 'hidden';
         }
       },
+
       isDisabled: function () {
           return !this.edit;
-        },
+      },
+
       inputClasses: function () {
         if (!this.edit) {
           return 'input';
@@ -134,22 +139,27 @@
       getIdToDelete: function (bookingId) {
         this.$emit('getIdToDelete', bookingId);
       },
+
       saveUpdatedBooking: function () {
         this.$emit('saveUpdatedBooking', this.booking);
         this.edit = false;
         this.displayAllBookings();
       },
+
       displayAllBookings: function () {
         for (let item of this.$refs.items) {
           this.displayElement(item);
         }
       },
+
       hideElement: function (element) {
         element.style.display = 'none';
       },
+
       displayElement: function (element) {
         element.style.display = 'block';
       },
+
       editBooking: function (selectedBooking, selectedIndex) {
         this.edit = true;
         for (let i = 0; i < this.$refs.items.length; i++) {
@@ -170,11 +180,13 @@
           time: selectedBooking.time
         }
       },
+
       cancelEdit: function () {
         this.edit = false;
         this.clearBooking();
         this.displayAllBookings();
       },
+
       clearBooking: function () {
         if (!this.edit) {
           this.booking = {
@@ -204,6 +216,7 @@
       background: $black;
       padding: 2rem 5rem;
       @include form-placeholder($white);
+
       ul.booking-list {
         margin-top: 2rem;
         margin-bottom: 2rem;
@@ -216,12 +229,7 @@
 
           label {
             @include form-label;
-            margin-right: 0.5rem;/*
-            display: inline-block;
-            letter-spacing: 1.5rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 1.1em;*/
+            margin-right: 0.5rem;
           }
 
           .field {
@@ -231,8 +239,8 @@
 
           .input {
             @include form-input;
-
             border: none;
+            
             &--edit {
               border-bottom: 0.1rem solid $mediumGrey;
               padding: 0rem;

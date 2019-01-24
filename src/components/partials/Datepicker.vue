@@ -1,5 +1,5 @@
 <template>
-  <b-field label="Välj ett datum">
+  <b-field label="Välj ett datum" id="datepicker">
     <b-datepicker 
 		placeholder="Tryck här för att välja datum" 
 		icon-pack="fa" 
@@ -25,20 +25,7 @@
         maxDate: new Date(today.getFullYear(), today.getMonth() + 6, today.getDate())
       }
     },
-    computed: {
-      formatDate: function (date) {
-				const year = date.getFullYear();
-				let month = date.getMonth() + 1;
-				const day = date.getDate();
-
-				if (month < 10) {
-					month = `0${month}`;
-				}
-        console.log(`${year}-${month}-${day}`);
-				//return `${year}-${month}-${day}`;
-      }
-    },
-		methods: {
+    methods: {
 			emitSelectedDate: function (date) {
         /* Emit a date formatted as the dates in the database to fetch booked times on selected date */
 				this.$emit('emitSelectedDate', this.formatDateForPostRequest(date));
@@ -61,10 +48,12 @@
 <style lang="scss">
   @import '@/scss/_main.scss';
 
+#datepicker {  
   .datepicker {
     .icon i {
       color: $mediumGrey;
-      margin-right: 0.5rem;
+		  padding-right: 1rem;
+		  padding-bottom: 0.5rem;
     }
 
     .dropdown-content {
@@ -76,13 +65,6 @@
       display: block;
       width: 100%;
     }
-
-    .control {
-      input {
-        padding-left: 2.25rem;
-      }
-    }
-
 
     .dropdown-content {
       background: $black;
@@ -134,53 +116,6 @@
       }
     }
   }
-
-
-  /*  #book {
-		.datepicker{
-			font-family: 'Hind', sans-serif;
-			.dropdown-content{
-				background: $black;
-			}
-			.datepicker-header {
-				.pagination-previous,
-				.pagination-next{
-					border: none;
-					font-size: 1.5em;
-				}
-				.pagination-previous i{
-					color: $primary;
-    			margin-bottom: -4px;
-				}				
-				.pagination-next i{
-					color: $secondary;
-				}
-				
-			}
-			.datepicker-cell{
-				&.is-unselectable{
-					color: #4a4a4a;
-				font-size: 1.1em;
-				letter-spacing: 2px;
-				}
-				&.is-selectable{
-					color: white;
-				font-size: 1.1em;
-				letter-spacing: 2px;
-				}
-				&.is-selectable:hover{
-					background: $secondary;
-					font-size: 1.1em;
-				}
-				&.is-today{
-					border: 2px solid $primary;
-					font-size: 1.5em;
-				}
-			}
-		}
-		.datepicker-wrapper {
-			flex-basis: 45%;
-		}
-  }*/
+  }
 
 </style>

@@ -34,9 +34,6 @@
 </template>
 
 <script>
-  //let bcrypt = require('bcryptjs');
-  //let salt = bcrypt.genSaltSync(10);
-
   export default {
     data() {
       return {
@@ -50,10 +47,6 @@
       'message'
     ],
     methods: {
-      /*hashPassword: function ($event) {
-        const hash = bcrypt.hashSync("HejaLiv1", salt);
-        console.log(hash);
-      }*/
       emitInput: function () {
         this.$emit('emitInput', this.userInput);
       }
@@ -67,17 +60,22 @@
 
   .login-form {
     @include form-placeholder($mediumGrey);
+
     input {
       @include form-input;
     }
+
     .label {
       @include form-label;
       margin-bottom: 0px;
+
       &:not(:last-child) {
         margin-bottom: 0px;
       }
     }
+
     .field {
+      
       &:not(:last-child) {
         margin-bottom: 2rem;
       }

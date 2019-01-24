@@ -1,8 +1,8 @@
 <template>
   <div :class="logInClass">
-    <a href="#" type="button" class="trustbar-btn trustbar-btn-green" @click="showModal">
+    <button type="button" class="trustbar-btn trustbar-btn-green" @click="showModal">
       Logga in
-    </a>
+    </button>
     <modal v-show="isModalVisible" @close="closeModal">
       <h1 slot="title"><i class="fas fa-angle-right"></i> Logga in</h1>
       <login-form slot="body" v-on:emitInput="login"/>
@@ -15,42 +15,12 @@
   import LoginForm from '@/components/partials/LoginForm.vue';
   import Router from '@/router/index.js';
 
-  /*
-  ,
-      data() {
-        return {
-          isModalVisible: false,
-        };
-      },
-      methods: {
-        showModal() {
-          this.isModalVisible = true;
-        },
-        closeModal() {
-          this.isModalVisible = false;
-        }
-      }
-       
-       
-           
-      <button
-        type="button"
-        class="btn"
-        @click="showModal"
-      >
-        Open Modal!
-      </button>
-
-      <modal
-        v-show="isModalVisible"
-        @close="closeModal"
-      />
-      */
   export default {
     components: {
       'modal': Modal,
       'login-form': LoginForm
     },
+
     data() {
       return {
         isModalVisible: false,
@@ -58,6 +28,7 @@
         isAdmin: this.$session.exists()
       }
     },
+
     computed: {
       logInClass: function () {
         if (this.isAdmin === true ) {
@@ -67,13 +38,16 @@
         }
       }
     },
+
     methods: {
       showModal: function () {
         this.isModalVisible = true;
       },
+
       closeModal: function () {
         this.isModalVisible = false;
       },
+      
       login: function ($event) {
         const requestBody = {
           username: $event.username,

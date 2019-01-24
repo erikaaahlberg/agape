@@ -20,30 +20,17 @@
 	import SocialMediaList from './SocialMediaList.vue';
 	
   export default {
-		name: 'TrustBar',
-		data() {
-			return {
-				hej: 'hej'
-			}
-		},
 		components: {
 			'login-link': Login,
 			'logout-link': Logout,
 			'contact-list': ContactList,
 			'social-media-list': SocialMediaList
-		},
-		methods: {
-			hejsan: function () {
-				console.log('hej');
-			}
 		}
   };
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-	@import '@/scss/_main.scss';
 	@import '@/scss/_main.scss';
 	
 	.trustbar {
@@ -51,56 +38,73 @@
 		background: black;
 		padding: 0rem;
 		margin: 0rem;
+
 		.trustbar-wrapper {		
 			margin: 0;
 			padding: 1rem 3rem 0.7rem;
 			display: flex;
+			align-items: center;
 			justify-content: space-between;
+
 			.lists-wrapper {
 				flex-basis: 30%;
 				padding: 0px;
-				//display: flex;
 				flex-direction: row;
+
 				.list-wrapper {
 					display: inline-block;
 					//flex-basis: 50%;
+
 					.contact-list,
 					.social-media-list {
 						width: 100%;
 						padding: 0px;
+
 						li {
 							display: inline-block;
 							margin-right: 0.5rem;
+
 							.link-title {
 								display: none;
 							}
+
 							i {
 								@include link($white, $primary);
 								font-size: 1.5rem;
 							}
 						}
 					}
+
 					.social-media-list {
+
 						li {
 							margin-right: 0.5rem;
 						}
 					}
 				}
 			}
+
 			.buttons-wrapper {
 				flex-basis: 50%;
 				text-align: right;
+
 				.status {
 					text-transform: none;
 					letter-spacing: 0.1rem;
 					margin-right: 0.5rem;
 					color: $lightGrey;
 				}
+
 				.trustbar-btn-green {
 					@include button($primaryBright, $black, $primary, $white);
+					padding: 0.1rem 1rem 0rem;
+					font-size: 1rem;
 				}
+
 				.trustbar-btn-red {
-					@include button($secondaryBright, $black, $secondary, $white);
+					@include button($secondary, $black, $secondaryBright, $black);
+					padding: 0.1rem 1rem 0rem;
+					font-size: 1rem;
 				}
 			}
 		}

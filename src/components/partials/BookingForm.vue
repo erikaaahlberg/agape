@@ -1,6 +1,6 @@
 <template>
 	<section class="book-input">
-		<form @submit.prevent="validateBeforeSubmit">
+		<form @submit="checkInput">
 {{booking}}
 			<div class="select-wrapper">
 				<b-field label="Välj en kategori">
@@ -14,7 +14,7 @@
 
 			<label class="label title-label">Fyll i dina personliga uppgifter</label>
 			<b-field>
-				<b-input placeholder="Förnamn" type="text" v-model="booking.firstName" use-html5-validation  required></b-input>
+				<b-input placeholder="Förnamn" type="text" v-model="booking.firstName" use-html5-validation required></b-input>
 			</b-field>
 
 			<b-field>
@@ -37,22 +37,55 @@
 					v-model="booking.description" required>
 				</b-input>
 			</b-field>
+
 			<date-picker v-on:emitSelectedDate="excludeBookedTimes($event)"/>
 			<time-picker v-on:emitSelectedTime="booking.time = $event" :disabled="timePicker.isDisabled"
 			:unselectable="timePicker.bookedTimes"/>
 
 			<div class="btn-wrapper">
-				<button type="button" class="btn-purple" @click="checkBooking">Boka nu</button>
+				<input type="submit" class="btn-purple" @click.prevent="checkBooking" value="Boka nu">
 			</div>
 		</form>
 
-		<modal v-show="modal.isVisible" @close="modal.isVisible = false">
+		<modal v-show="errorModal.isVisible" @close="errorModal.isVisible = false">
       <h1 slot="title"><i class="fas fa-angle-right"></i> Error</h1>
       <div class="modal-error-message" slot="body">
-				<p>{{ modal.message }}</p>
-				<button type="button" class="btn-purple" @click="modal.isVisible = false">Ok</button>
+				<p>{{ errorModal.message }}</p>
+				<button type="button" class="btn-purple" @click="errorModal.isVisible = false">Försök igen</button>
 			</div>
     </modal>
+
+		<modal v-show="confirmModal.isVisible" @close="confirmModal.isVisible = false">
+      <h1 slot="title"><i class="fas fa-angle-right"></i> Bekräfta bokning</h1>>
+			<div class="modal-confirm" slot="body">
+				<ul>
+					<li>
+						<label class="label title-label">Förnamn: </label>  {{ this.booking.firstName }}
+					</li>
+					<li>
+						<label class="label title-label">Efternamn: </label>  {{ this.booking.lastName }}
+					</li>
+					<li>
+						<label class="label title-label">Email: </label> {{ this.booking.email }}
+					</li>
+					<li>
+						<label class="label title-label">Telefon: </label> {{ this.booking.phone }}
+					</li>
+					<li>
+						<label class="label title-label">Kategori: </label> {{ this.booking.category }}
+					</li>
+					<li>
+						<label class="label title-label">Beskrivning: </label> {{ this.booking.description }}
+					</li>
+					<li>
+						<label class="label title-label">Datum: </label> {{ this.booking.date }}
+					</li>
+					<li>
+						<label class="label title-label">Tid: </label> {{ this.booking.time }}
+					</li>
+				</ul>
+			</div>
+		</modal>
 
 	</section>
 </template>
@@ -77,38 +110,57 @@
 	
 			return {
 				categories,
+
 				booking: {
-					firstName: '',
-					lastName: '',
-					email: '',
-					phone: '',
-					category: '',
-					description: '',
-					date: '',
-					time: ''
+					firstName: null,
+					lastName: null,
+					email: null,
+					phone: null,
+					category: null,
+					description: null,
+					date: null,
+					time: null
 				},
+
 				timePicker: {
 					isDisabled: true,
 					bookedTimes: []
 				},
-				modal: {
+
+				errorModal: {
         	isVisible: false,
 					message: ''
+				},
+
+				confirmModal: {
+        	isVisible: false
 				}
 			}
 		},
+
+		computed: {
+			setValue: function (value) {
+				if (checkIfEmpty(value)) {
+
+				}
+			}
+		},
+
 		components: {
 	  'date-picker': Datepicker,
 		'time-picker': Timepicker,
 		'modal': Modal
 		},
+
 		methods: {
       showModal: function () {
         this.modal.isVisible = true;
-      },
+			},
+			
       closeModal: function () {
         this.modal.isVisible = false;
-      },
+			},
+			
 			excludeBookedTimes: function (date) {
 				this.booking.date = date;
 				fetchBookingsByDate(date)
@@ -124,12 +176,14 @@
 						this.timePicker.isDisabled = false;
 					});
 			},
+
 			filterTimes: function (bookings) {
 				const times = bookings.map((row) => {
 					return this.formatTimeForTimePicker(row.time);
 				});
 				return times;
 			},
+			
 			/* Formatting the time to exclude booked sessions in timepicker */
 			formatTimeForTimePicker: function (time) {
 				const hours = parseInt(time.slice(0, 2));
@@ -138,28 +192,38 @@
 				formattedTime.setMinutes(0);
 				return formattedTime;
 			},
-			checkIfEmpty: function (object) {
-				let emptyFields = [];
-				for (let key in object) {
-					console.log(key);
-					if (object.key !== '' && object.key !== 'undefined') {
-						emptyFields.push(key);
-					}
-				}
-				if (emptyFields.length > 0) {
-					return emptyFields;
-				} else { 
-					return false;
+
+			checkInput: function () {
+				this.booking.keys()
+				for (var key in this.booking) { 
+					if (checkIfEmpty(this.booking.key)) { 
+						return false; 
+				 	} else { 
+						 return true; 
+						 }
 				}
 			},
-			checkBooking: function () {
+			checkIfEmpty: function () {
+				const values = Object.values(this.booking);
+				
+				const missingInput = values.map((row) => {
+					if (!row || row === '') {
+						return row;
+					}
+				});
+
+				return missingInput;
+			},
+			checkBooking: function (e) {
+				e.preventDefault();
 				/* Getting the empty values to continue on this function and print what inputs are missing */
-				const isEmpty = this.checkIfEmpty(this.booking);
-				if (isEmpty.length > 0) {
-					this.modal.message = 'Alla fält måste vara ifyllda!';
-					this.modal.isVisible = true;
+				const isEmpty = this.checkIfEmpty();
+
+				if (isEmpty) {
+					this.errorModal.message = 'Alla fält måste vara ifyllda!';
+					this.errorModal.isVisible = true;
 				} else {
-					this.sendBooking();
+					this.confirmModal.isVisible = true;
 				}
 			},
 			sendBooking: function () {
@@ -217,6 +281,11 @@
 					flex-basis: 100%;
 				}
 
+				.title-label {
+					display: block;
+					width: 100%;
+				}
+				
 				/* Timepicker and datepicker */
 				.icon i {
 					color: $mediumGrey;
@@ -227,12 +296,6 @@
 					background: $black;
 					@include form-select;
 				}
-
-				.title-label {
-					display: block;
-					width: 100%;
-				}
-
 
 
 				/* Datepicker */

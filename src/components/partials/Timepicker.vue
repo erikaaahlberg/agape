@@ -40,8 +40,10 @@
 				/* Min will always have the same value */
 				const min = '00';
 				const hour = date.getHours();
+				
 				return `${hour}:${min}`;
 			},
+
 			emitSelectedTime: function ($event) {
 				const formattedTime = this.formatTimeForPostRequest($event);
 				this.$emit('emitSelectedTime', formattedTime);
@@ -52,20 +54,24 @@
 
 <style lang="scss">
 	@import '@/scss/_main.scss';
-	
-	.timepicker {
+
+	.timepicker {		
+
 		.icon i {
-			color: $mediumGrey;
-			margin-right: 0.5rem;
+		color: $mediumGrey;
+		padding-right: 1rem;
+		padding-bottom: 0.5rem;
 		}
+
 		.dropdown-content {
 			background: $black;
 			@include form-select;
 			padding: 0.5rem 1rem 1rem 1rem;
 		}
+
 		.title-label {
 			display: block;
 			width: 100%;
 		}
-	}	
+	}				
 </style>
