@@ -45,18 +45,17 @@
         }
       }
     }
-    /*,
-    mounted: function (){
-
-      this.$session.destroy()
-    }*/
   };
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
-@import '../../scss/_variables.scss';
+@import '@/scss/_main.scss';
+
+
+  .hero.is-fullheight-with-navbar {
+    min-height: calc(80vh - 2.25rem);
+  }
 
   /* Mobile menu*/
   .navbar-menu {
@@ -77,31 +76,42 @@
       position: absolute;
       width: 100%;
       left: 0;
-      padding-top: 40px;
+      padding-top: 4rem;
     }
+
 		.navbar-item{
 			&.is-active{
-				border-bottom: 3px solid $secondary;
+				border-bottom: 0.3rem solid $secondary;
 			}
-		}
+    }
+    
 		.link-wrapper{
-			margin-bottom: 15px;
+			margin-bottom: 1.5rem;
 		}
   }
 
   #logotype-img-top {
-    max-height: 80px;
+    width: 10vw;
+
+    @include ipad-min {
+      max-height: 8rem;
+    }
   }
 
   /* Expanded navbar */
   .navbar {
     background: rgb(29, 29, 29);
     color: $white;
-    padding: 20px 50px;
+    padding: 2rem;
+
 		p{
-			margin-left: 10px;
-			margin-right: 10px;
-		}
+			margin-left: 1rem;
+			margin-right: 1rem;
+    }
+    
+    @include ipad-min {
+      padding: 2rem 5rem;
+    }
   }
 
   .navbar-brand {
@@ -113,34 +123,36 @@
   }
 
   .navbar-item {
-		text-transform: uppercase;
+    text-transform: uppercase;
+    
 		&.is-tab{
-			padding: 0px;
+			padding: 0rem;
 			color: $white;
-			letter-spacing: 1.5px;
+			letter-spacing: 0.15rem;
 			margin: auto;
-			min-height: 0px;
+			min-height: 0rem;
 			display: inline-block;
-			border-bottom: none;
-		&:hover{
-			color: $primary;
-			transition: all .2s ease-in-out;
-			text-align: center;
-			border-bottom: none;
-		}
-		}
+      border-bottom: none;
+      
+      &:hover{
+        color: $primary;
+        transition: all .2s ease-in-out;
+        text-align: center;
+        border-bottom: none;
+      }
+    }
+    
 		&.router-link-exact-active{
-			border-bottom: 3px solid $secondary;
-			padding-bottom: 2px;
-			padding-top: 7px;
+			border-bottom: 0.3rem solid $secondary;
+			padding-bottom: 0.2rem;
+			padding-top: 0.7rem;
 			
 		}
 		&.router-link-exact-active:hover{
 			color: $white;
-			border-bottom: 3px solid $secondary;
-			padding-bottom: 2px;
-			padding-top: 7px;
-			
+			border-bottom: 0.3rem solid $secondary;
+			padding-bottom: 0.2rem;
+			padding-top: 0.7rem;
 		}
   }
 

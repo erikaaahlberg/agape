@@ -41,19 +41,26 @@
 
 		.trustbar-wrapper {		
 			margin: 0;
-			padding: 1rem 3rem 0.7rem;
-			display: flex;
-			align-items: center;
+			padding: 1rem 2rem 1rem 2rem;
+			@include flex-center;
 			justify-content: space-between;
 
+			@include ipad-min {
+				padding: 1rem 3rem 0.7rem;
+			}
+
 			.lists-wrapper {
-				flex-basis: 30%;
+				flex-basis: 60%;
 				padding: 0px;
 				flex-direction: row;
 
+				@include ipad-min {
+					flex-basis: 30%;
+				}
+
 				.list-wrapper {
+					@include flex-center;
 					display: inline-block;
-					//flex-basis: 50%;
 
 					.contact-list,
 					.social-media-list {
@@ -76,7 +83,6 @@
 					}
 
 					.social-media-list {
-
 						li {
 							margin-right: 0.5rem;
 						}
@@ -101,7 +107,7 @@
 					font-size: 1rem;
 				}
 
-				.trustbar-btn-red {
+				.trustbar-btn-secondary {
 					@include button($secondary, $black, $secondaryBright, $black);
 					padding: 0.1rem 1rem 0rem;
 					font-size: 1rem;

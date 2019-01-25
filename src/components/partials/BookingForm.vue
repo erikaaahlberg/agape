@@ -1,7 +1,6 @@
 <template>
 	<section class="book-input">
 		<form @submit="checkInput">
-{{booking}}
 			<div class="select-wrapper">
 				<b-field label="Välj en kategori">
 					<b-select v-model="booking.category" placeholder="-" id="category-select" required>
@@ -43,20 +42,20 @@
 			:unselectable="timePicker.bookedTimes"/>
 
 			<div class="btn-wrapper">
-				<input type="submit" class="btn-purple" @click.prevent="checkBooking" value="Boka nu">
+				<input type="submit" class="btn-primary" @click.prevent="checkBooking" value="Boka nu">
 			</div>
 		</form>
 
 		<modal v-show="errorModal.isVisible" @close="errorModal.isVisible = false">
-      <h1 slot="title"><i class="fas fa-angle-right"></i> Error</h1>
-      <div class="modal-error-message" slot="body">
+	  <h1 slot="title"><i class="fas fa-angle-right"></i> Error</h1>
+	  <div class="modal-error-message" slot="body">
 				<p>{{ errorModal.message }}</p>
-				<button type="button" class="btn-purple" @click="errorModal.isVisible = false">Försök igen</button>
+				<button type="button" class="btn-primary" @click="errorModal.isVisible = false">Försök igen</button>
 			</div>
-    </modal>
+	</modal>
 
 		<modal v-show="confirmModal.isVisible" @close="confirmModal.isVisible = false">
-      <h1 slot="title"><i class="fas fa-angle-right"></i> Bekräfta bokning</h1>>
+	  <h1 slot="title"><i class="fas fa-angle-right"></i> Bekräfta bokning</h1>>
 			<div class="modal-confirm" slot="body">
 				<ul>
 					<li>
@@ -128,12 +127,12 @@
 				},
 
 				errorModal: {
-        	isVisible: false,
+			isVisible: false,
 					message: ''
 				},
 
 				confirmModal: {
-        	isVisible: false
+			isVisible: false
 				}
 			}
 		},
@@ -153,12 +152,12 @@
 		},
 
 		methods: {
-      showModal: function () {
-        this.modal.isVisible = true;
+	  showModal: function () {
+		this.modal.isVisible = true;
 			},
 			
-      closeModal: function () {
-        this.modal.isVisible = false;
+	  closeModal: function () {
+		this.modal.isVisible = false;
 			},
 			
 			excludeBookedTimes: function (date) {
@@ -236,13 +235,18 @@
 <style lang="scss">
 	@import '@/scss/_main.scss';
 
-	#book-page {
+
 		.book-input {
 			form {
 				display: flex;
-				justify-content: space-between;
-				flex-wrap: wrap;
+				flex-direction: column;
 				@include form-placeholder($lightGrey);
+
+				@include ipad-min {
+					flex-direction: row;
+					justify-content: space-between;
+					flex-wrap: wrap;
+				}
 
 				.select-wrapper {
 					display: block;
@@ -270,7 +274,13 @@
 				}
 
 				.field {
-					flex-basis: 45%;
+					flex-basis: 100%;
+					margin-bottom: 1rem;
+					margin-top: 1rem;
+
+					@include ipad-min {
+						flex-basis: 45%;
+					}
 				}
 
 				.label {
@@ -279,6 +289,7 @@
 
 				.textarea-wrapper {
 					flex-basis: 100%;
+					margin-bottom: 4rem;
 				}
 
 				.title-label {
@@ -369,6 +380,6 @@
 				}
 			}
 		}
-	}
+	
 
 </style>

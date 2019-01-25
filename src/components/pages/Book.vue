@@ -1,8 +1,8 @@
 <template>
 <section id="book-page">
   <h2><i class="fas fa-angle-right"></i> Boka tid direkt</h2>
-  <div class="section-padding">
-    <div class="form-wrapper">
+  <div class="form-wrapper">
+    <div class="form-container">
       <booking-form v-on:sendBooking="createBooking($event)"/>
     </div>
   </div>
@@ -88,45 +88,23 @@
             }
         }
     }
-    /*    methods: {
-          function (fetchBookings) {
-            fetch("api/bookings")
-            .then(response => response.json())
-            .then((fetchedBookings) => {
-              return fetchedBookings;
-            })
-          }
-        }
-    };*/
-    /*export default {
-        name: 'Home',
-  computed: {
-    username () {
-      // We will see what `params` is shortly
-      return this.$route.params.username
-    }
-  },
-  methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
-}*/
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
   @import '@/scss/_main.scss';
 
   #book-page{
+
     .form-wrapper{
-      border-top: 0.1rem solid $primaryBright;
-      background: $black;
-      padding: 5rem;
-      max-width: 100rem;
-      margin: auto;
+      @include section;
+
+      .form-container {
+        border-top: 0.1rem solid $primaryBright;
+        background: $black;
+        padding: 5rem;
+        max-width: 100rem;
+        margin: auto;
+      }
     }
   }
 </style>

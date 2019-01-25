@@ -70,7 +70,7 @@
         <div class="btn-wrapper">
           <a href="#" type="button" :class="saveButton.classes" v-on:click.prevent="saveUpdatedBooking">Spara</a>
           <a href="#" type="button" :class="editButton.classes" v-on:click.prevent="editBooking(content.id)">Redigera</a>
-          <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
+          <a href="#" type="button" class="btn-secondary" @click="getIdToDelete(content.id)">Ta bort</a>
         </div>
       </div>
       <!--/ny-->
@@ -102,10 +102,10 @@
           time: ''
         },
         saveButton: {
-          classes: 'btn-purple hidden'
+          classes: 'btn-primary hidden'
         },
         editButton: {
-          classes: 'btn-purple'
+          classes: 'btn-primary'
         },
         isDisabled: true
       }
@@ -119,9 +119,9 @@
           this.button.display = !this.button.display;
 
           if (this.button.display) {
-            this.button.classes = 'btn-purple';
+            this.button.classes = 'btn-primary';
           } else {
-            this.button.classes = 'btn-purple hidden';
+            this.button.classes = 'btn-primary hidden';
           }
         }
         /*,
@@ -159,8 +159,8 @@
       },
       saveUpdatedBooking: function () {
         this.isDisabled = 0;
-        this.saveButton.classes = 'btn-purple hidden';
-        this.editButton.classes = 'btn-purple';
+        this.saveButton.classes = 'btn-primary hidden';
+        this.editButton.classes = 'btn-primary';
         this.$emit('saveUpdatedBooking', this.booking);
       },
       /*clickAction: function () {
@@ -202,8 +202,8 @@
           time: selectedBooking.time
         }*/
         this.isDisabled = false;
-        this.editButton.classes = 'btn-purple hidden';
-        this.saveButton.classes = 'btn-purple';
+        this.editButton.classes = 'btn-primary hidden';
+        this.saveButton.classes = 'btn-primary';
       }
       /*const requestBody = {
         id: bookingId,

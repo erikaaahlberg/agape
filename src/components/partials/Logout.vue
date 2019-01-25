@@ -3,7 +3,7 @@
     <span class="status">
       <i class="fas fa-angle-right"></i> Inloggad som {{ this.$session.get('username') }}
     </span>
-    <button type="button" class="trustbar-btn trustbar-btn-red" @click="showModal">
+    <button type="button" class="trustbar-btn trustbar-btn-secondary" @click="showModal">
       Logga ut
     </button>
     <modal v-show="isModalVisible" @close="closeModal">
@@ -12,10 +12,10 @@
         <p class="question">
           Är du säker på att du vill logga ut?
         </p>
-        <button type="button" class="btn-purple" @click="logout">
+        <button type="button" class="btn-primary" @click="logout">
           Fortsätt
         </button>
-        <button type="button" class="btn-red" @click="closeModal">
+        <button type="button" class="btn-secondary" @click="closeModal">
           Avbryt
         </button>
       </div>

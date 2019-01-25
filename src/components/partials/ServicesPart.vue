@@ -1,11 +1,5 @@
 <template>
- <section id="services-part" class="section-margin">
-     <!--<p>Agape erbjuder olika tjänster som alla syftar till hjälpa alla att må sitt allra bästa. Privatperson eller företag, ålder är bara en siffra - alla förtjänar att må bra och nå sina mål i livet.</p>
-     <div class="btn-wrapper">
-        <a href="#" type="button" class="btn-purple">Läs mer</a>
-        <a href="#" type="button" class="btn-red">Boka tid</a>
-      </div>
-      -->
+ <section class="services-part">
     <div class="wrapper-cards">
       <service-card 
       title="Coaching" 
@@ -51,39 +45,15 @@
 			'service-card': CardIcon
     }
   };
-    /*,
-    mounted: {
-      beforeCreate: function () {
-        this.$options.components.Card = require('@/components/partials/Card.vue').default
-      }
-    }*/
-  /*export default {
-        name: 'Home',
-  computed: {
-    username () {
-      // We will see what `params` is shortly
-      return this.$route.params.username
-    }
-  },
-  methods: {
-    goBack () {
-      window.history.length > 1
-        ? this.$router.go(-1)
-        : this.$router.push('/')
-    }
-  }
-}*/
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_main.scss';
-#services-part{
-  /*@media (min-width: 1200px){
-    border-top: 1px solid $secondaryBright;
-    border-bottom: 1px solid $primaryBright; 
-  }*/
+
+.services-part{
+  @include section;
   .intro-text{
     p{
       text-transform: uppercase;
@@ -92,19 +62,11 @@
       font-size: 1.5em;
       margin: auto;
       width: 90%;
-      @media (min-width: 768px){
+      @include ipad-min{
         width: 80%;
         max-width: 700px;
       }
     }
- /*   .btn-wrapper{
-      text-align: center;
-      padding: 10px 30px 50px 30px;
-      a{
-        display: inline-block;
-        margin: 5px;
-      }
-    }*/
   }
 .wrapper-cards{
   margin: 0px;
@@ -112,97 +74,41 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+
     .card-black {
       flex-basis: 80%;
       margin: auto;
       border: 1px solid $white;
+
         &:nth-child(1){
           margin-bottom: 30px;
         }
+
         &:nth-child(2){
           margin-bottom: 30px;
         }
+
         &:nth-child(3){
           margin-bottom: 30px;
         }
-      @media (min-width: 768px){
+
+      @include ipad-min{
         flex-basis: 45%;
+
         &:nth-child(3){
           margin-bottom: 0px;
         }
       }
-      @media (min-width: 1200px){
+
+      @include medium-min {
         border: none;
         flex-basis: 25%;
         margin: 0px;
         margin-bottom: 0px !important;
-        /*border-top: 1px solid $secondaryBright;
-        border-right: 1px solid $primaryBright;
-        border-bottom: 1px solid $secondaryBright;
-        border-left: 1px solid $primaryBright;*/
+        border-top: 1px solid $white;
+        border-bottom: 1px solid $white; 
       }
-    /*i{
-      font-size: 3em;
-      color: $white;
-      margin-bottom: 20px;
-    }*/
-  /*@media (min-width: 768px) {
-    flex-basis: 45%;
-  }*/
-  @media (min-width: 1200px){
-    border-top: 1px solid $white;
-    border-bottom: 1px solid $white; 
-  }
-
-  /*.wrapper-card-img {
-    width: 100%;
-    img {
-      width: 100%;
-      overflow: hidden;
-      margin: auto;
-    }
-  }*/
-  /*.wrapper-card-text {
-    //padding: 30px 30px 10px 30px;
-    text-align: center;
-    @media (min-width: 768px) {
-      padding: 40px 50px 10px 50px;
-    }
-
-    h3 {
-      padding: 0px;
-      margin: 0px;
-      color: $white;
-      margin-bottom: 10px;
-    }
-
-    p {
-      text-transform: none;
-      color: $lightGrey;
     }
   }
-  .btn-wrapper{
-    text-align: center;
-    padding: 0px 0px 40px 0px;
-    a{
-      margin: 5px;
-      margin-top: 20px;
-      margin-bottom: 10px;
-    }
-    @media(min-width: 768px){
-    padding: 0px 0px 50px 0px;
-    }
-  }*/
-}
-
-/*.card-news {
-  background: transparent;
-  flex-basis: 30%;
-
-  h3 {
-    color: $white;
-  }
-}*/
-}
 }
 </style>

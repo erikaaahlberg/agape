@@ -11,9 +11,9 @@
     <div class="wrapper-card-text">
       <h3>{{ title }}</h3>
       <p>{{ description }}</p>
-        <a :href="link" class="link-green">
+        <a :href="link" class="link-primary">
           Gå vidare till facebook 
-          <i class="fas fa-angle-right"></i>
+          <i class="fas fa-angle-right c-red"></i>
         </a>
     </div>
   </div>
@@ -49,27 +49,20 @@
 .card {
   
   .wrapper-card-text {
-    //padding: 30px 30px 10px 30px;
-    padding: 30px;
+    padding: 3rem;
     text-align: center;
-    @media (min-width: 768px) {
+    
+    @include ipad-min {
       //padding: 40px 50px 10px 50px;
     }
-    /*h3 {
-      padding: 0px;
-      margin: 0px;
-      color: $primaryBright;
-      margin-bottom: 10px;
-    }*/
+
     p {
       text-transform: none;
       color: $lightGrey;
     }
-    a.link-green{
-      margin: 5px;
-      margin-bottom: 0px;
-      /*margin-top: 20px;
-      margin-bottom: 10px;*/
+
+    .link-primary {
+      margin-bottom: 0rem;
     }
   }    
 }
@@ -78,31 +71,31 @@
     background: transparent;
     display: flex;
     flex-wrap: wrap;
+
   .card-img{
-    /*@media(max-width: 768px){
-      //display: none;
-      flex-basis: 100%;
-      max-width: 400px;
-    }*/
     width: 100%;
     flex-basis: 50%;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
   }
+
   h3{
     color: $white;
     margin: 0px;
-    //font-size: 1.5em;
   }
+
   .wrapper-card-text{
     flex-basis: 100%;
     text-align: left;
+    background: $black;
+
     p{
       margin-top: 10px;
       margin-bottom: 10px;
     }
-    @media(min-width: 768px){
+
+    @include ipad-min{
       flex-basis: 50%;
     }
   }

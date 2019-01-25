@@ -1,7 +1,7 @@
 <template>
 	<b-field label="Välj en tid">
 		<b-timepicker 
-		placeholder="Tryck här för att välja tid" 
+		placeholder="Tryck här för att välja" 
 		icon-pack="fa" icon="clock"   
 		:min-time="minTime"
 		:max-time="maxTime" 

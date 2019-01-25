@@ -1,5 +1,5 @@
 <template>
-<section id="quote-part" class="section-margin">
+<section class="quote-part">
   <div class="quote-wrapper">
     <p>
       <i class="fas fa-quote-right"></i>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-  /*<h5 class="sub-title">{{ date }} {{ time }} {{ place }}</h5>*/
   export default {
     name: 'QuotePart',
 		props: [
@@ -27,21 +26,27 @@
 <style lang="scss">
   @import '@/scss/_main.scss';
 
-  .quote-wrapper{
-    padding: 30px;
-    text-align: center;
-    p{
-      max-width: 600px;
-      margin: auto;
-      font-size: 1.5em;
-      text-transform: uppercase;
+  .quote-part {
+    @include section;
+    .quote-wrapper {
+        text-align: center;
+
+      p{
+        max-width: 600px;
+        margin: auto;
+        font-size: 1.5em;
+        text-transform: uppercase;
+      }
+
+      span{
+        text-transform: none;
+      }
+
+      i{
+        margin: 10px;
+      }
     }
-    span{
-      text-transform: none;
-    }
-    i{
-      margin: 10px;
-    }
-	}
+  }
+
 	
 </style>

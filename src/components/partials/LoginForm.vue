@@ -25,7 +25,7 @@
       </b-field>
       <button 
       type="button" 
-      class="btn btn-purple"
+      class="btn btn-primary"
       @click="emitInput">
         Logga in
       </button>

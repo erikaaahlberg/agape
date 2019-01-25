@@ -56,7 +56,7 @@
 #services-page{
   .services-wrapper{
     width: 100%;
-    @include ipad {
+    @include ipad-min {
       display: flex;
       flex-wrap: wrap;
     }
@@ -64,7 +64,7 @@
       flex-basis: 100%;
       background: $black;
       padding: 3rem;
-      @include ipad {
+      @include ipad-min {
         flex-basis: 50%;
         padding: 5rem;
       }
@@ -75,14 +75,14 @@
         border-bottom: 0.7rem solid black;
         display: inline-block;
         margin-bottom: 1.5rem;
-        @include ipad {
+        @include ipad-min {
           display: none;
         }
       }
     }
     .service-title{
         display: none;
-      @include ipad {
+      @include ipad-min {
         @include flex-center;
         flex-basis: 50%;
         h3{

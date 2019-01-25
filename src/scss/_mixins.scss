@@ -28,7 +28,7 @@
   padding: 0.5rem 1.5rem 0.3rem;
   border-radius: 5rem;
   font-weight: 600;
-  letter-spacing: 0.12rem;
+  letter-spacing: 0.08rem;
   font-family: 'Hind', sans-serif;
   text-transform: uppercase;
 
@@ -70,6 +70,7 @@
   letter-spacing: 0.15rem;
   padding-left: 0rem;
   padding-bottom: 0.5rem;
+
   &:active,
   &:focus {
     outline: none;
@@ -77,7 +78,8 @@
     border-bottom: 0.1rem solid $white;
     box-shadow: none;
     border-radius: 0rem;
-	}          
+  }          
+  
 	&:-webkit-autofill,
 	&:-webkit-internal,
 	&:-webkit-selected,
@@ -93,7 +95,8 @@
 		text-transform: uppercase;
 		letter-spacing: 0.15rem;
 		color: $white;
-	}
+  }
+  
   .select:not(.is-multiple),
   :not(.is-loading)::after{
     border-color: $primary;
@@ -104,17 +107,19 @@
       border-color: $primary;
     }
   } 
+
   .select::after{
 		border-color: $primary;
   }
 }
+
 @mixin form-label {
   font-size: 1.2rem;
   color: $white;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
 	text-align: left;
-	font-weight: 600;
+  font-weight: 600;
 }
 
 @mixin form-placeholder($color) {
@@ -153,18 +158,35 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 /* Margins and paddings */
 @mixin section {
-  padding: 3rem 5rem;
-  max-width: 140rem;
+  padding: 0rem 3rem;
+  max-width: 160rem;
   margin: auto;
   margin-top: 4rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
+
+  @include ipad-min {
+    padding: 0rem 5rem;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+  }
+}
+
+@mixin container-padding {
+  padding: 3rem 2rem;
+
+  @include ipad-min {
+    padding: 4rem 3rem;
+  }
+
+  @include medium-min {
+    padding: 6rem 5rem;
+  }
 }

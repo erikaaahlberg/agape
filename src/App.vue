@@ -28,18 +28,10 @@
 
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Hind:400,600,700');
-  /*@import "~bulma/sass/utilities/_all";*/
   @import '@/scss/_main.scss';
-  @import '@/scss/_base.scss';
-  @import '@/scss/_main.scss';
-  // Custom variables go here
+
   $family-sans-serif: "Hind",
   sans-serif;
-  // Import Bulma and Buefy styles
-  /*@import "~bulma/sass/utilities/_all";
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
-@import '@/scss/_bulma.scss';*/
 
   /* ---------- Global classes ---------- */
   /* Grid */
@@ -54,58 +46,25 @@
     margin: 30px;
   }
 
-  .section-padding {
-    padding: 30px 50px;
-    max-width: 1400px;
-    margin: auto;
-    margin-top: 40px;
-    margin-bottom: 50px;
-  }
-
-  .section-margin {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
   /* Buttons */
-  .btn-purple {
+  .btn-primary {
     @include button($primaryBright, $black, $primary, $white);
   }
 
-  .btn-red {
+  .btn-secondary {
     @include button($secondaryBright, $black, $secondary, $white);
   }
 
-  .btn-transparent {
-    @include button($white, $primary, $primary, $primary);
-  }
 
   /* Links */
-  .link-green {
+  .link-primary {
     @include link ($primaryBright, $primary);
-    /*
-    color: $primary;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: none;
-    i.fa-angle-right {
-      position: relative;
-      bottom: -2px;
-      color: $secondaryBright;
-      font-size: 1.2em;
-    }
-    &:hover {
-      color: $primaryBright;
-      i.fa-angle-right {
-        color: $secondary;
-      }
-    }
-    */
   }
   
-  .link-red {
+  .link-secondary {
     @include link ($secondaryBright, $secondary);
   }
+
 
   /* Text color */
   .c-green {
@@ -140,10 +99,10 @@
     h2 {
       width: 100%;
       background: $black;
-      border-bottom: 1px solid $lightGrey;
-      padding: 5px;
-      padding-top: 10px;
-      padding-left: 30px;
+      border-bottom: 0.1rem solid $lightGrey;
+      padding: 0.5rem;
+      padding-top: 1rem;
+      padding-left: 3rem;
     }
 
     i.fa-angle-right{

@@ -73,7 +73,7 @@
           <a href="#" type="button" :class="saveButton" v-on:click="saveUpdatedBooking">Spara</a>
           <a href="#" type="button" :class="saveButton" v-on:click.prevent="cancelEdit">Avbryt</a>
           <a href="#" type="button" :class="editButton" v-on:click.prevent="editBooking(content, index)">Redigera</a>
-          <a href="#" type="button" class="btn-red" @click="getIdToDelete(content.id)">Ta bort</a>
+          <a href="#" type="button" class="btn-secondary" @click="getIdToDelete(content.id)">Ta bort</a>
         </div>
       </div>
     </div>
@@ -111,13 +111,13 @@
         if (this.edit) {
           return 'hidden';
         } else {
-          return 'btn-purple';
+          return 'btn-primary';
         }
       },
       
       saveButton: function () {
         if (this.edit) {
-          return 'btn-purple';
+          return 'btn-primary';
         } else {
           return 'hidden';
         }
