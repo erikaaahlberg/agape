@@ -17,7 +17,7 @@ $desktop-large-width: 1340px;
 }
 
 @mixin ipad-max {
-	@media (max-width: #{$desktop-small-width}) {
+	@media (max-width: #{$ipad-width}) {
 		@content;
 	}
 }
@@ -29,7 +29,7 @@ $desktop-large-width: 1340px;
 }
 
 @mixin small-max {
-	@media (max-width: #{$desktop-medium-width}) {
+	@media (max-width: #{$desktop-small-width}) {
 		@content;
 	}
 }
@@ -41,12 +41,12 @@ $desktop-large-width: 1340px;
 }
 
 @mixin medium-max {
-	@media (max-width: #{$desktop-large-width}) {
+	@media (max-width: #{$desktop-medium-width}) {
 		@content;
 	}
 }
 
-@mixin desktop-large {
+@mixin large-min {
 	@media (min-width: #{$desktop-large-width}) {
 		@content;
 	}

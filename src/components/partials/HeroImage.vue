@@ -26,7 +26,11 @@
 
   #hero-img {  
     .hero.is-fullheight-with-navbar {
-      min-height: calc(80vh - 2.25rem);
+      min-height: calc(80vh - 3.25rem);
+
+      @include ipad-min {
+        min-height: calc(90vh - 3.25rem);
+      }
     }
     
     .hero-body{

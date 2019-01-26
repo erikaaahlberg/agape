@@ -191,4 +191,8 @@
   @include medium-min {
     padding: 5rem;
   }
+
+  @include large-min {
+    padding: 6rem;
+  }
 }

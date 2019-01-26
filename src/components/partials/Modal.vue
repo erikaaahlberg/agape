@@ -28,6 +28,7 @@
 <script>
   export default {
     name: 'Modal',
+
     methods: {
       close() {
         this.$emit('close');
@@ -38,7 +39,6 @@
 </script>
 
 <style lang="scss">
-  @import '@/scss/_main.scss';
   @import '@/scss/_main.scss';
 
   /* Transitions */
@@ -82,13 +82,16 @@
     justify-content: space-between;
     align-items: center;
     padding-right: 3rem;
+
     h1 {
       font-size: 2rem;
-      letter-spacing: 1.5px;
+      letter-spacing: 0.15rem;
       font-weight: 600;
     }
-    button.btn-close {
+
+    .btn-close {
       @include flex-center;
+      justify-content: center;
       width: 3vw;
       height: 3vw;
       border: none;
@@ -98,7 +101,8 @@
       font-weight: bold;
       color: $white;
       background: $secondary;
-      @media (max-width: 992px) {
+
+      @include small-max {
         font-size: 1rem;
         min-width: 1.5rem;
         min-height: 1.5rem;
@@ -107,17 +111,18 @@
   }
 
   .modal-body {
-    position: relative;
-    padding: 20px 10px;
-    @include section;
+    //position: relative;
+    //padding: 20px 10px;
+    @include container-padding;
   }
 
     .modal-confirm-question,
     .modal-error-message {
     text-align: center;
     padding: 0px;
+
     p {
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       font-size: 1.3rem;
     }
     button {

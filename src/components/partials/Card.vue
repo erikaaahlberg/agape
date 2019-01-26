@@ -60,6 +60,7 @@
 
     @include ipad-min {
       flex-basis: 50%;
+      min-height: 0vw;
     }
   }
 
@@ -89,25 +90,5 @@
       margin-bottom: 0rem;
     }
   }
-
-  /*.wrapper-card-text {
-    padding: 3rem;
-    text-align: center;
-    
-    @include ipad-min {
-      padding: 4rem 5rem 1rem 5rem;
-    }
-  }*/
-
-
-      
 }
-
-/*.card-img {
-    background: transparent;
-    display: flex;
-    flex-wrap: wrap;
-
-
-}*/
 </style>

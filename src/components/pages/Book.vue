@@ -99,10 +99,10 @@
       @include section;
 
       .form-container {
-        border-top: 0.1rem solid $primaryBright;
+        @include container-padding;
+        border-bottom: 0.1rem solid $lightGrey;
         background: $black;
-        padding: 5rem;
-        max-width: 100rem;
+        max-width: 60rem;
         margin: auto;
       }
     }

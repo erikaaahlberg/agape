@@ -54,6 +54,10 @@
 .services-part{
   @include section;
 
+  @include medium-min {
+    padding: 0rem;
+  }
+
   .intro-text{
     p{
       text-transform: uppercase;
@@ -70,29 +74,23 @@
     }
   }
 
-.wrapper-cards{
-  margin: 0rem;
+  .wrapper-cards {
+    margin: 0rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
+    @include medium-min {
+      flex-wrap: nowrap;
+    }
+
     .card-icon {
-      flex-basis: 80%;
-      margin: auto;
-      border-bottom: 0.1rem solid $white;
+      flex-basis: 100%;
 
-        &:nth-child(1){
-          margin-bottom: 3rem;
-        }
-
-        &:nth-child(2){
-          margin-bottom: 3rem;
-        }
-
-        &:nth-child(3){
-          margin-bottom: 3rem;
-        }
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
 
       @include ipad-min{
         flex-basis: 45%;
@@ -103,12 +101,16 @@
       }
 
       @include medium-min {
-        border: none;
         flex-basis: 25%;
         margin: 0rem;
-        margin-bottom: 0px !important;
-        border-top: 0.1rem solid $white;
-        border-bottom: 0.1rem solid $white; 
+
+        &:nth-child(1){
+          margin-bottom: 0rem;
+        }
+        
+        &:nth-child(2){
+          margin-bottom: 0rem;
+        }
       }
     }
   }

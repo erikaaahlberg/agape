@@ -33,6 +33,7 @@
 
     .flex-wrapper {
       width: 100%;
+      border-bottom: 0.1rem solid $lightGrey;
 
       .bg-img {
         width: 100%;
@@ -44,16 +45,16 @@
 
         @include ipad-min {
           flex-basis: 50%;
+          min-height: 0vw;
         }
       }
 
       .body-wrapper {
         background: $black;
         flex-basis: 100%;
-        padding: 3rem;
+        @include container-padding;
 
         h3 {
-          text-align: center;
           margin-bottom: 1rem;
           padding-bottom: 0px;
 
@@ -64,7 +65,7 @@
 
         @include ipad-min {
           flex-basis: 50%;
-          padding: 5rem;
+          //padding: 5rem;
         }
       }
 

@@ -88,7 +88,7 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
         	}
         }
         
-        @include small-max {
+        @include ipad-max {
 
 					&:nth-child(1){
 						border-bottom: 0.1rem solid $black;

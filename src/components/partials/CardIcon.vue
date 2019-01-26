@@ -1,5 +1,5 @@
 <template>
-  <div class="card card-icon">
+  <div class="card-icon">
     <div class="container-text">
       <i :class="icon"></i>
       <router-link to="/services">
@@ -22,7 +22,6 @@
       'icon'
     ]
   };
-
 </script>
 
 <style lang="scss">
@@ -30,6 +29,10 @@
 
   .card-icon {
     background: $black;
+    max-width: 35rem;
+		margin: auto;
+		padding: 3rem;
+    border-bottom: 0.1rem solid $lightGrey;
 
     i.top {
       font-size: 3rem;
@@ -38,35 +41,25 @@
     }
 
     .container-text {
-			//padding: 3rem 3rem 1.5rem 3rem;
-			@include container-padding;
-			max-width: 30rem;
+			//padding: 3rem;
+			//@include container-padding;
     	margin: auto;
       text-align: center;
 
-      /*@include medium-min {
+			/*@include ipad-min {
+
+			}
+      @include medium-min {
         padding: 2rem 3rem;
       }*/
 
       a {
         margin: 0rem;
 
-        @include small-max {
-					display: block;
-					margin: 0rem;
-        }
-
         h3 {
 					@include link($primaryBright, $primary);
           padding: 0rem;
           margin: 0rem;
-          //margin-bottom: 1rem;
-          //color: $primaryBright;
-
-          /*&:hover {
-            color: $primary;
-            transition: color .2s ease-in-out;
-          }*/
         }
       }
 
@@ -77,15 +70,5 @@
 				margin-top: 1rem;
       }
     }
-
-    /*.btn-wrapper {
-      text-align: center;
-      padding: 1rem 3rem 5rem 3rem;
-
-      a {
-        display: inline-block;
-        margin: 0.5rem;
-      }
-    }*/
   }
 </style>

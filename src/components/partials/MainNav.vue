@@ -52,11 +52,6 @@
 <style lang="scss">
 @import '@/scss/_main.scss';
 
-
-  .hero.is-fullheight-with-navbar {
-    min-height: calc(80vh - 2.25rem);
-  }
-
   /* Mobile menu*/
   .navbar-menu {
     background: rgba(29, 29, 29, 0.749);
@@ -94,7 +89,7 @@
     width: 10vw;
 
     @include ipad-min {
-      max-height: 8rem;
+      max-width: 6rem;
     }
   }
 
@@ -110,7 +105,7 @@
     }
     
     @include ipad-min {
-      padding: 2rem 5rem;
+      padding: 1rem 5rem;
     }
   }
 
