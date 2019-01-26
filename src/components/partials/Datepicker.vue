@@ -50,11 +50,11 @@
 
 #datepicker {  
   .datepicker {
-    .icon i {
-      color: $mediumGrey;
-		  padding-right: 1rem;
-		  padding-bottom: 0.5rem;
-    }
+		.icon i {
+		color: $mediumGrey;
+		padding-right: 0.5rem;
+		padding-bottom: 0.3rem;
+		}
 
     .dropdown-content {
       background: $black;

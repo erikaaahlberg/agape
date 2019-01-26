@@ -11,8 +11,6 @@
 		required
 		:disabled="disabled">
 		</b-timepicker>
-		{{unselectable}}
-		{{disabled}}
 	</b-field>
 </template>
 
@@ -56,11 +54,10 @@
 	@import '@/scss/_main.scss';
 
 	.timepicker {		
-
 		.icon i {
 		color: $mediumGrey;
-		padding-right: 1rem;
-		padding-bottom: 0.5rem;
+		padding-right: 0.5rem;
+		padding-bottom: 0.3rem;
 		}
 
 		.dropdown-content {
