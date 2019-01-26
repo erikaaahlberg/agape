@@ -1,23 +1,16 @@
 <template>
-<section>
-      <div class="accordion-wrapper">
-          <div class="booking" 
-        :class="accordionClasses">
+  <section>
+    <div class="accordion-wrapper">
+      <div class="booking" :class="accordionClasses">
         <ul class="bookings-accordion">
-        <li v-for="date in sortedBookings" 
-        :key="date.date" 
-        class="booking-header" 
-        @click="toggleAction(date.content)">
-          {{ date.date }} 
-        </li>
+          <li v-for="date in sortedBookings" :key="date.date" class="booking-header" @click="toggleAction(date.content)">
+            {{ date.date }}
+          </li>
         </ul>
-        <single-booking 
-        :bookingContent="content" 
-        v-on:getIdToDelete="emitIdToDelete($event)"
-        v-on:saveUpdatedBooking="emitBookingToUpdate($event)"/>
+        <single-booking :bookingContent="content" v-on:getIdToDelete="emitIdToDelete($event)" v-on:saveUpdatedBooking="emitBookingToUpdate($event)" />
       </div>
-      </div>
-        
+    </div>
+
   </section>
 </template>
 <script>
@@ -63,46 +56,23 @@
 <style lang="scss">
   @import '@/scss/_main.scss';
 
-/*  .booking-content {
-    background: $black;
-    padding: 20px 50px;
-
-    ul {
-      margin-top: 20px;
-      margin-bottom: 20px;
-
-      li {
-        margin: 5px;
-
-        label {
-          letter-spacing: 1.5px;
-          font-weight: 600;
-        }
-      }
-    }
-
-    .btn-wrapper {
-      a {
-        margin-right: 5px;
-      }
-    }
-  }*/
-
   /* Vue accordion */
   .booking {
-    margin: auto; 
+    margin: auto;
     width: 100%;
     display: flex;
   }
+
   .bookings-accordion {
     flex-basis: 20%;
   }
 
   .booking-header {
-    cursor: pointer;
+		@include link ($white, $primary);
     font-size: 1.2em;
-    font-weight: 600;
-    margin-bottom: 5px;
+    /*cursor: pointer;
+    font-weight: 600;*/
+    margin-bottom: 0.5rem;
   }
 
   .booking-body {

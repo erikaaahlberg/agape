@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="single-booking-edit">
     <div class="booking-body">
       <!--ny komponent-->
       <div class="booking-content">
@@ -248,29 +248,30 @@
 <style lang="scss">
   @import '@/scss/_main.scss';
 
-  section {
+  #single-booking-edit {
     width: 100%;
 
     .booking-content {
       background: $black;
-      padding: 20px 50px;
+      padding: 2rem 5rem;
 
       ul.booking-list {
-        margin-top: 20px;
-        margin-bottom: 20px;
+        margin-top: 20rem;
+        margin-bottom: 20rem;
 
         li {
-          margin: 5px;
+          margin: 0.5rem;
           text-transform: none;
-          letter-spacing: 1.5px;
+          letter-spacing: 0.15rem;
           display: flex;
 
           label {
-            display: inline-block;
-            letter-spacing: 1.5px;
+            @include form-label;
+            /*display: inline-block;
+            letter-spacing: 1.5rem;
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 1.1em;
+            font-size: 1.1em;*/
           }
 
           .field {
@@ -278,21 +279,24 @@
             display: inline-block;
           }
 
-          .input {
+          @include form-input;
+          @include form-placeholder;
+          /*.input {
+            
             background: transparent;
             border: none;
-            margin-top: -4px;
-            margin-left: 5px;
+            margin-top: -0.4rem;
+            margin-left: 0.5rem;
             //width: 100%;
             //display: inline-block;
-            //border-bottom: 1px solid $lightGrey;
-            //border-radius: 0px;
+            //border-bottom: 1rem solid $lightGrey;
+            //border-radius: 0rem;
             color: $white;
             font-family: 'Hind', sans-serif;
-            letter-spacing: 1.5px;
-            padding: 0px;
+            letter-spacing: 1.5rem;
+            padding: 0rem;
 
-            //padding-bottom: 5px;
+            //padding-bottom: 5rem;
             &:focus {
               border-color: none;
               box-shadow: none;
@@ -300,7 +304,7 @@
 
             &--edit {
               background: black;
-              padding: 3px;
+              padding: 3rem;
               width: 100%;
             }
           }
@@ -311,41 +315,41 @@
           input:-webkit-autofill:hover,
           input:-webkit-autofill:focus {
             background: transparent;
-          }
+          }*/
 
           ::-webkit-input-placeholder {
             /* Chrome/Opera/Safari */
             color: $white;
             font-family: 'Hind', sans-serif;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.5rem;
           }
 
           ::-moz-placeholder {
             /* Firefox 19+ */
             color: $white;
             font-family: 'Hind', sans-serif;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.5rem;
           }
 
           :-ms-input-placeholder {
             /* IE 10+ */
             color: $white;
             font-family: 'Hind', sans-serif;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.5rem;
           }
 
           :-moz-placeholder {
             /* Firefox 18- */
             color: $white;
             font-family: 'Hind', sans-serif;
-            letter-spacing: 1.5px;
+            letter-spacing: 1.5rem;
           }
         }
       }
 
       .btn-wrapper {
         a {
-          margin-right: 5px;
+          margin-right: 5rem;
         }
       }
     }

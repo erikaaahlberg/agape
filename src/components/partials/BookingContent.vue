@@ -1,8 +1,8 @@
 <template>
   <section class="display-booking-content">
     <div class="booking-body" v-for="(content, index) in bookingContent" :key="content.id" :index="index">
+      <h4>{{ content.time }}</h4>
       <div class="booking-content" ref="items" :id="'booking-' + content.id">
-        <h4>{{ content.time }}</h4>
         <ul class="booking-list">
           <li>
             <label for="firstName">Namn:</label>
@@ -212,22 +212,36 @@
   .display-booking-content {
     width: 100%;
 
+    h4 {
+      @include title;
+    }
+
+    .booking-body {
+      &:not(:last-child) {
+        margin-bottom: 3rem;
+      }
+    }
+
     .booking-content {
       background: $black;
-      padding: 2rem 5rem;
+      @include container-padding;
+      max-width: 40rem;
+      //padding: 2rem 5rem;
+      border-bottom: 0.1rem solid $lightGrey;
       @include form-placeholder($white);
 
-      ul.booking-list {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
+
+      .booking-list {
 
         li {
-          margin-bottom: 0.5rem;
           text-transform: none;
-          //letter-spacing: 0.15rem;
           display: flex;
 
-          label {
+          &:not(:last-child) {
+          margin-bottom: 1.2rem;
+          }
+
+           label {
             @include form-label;
             margin-right: 0.5rem;
           }
@@ -251,6 +265,8 @@
       }
 
       .btn-wrapper {
+        margin-top: 2rem;
+
         a {
           margin-right: 0.5rem;
         }

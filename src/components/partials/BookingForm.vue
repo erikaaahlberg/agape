@@ -344,7 +344,6 @@
 						.pagination-next i {
 							color: $secondary;
 						}
-
 					}
 
 					.datepicker-cell {
