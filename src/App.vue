@@ -43,7 +43,7 @@
 
   /* Margins and paddings */
   .content-wrapper {
-    margin: 30px;
+    margin: 3rem;
   }
 
   /* Buttons */

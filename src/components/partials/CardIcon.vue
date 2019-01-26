@@ -1,14 +1,14 @@
 <template>
-  <div class="card card-black">
-    <div class="wrapper-card-text">
+  <div class="card card-icon">
+    <div class="container-text">
       <i :class="icon"></i>
       <router-link to="/services">
         <h3>{{ title }}</h3>
       </router-link>
       <p>
         {{ description }}
-        <a href="#" class="link-primary">Läs mer <i class="fas fa-angle-right"></i></a>
       </p>
+      <a href="#" class="link-primary">Läs mer <i class="fas fa-angle-right c-red"></i></a>
     </div>
   </div>
 </template>
@@ -28,58 +28,64 @@
 <style lang="scss">
   @import '@/scss/_main.scss';
 
-  .card-black {
+  .card-icon {
     background: $black;
 
-    i {
-      font-size: 3em;
-      color: $white;
-      margin-bottom: 20px;
+    i.top {
+      font-size: 3rem;
+			color: $white;
+			margin-bottom: 1rem;
     }
 
-    .wrapper-card-text {
-      padding: 30px;
+    .container-text {
+			//padding: 3rem 3rem 1.5rem 3rem;
+			@include container-padding;
+			max-width: 30rem;
+    	margin: auto;
       text-align: center;
 
-      @include medium-min {
-        padding: 20px 30px;
-      }
+      /*@include medium-min {
+        padding: 2rem 3rem;
+      }*/
 
       a {
-        margin: 0px;
+        margin: 0rem;
 
-        @media (max-width: 1200px) {
-          display: block;
+        @include small-max {
+					display: block;
+					margin: 0rem;
         }
 
         h3 {
-          padding: 0px;
-          margin: 0px;
-          margin-bottom: 10px;
-          color: $primaryBright;
+					@include link($primaryBright, $primary);
+          padding: 0rem;
+          margin: 0rem;
+          //margin-bottom: 1rem;
+          //color: $primaryBright;
 
-          &:hover {
+          /*&:hover {
             color: $primary;
             transition: color .2s ease-in-out;
-          }
+          }*/
         }
       }
 
       p {
         text-transform: none;
-        color: $lightGrey;
+				color: $lightGrey;
+				margin-bottom: 1.5rem;
+				margin-top: 1rem;
       }
     }
 
-    .btn-wrapper {
+    /*.btn-wrapper {
       text-align: center;
-      padding: 10px 30px 50px 30px;
+      padding: 1rem 3rem 5rem 3rem;
 
       a {
         display: inline-block;
-        margin: 5px;
+        margin: 0.5rem;
       }
-    }
+    }*/
   }
-
 </style>

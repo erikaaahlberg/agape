@@ -56,18 +56,22 @@
 #services-page{
   .services-wrapper{
     width: 100%;
+    
     @include ipad-min {
       display: flex;
       flex-wrap: wrap;
     }
+
     .text-wrapper {
       flex-basis: 100%;
       background: $black;
       padding: 3rem;
+
       @include ipad-min {
         flex-basis: 50%;
         padding: 5rem;
       }
+
       h3{      
         font-size: 2rem;
         color: $white;
@@ -75,16 +79,19 @@
         border-bottom: 0.7rem solid black;
         display: inline-block;
         margin-bottom: 1.5rem;
+
         @include ipad-min {
           display: none;
         }
       }
     }
-    .service-title{
+    .service-title {
         display: none;
+
       @include ipad-min {
         @include flex-center;
         flex-basis: 50%;
+        
         h3{
           font-size: 2.5rem;
           color: $white;

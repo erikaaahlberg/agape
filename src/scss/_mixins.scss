@@ -47,9 +47,9 @@
 
   i.fa-angle-right {
     position: relative;
-    bottom: -0.2rem;
+    bottom: -0.1rem;
     color: $secondary;
-    font-size: 0.12rem;
+    font-size: 1.2rem;
   }
 
   &:hover {
@@ -152,6 +152,7 @@
   }
 }
 
+
 /* Grid */
 @mixin flex-center {
   display: -webkit-box;
@@ -163,6 +164,7 @@
   -ms-flex-line-pack: center;
       align-content: center;
 }
+
 
 /* Margins and paddings */
 @mixin section {
@@ -180,13 +182,13 @@
 }
 
 @mixin container-padding {
-  padding: 3rem 2rem;
+  padding: 3rem;
 
   @include ipad-min {
-    padding: 4rem 3rem;
+    padding: 4rem;
   }
 
   @include medium-min {
-    padding: 6rem 5rem;
+    padding: 5rem;
   }
 }

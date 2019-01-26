@@ -23,6 +23,7 @@
 
 <script>
   import CardIcon from '@/components/partials/CardIcon';
+
   export default {
     name: 'ServicesPart',
     data () {
@@ -34,10 +35,10 @@
           img4: require('@/assets/images/card-image1.jpg')
         },
         icons: {
-          icon1: 'fas fa-child',
-          icon2: 'far fa-eye',
-          icon3: 'fas fa-burn',
-          icon4: 'fas fa-bullseye'
+          icon1: 'fas fa-child top',
+          icon2: 'far fa-eye top',
+          icon3: 'fas fa-burn top',
+          icon4: 'fas fa-bullseye top'
         }
       }
     },
@@ -45,68 +46,69 @@
 			'service-card': CardIcon
     }
   };
-
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_main.scss';
 
 .services-part{
   @include section;
+
   .intro-text{
     p{
       text-transform: uppercase;
-      padding: 50px 30px 10px 30px;
+      padding: 5rem 3rem 1rem 3rem;
       text-align: center;
-      font-size: 1.5em;
+      font-size: 1.5rem;
       margin: auto;
       width: 90%;
+
       @include ipad-min{
         width: 80%;
-        max-width: 700px;
+        max-width: 70rem;
       }
     }
   }
+
 .wrapper-cards{
-  margin: 0px;
+  margin: 0rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 
-    .card-black {
+    .card-icon {
       flex-basis: 80%;
       margin: auto;
-      border: 1px solid $white;
+      border-bottom: 0.1rem solid $white;
 
         &:nth-child(1){
-          margin-bottom: 30px;
+          margin-bottom: 3rem;
         }
 
         &:nth-child(2){
-          margin-bottom: 30px;
+          margin-bottom: 3rem;
         }
 
         &:nth-child(3){
-          margin-bottom: 30px;
+          margin-bottom: 3rem;
         }
 
       @include ipad-min{
         flex-basis: 45%;
 
         &:nth-child(3){
-          margin-bottom: 0px;
+          margin-bottom: 0rem;
         }
       }
 
       @include medium-min {
         border: none;
         flex-basis: 25%;
-        margin: 0px;
+        margin: 0rem;
         margin-bottom: 0px !important;
-        border-top: 1px solid $white;
-        border-bottom: 1px solid $white; 
+        border-top: 0.1rem solid $white;
+        border-bottom: 0.1rem solid $white; 
       }
     }
   }

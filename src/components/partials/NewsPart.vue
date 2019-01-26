@@ -15,6 +15,7 @@
 
 <script>
   import Card from '@/components/partials/Card.vue';
+
   export default {
     name: 'NewsPart',
     data () {
@@ -42,15 +43,6 @@
   .wrapper-news-cards{
     width: 100%;
     text-align: center;
-
-    .card-transparent {
-      margin: 50px auto;
-      width: 100%;
-
-      @include ipad-min{
-        width: 80%;
-      }
-    }
   }
 }
 </style>
