@@ -8,12 +8,8 @@
 </template>
 
 <script>
-  import {
-    fetchBookings
-  } from '@/functions/fetching/getRequests.js';
-  import {
-    fetchBookedDates
-  } from '@/functions/fetching/getRequests.js';
+  import { fetchBookings } from '@/functions/fetching/getRequests.js';
+  import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
   import DisplayBookings from '@/components/partials/DisplayBookings.vue';
 
   export default {
@@ -21,13 +17,16 @@
       return {
         sortedBookings: []
       }
-    },
+		},
+		
     components: {
       'bookings': DisplayBookings
-    },
+		},
+		
     mounted: function () {
       this.sortBookings();
-    },
+		},
+		
     methods: {
       sortBookings: function () {
         /* Fetch booked dates and all bookings to create a new array of object sorted by dates */
@@ -37,11 +36,11 @@
 
             fetchBookings()
               .then((fetchedBookings) => {
-                //this.updateBooking(fetchedBookings[0]);
                 this.sortedBookings = this.addContentToObject(dateObject, fetchedBookings);
               });
           });
-      },
+			},
+			
       addContentToObject: function (dateObject, bookingContent) {
         for (let i = 0; i < dateObject.length; i++) {
           for (let a = 0; a < bookingContent.length; a++) {
@@ -51,7 +50,8 @@
           }
         }
         return dateObject;
-      },
+			},
+			
       sortByDate: function (dateArray) {
         return dateArray.map((row) => {
           return {
@@ -59,7 +59,8 @@
             content: []
           }
         });
-      },
+			},
+			
       deleteBooking: function ($event) {
         const requestBody = {
           id: $event,
@@ -81,9 +82,9 @@
           .then(() => {
             this.sortBookings();
           });
-      },
+			},
+			
       updateBooking: function ($event) {
-        console.log($event);
         const requestBody = {
           id: $event.id,
           firstName: $event.firstName,
