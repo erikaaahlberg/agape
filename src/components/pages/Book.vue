@@ -11,12 +11,8 @@
 
 <script>
   import BookingForm from '@/components/partials/BookingForm.vue';
-  import {
-    fetchBookings
-  } from '@/functions/fetching/getRequests.js';
-  import {
-    fetchBookedDates
-  } from '@/functions/fetching/getRequests.js';
+  import { fetchBookings } from '@/functions/recurringFetch.js';
+  import { fetchBookedDates } from '@/functions/recurringFetch.js';
 
   const bodyParser = require('body-parser');
   let cors = require('cors');
@@ -52,13 +48,14 @@
       filterBookedTimes: function (duplicateDates, bookedDates) {
         console.log('hej');
       },
+
       findFullyBookedDates: function (bookedDates) {
         console.log('hej');
       },
+
       createBooking: function ($event) {
-        console.log($event);
         let requestBody = $event;
-        console.log(requestBody);
+
         fetch("http://localhost:3001/bookings/create", {
             method: 'POST',
             headers: {
@@ -71,7 +68,6 @@
             redirect: 'follow'
           })
           .then((response) => {
-            //const { name, date, session } = this.state.booking;
 
             if (response.ok) {
               const message =

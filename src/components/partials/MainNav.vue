@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar main-navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <img :src="logoUrl" id="logotype-img-top">
       <a role="button" 
@@ -15,11 +15,11 @@
     </div>
     <div class="navbar-menu" v-bind:class="{'is-active': isOpen}">
       <div class="navbar-end">
-        <p class="flex-center link-wrapper"><router-link to="/" class="navbar-item is-tab">Start</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/about" class="navbar-item is-tab">Om Agape</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/services" class="navbar-item is-tab">Tjänster</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link></p>
-        <p class="flex-center link-wrapper"><router-link to="/book" class="navbar-item is-tab">Boka</router-link></p>
+        <p class="link-wrapper"><router-link to="/" class="navbar-item is-tab">Start</router-link></p>
+        <p class="link-wrapper"><router-link to="/about" class="navbar-item is-tab">Om Agape</router-link></p>
+        <p class="link-wrapper"><router-link to="/services" class="navbar-item is-tab">Tjänster</router-link></p>
+        <p class="link-wrapper"><router-link to="/contact" class="navbar-item is-tab">Kontakt</router-link></p>
+        <p class="link-wrapper"><router-link to="/book" class="navbar-item is-tab">Boka</router-link></p>
         <p :class="adminLinkClasses"><router-link to="/admin" class="navbar-item is-tab">Admin</router-link></p>
       </div>
     </div>
@@ -52,6 +52,10 @@
 <style lang="scss">
 @import '@/scss/_main.scss';
 
+nav.navbar {
+  @include left-right-padding;
+}
+
   /* Mobile menu*/
   .navbar-menu {
     background: rgba(29, 29, 29, 0.749);
@@ -71,17 +75,21 @@
       position: absolute;
       width: 100%;
       left: 0;
-      padding-top: 4rem;
+      padding-top: 2rem;
+      padding-bottom: 1rem;
     }
 
+  
 		.navbar-item{
 			&.is-active{
-				border-bottom: 0.3rem solid $secondary;
+        border-bottom: 0.3rem solid $secondary;
+        display: block;
 			}
     }
     
 		.link-wrapper{
-			margin-bottom: 1.5rem;
+			margin-top: 1rem;
+			margin-bottom: 1rem;
 		}
   }
 
@@ -115,6 +123,10 @@
 
   .navbar-end {
     text-align: center;
+
+    @media (min-width: 1088px) {
+      @include flex-center;
+    }
   }
 
   .navbar-item {
@@ -126,28 +138,27 @@
 			letter-spacing: 0.15rem;
 			margin: auto;
 			min-height: 0rem;
-			display: inline-block;
-      border-bottom: none;
+      display: inline-block;
+			padding-bottom: 0.2rem;
+      border-bottom: 0.3rem solid transparent;
       
       &:hover{
         color: $primary;
         transition: all .2s ease-in-out;
         text-align: center;
-        border-bottom: none;
+			padding-bottom: 0.2rem;
+      border-bottom: 0.3rem solid transparent;
       }
     }
     
 		&.router-link-exact-active{
-			border-bottom: 0.3rem solid $secondary;
-			padding-bottom: 0.2rem;
-			padding-top: 0.7rem;
+      border-bottom: 0.3rem solid $secondary;
+      transition: border-bottom .3s ease-in-out;
 			
 		}
 		&.router-link-exact-active:hover{
 			color: $white;
 			border-bottom: 0.3rem solid $secondary;
-			padding-bottom: 0.2rem;
-			padding-top: 0.7rem;
 		}
   }
 

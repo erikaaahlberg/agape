@@ -11,6 +11,7 @@ html {
 body,
 html {
   height: 100%;
+  width: 100%;
   background: black;
   font-family: 'Hind', sans-serif;
   color: $white;
@@ -44,4 +45,10 @@ p {
   line-height: 1.8em;
   letter-spacing: 0.15rem;
   font-size: 1rem;
+  hyphens: auto;
+}
+
+li {
+  @include flex-center;
+  flex-wrap: wrap;
 }

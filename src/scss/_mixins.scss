@@ -14,6 +14,33 @@
   i.fa-angle-right {
     color: $secondary;
   }
+
+  @include left-right-padding;
+/*
+  @include mobile-max {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include mobile-max {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include ipad-min {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include medium-min {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  @include large-min {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }*/
 }
 
 /* Buttons and links */
@@ -64,7 +91,7 @@
 @mixin form-input {
   background: transparent;
   border: none;
-  border-bottom: 0.1rem solid $lightGrey;
+  border-bottom: 0.07rem solid $lightGrey;
   border-radius: 0rem;
   color: white;
   font-family: 'Hind', sans-serif;
@@ -76,7 +103,7 @@
   &:focus {
     outline: none;
     background: transparent;
-    border-bottom: 0.1rem solid $white;
+    border-bottom: 0.07rem solid $white;
     box-shadow: none;
     border-radius: 0rem;
   }          
@@ -121,6 +148,16 @@
   text-transform: uppercase;
 	text-align: left;
   font-weight: 600;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+
+  @include ipad-min {
+    &:not(:last-child) {
+      margin-bottom: 0rem;
+    }
+  }
 }
 
 @mixin form-placeholder($color) {
@@ -184,6 +221,11 @@
 
 @mixin container-padding {
   padding: 3rem;
+  max-width: 160rem;
+
+  @include mobile-max {
+    padding: 1.5rem;
+  }
 
   @include ipad-min {
     padding: 4rem;
@@ -196,4 +238,28 @@
   @include large-min {
     padding: 6rem;
   }
+}
+
+@mixin left-right-padding {
+  max-width: 1600rem;
+
+  @include mobile-max {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @include ipad-min {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  @include medium-min {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+
+  /*@include large-min {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }*/
 }

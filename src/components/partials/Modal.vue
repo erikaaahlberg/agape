@@ -1,10 +1,7 @@
 <template>
   <transition name="modal-fade">
     <div class="modal-backdrop">
-      <div class="modal" 
-			role="dialog" 
-			aria-labelledby="modalHeader" 
-			aria-describedby="modalDescription">
+      <div class="modal" role="dialog" aria-labelledby="modalHeader" aria-describedby="modalDescription">
         <div class="slots-wrapper">
           <header class="modal-header" id="modalHeader">
             <slot name="title">
@@ -68,23 +65,33 @@
     display: flex;
     flex-direction: column;
   }
-    .slots-wrapper {
-      background: black;
-      z-index: 40;
-      width: 60%;
-      height: auto;
-      overflow-x: auto;
-    }
+
+  .slots-wrapper {
+    background: black;
+    z-index: 40;
+		width: 80%;
+		max-width: 50rem;
+    height: auto;
+		overflow-x: auto;
+		
+		@include ipad-min {
+			width: 60%;
+		}
+
+		/*@include medium-min {
+			width: 40%;
+		}*/
+  }
 
   .modal-header {
     @include title;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 3rem;
+    //padding-right: 3rem;
 
     h1 {
-      font-size: 2rem;
+      font-size: 1.7rem;
       letter-spacing: 0.15rem;
       font-weight: 600;
     }
@@ -92,8 +99,8 @@
     .btn-close {
       @include flex-center;
       justify-content: center;
-      width: 3vw;
-      height: 3vw;
+      width: 2.5vw;
+			height: 2.5vw;
       border: none;
       border-radius: 0.5rem;
       font-size: 1.2rem;
@@ -112,10 +119,104 @@
 
   .modal-body {
     @include container-padding;
-  }
+    @include form-placeholder($mediumGrey);
+    @include form-select;
+    text-align: center;
 
-    .modal-confirm-question,
-    .modal-error-message {
+    p {
+      font-size: 1.3rem;
+    }
+
+    .btn-wrapper {
+			text-align: center;
+			margin-top: 0.5rem;
+
+			@include ipad-min {
+				margin-top: 1rem;
+			}
+
+			@include small-min {
+				margin-top: 1.5rem;
+			}
+
+			button {
+				margin-right: 0.4rem;
+			}
+		}
+		
+    button {
+      margin: 0.2rem;
+    }
+
+    input {
+      @include form-input;
+    }
+
+    li {
+			@include flex-center;
+			flex-wrap: wrap;
+
+      &:not(:last-child) {
+        margin-bottom: 1.2rem;
+			}
+
+			p {
+				/*text-transform: none;
+				letter-spacing: 0.15rem;
+				font-size: 1.1rem;*/
+				color: $lightGrey;
+			}
+    }
+
+      label {
+        @include form-label;
+        margin-right: 0.5rem;
+      }
+
+      .field {
+        width: 100%;
+        display: inline-block; 
+
+        &:not(:last-child) {
+          margin-bottom: 2.5rem;
+        }
+      }
+    
+
+
+  /*.login-form {
+    @include form-placeholder($mediumGrey);
+
+    input {
+      @include form-input;
+    }
+
+    .label {
+      @include form-label;
+      margin-bottom: 0rem;
+
+      &:not(:last-child) {
+        margin-bottom: 0rem;
+      }
+    }
+
+    .field {
+      
+      &:not(:last-child) {
+        margin-bottom: 2rem;
+      }
+    }
+    button {
+      display: block;
+      margin: auto;
+    }
+  }*/
+
+	}
+
+/*
+  .modal-confirm-question,
+  .modal-error-message {
     text-align: center;
     padding: 0rem;
 
@@ -127,5 +228,5 @@
       margin: 0.2rem;
     }
   }
-
+*/
 </style>

@@ -8,8 +8,8 @@
 </template>
 
 <script>
-  import { fetchBookings } from '@/functions/fetching/getRequests.js';
-  import { fetchBookedDates } from '@/functions/fetching/getRequests.js';
+  import { fetchBookings } from '@/functions/recurringFetch.js';
+  import { fetchBookedDates } from '@/functions/recurringFetch.js';
   import DisplayBookings from '@/components/partials/DisplayBookings.vue';
 
   export default {

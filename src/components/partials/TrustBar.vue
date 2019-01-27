@@ -50,9 +50,13 @@
 			}
 
 			.lists-wrapper {
-				flex-basis: 60%;
+				flex-basis: 40%;
 				padding: 0rem;
 				flex-direction: row;
+
+				@include mobile-max {
+					display: none;
+				}
 
 				@include ipad-min {
 					flex-basis: 30%;
@@ -61,6 +65,7 @@
 				.list-wrapper {
 					@include flex-center;
 					display: inline-block;
+
 
 					.contact-list,
 					.social-media-list {
@@ -91,8 +96,21 @@
 			}
 
 			.buttons-wrapper {
-				flex-basis: 50%;
+				flex-basis: 70%;
 				text-align: right;
+
+				@include mobile-max {
+					flex-basis: 100%;
+				}
+
+				.logout-link-wrapper,
+				.login-link-wrapper {
+					width: 100%;	
+
+					@include mobile-max {
+					text-align: center;
+					}
+				}
 
 				.status {
 					text-transform: none;

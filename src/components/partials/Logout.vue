@@ -12,51 +12,23 @@
         <p class="question">
           Är du säker på att du vill logga ut?
         </p>
-        <button type="button" class="btn-primary" @click="logout">
-          Fortsätt
-        </button>
-        <button type="button" class="btn-secondary" @click="closeModal">
-          Avbryt
-        </button>
+
+        <div class="btn-wrapper">
+          <button type="button" class="btn-primary" @click="logout">
+            Fortsätt
+          </button>
+          <button type="button" class="btn-secondary" @click="closeModal">
+            Avbryt
+          </button>
+        </div>
       </div>
     </modal>
   </div>
 </template>
+
 <script>
   import Modal from '@/components/partials/Modal.vue';
-  //import Router from '@/router/index.js';
 
-  /*
-  ,
-      data() {
-        return {
-          isModalVisible: false,
-        };
-      },
-      methods: {
-        showModal() {
-          this.isModalVisible = true;
-        },
-        closeModal() {
-          this.isModalVisible = false;
-        }
-      }
-       
-       
-           
-      <button
-        type="button"
-        class="btn"
-        @click="showModal"
-      >
-        Open Modal!
-      </button>
-
-      <modal
-        v-show="isModalVisible"
-        @close="closeModal"
-      />
-      */
   export default {
     components: {
       'modal': Modal
@@ -84,7 +56,6 @@
         this.isModalVisible = false;
       },
       logout: function () {
-        console.log('hejdååå');
         this.$session.destroy();
         this.closeModal();
         this.$router.go();
@@ -96,8 +67,8 @@
 <style lang="scss">
   @import '@/scss/_main.scss';
 
-  .logout-link-wrapper {
+  /*.logout-link-wrapper {
     display: inline-block;
-  }
+  }*/
 
 </style>

@@ -54,49 +54,17 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
       .footer-column {
         flex-basis: 100%;
         padding: 2rem;
-        text-align: center;
+        text-align: center;  
 
-        h5 {
-          display: inline-block;
-          margin-bottom: 1rem;
-          border-bottom: 0.5rem solid $white;
-        } 
-
-        li {
-          margin-bottom: 0.5rem;
-
-          a {
-            @include link($black, $white);
-          }
-        }
-
-        p {
-					text-align: center;
-					max-width: 35rem;
-					margin: auto;
-        }
-        .social-media-list {
-					li {
-
-          display: inline-block;
-
-            i {
-              font-size: 2rem;
-              margin: 0.3rem;
-              margin-top: 0rem;
-            }
-        	}
-        }
-        
-        @include ipad-max {
-
+        @include small-max {
 					&:nth-child(1){
-						border-bottom: 0.1rem solid $black;
+						border-bottom: 0.08rem solid $black;
 					}
 					&:nth-child(2){
-						border-bottom: 0.1rem solid $black;
+						border-bottom: 0.08rem solid $black;
 					}
-				}
+        }
+        
         @include small-min {
 					padding: 3rem;
           flex-basis: 33%;
@@ -109,6 +77,43 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
           &:nth-child(3) {
             text-align: right;
           }
+        }
+
+        h5 {
+          display: inline-block;
+          margin-bottom: 1rem;
+          border-bottom: 0.5rem solid $white;
+        } 
+
+        li {
+          margin-bottom: 0.5rem;
+
+          @include small-max {
+            display: block;
+          }
+
+          a {
+            @include link($black, $white);
+          }
+        }
+
+        p {
+					text-align: center;
+					max-width: 35rem;
+					margin: auto;
+        }
+
+        ul.social-media-list {
+          
+					li {
+          display: inline-block;
+
+            i {
+              font-size: 2rem;
+              margin: 0.3rem;
+              margin-top: 0rem;
+            }
+        	}
         }
       }
     }

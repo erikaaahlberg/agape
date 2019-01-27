@@ -56,8 +56,7 @@
 </script>
 <style lang="scss">
   @import '@/scss/_main.scss';
-  @import '@/scss/_main.scss';
-
+/*
   .login-form {
     @include form-placeholder($mediumGrey);
 
@@ -75,7 +74,6 @@
     }
 
     .field {
-      
       &:not(:last-child) {
         margin-bottom: 2rem;
       }
@@ -84,5 +82,6 @@
       display: block;
       margin: auto;
     }
-  }
+  }*/
+
 </style>

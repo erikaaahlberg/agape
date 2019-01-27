@@ -226,7 +226,6 @@
       background: $black;
       @include container-padding;
       max-width: 40rem;
-      //padding: 2rem 5rem;
       border-bottom: 0.1rem solid $lightGrey;
       @include form-placeholder($white);
 

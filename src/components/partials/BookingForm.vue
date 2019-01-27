@@ -10,7 +10,7 @@
 					</b-select>
 				</b-field>
 			</div>
-
+{{booking}}
 			<label class="label title-label">Fyll i dina personliga uppgifter</label>
 			<b-field>
 				<b-input placeholder="Förnamn" type="text" v-model="booking.firstName" use-html5-validation required></b-input>
@@ -56,33 +56,39 @@
 
 		<modal v-show="confirmModal.isVisible" @close="confirmModal.isVisible = false">
 	  <h1 slot="title"><i class="fas fa-angle-right"></i> Bekräfta bokning</h1>>
-			<div class="modal-confirm" slot="body">
-				<ul>
+			<div class="modal-confirm-booking" slot="body">
+				<ul class="booking-list">
 					<li>
-						<label class="label title-label">Förnamn: </label>  {{ this.booking.firstName }}
+						<label class="label title-label">Förnamn: </label> <p>{{ this.booking.firstName }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Efternamn: </label>  {{ this.booking.lastName }}
+						<label class="label title-label">Efternamn: </label> <p>{{ this.booking.lastName }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Email: </label> {{ this.booking.email }}
+						<label class="label title-label">Email: </label> <p>{{ this.booking.email }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Telefon: </label> {{ this.booking.phone }}
+						<label class="label title-label">Telefon: </label> <p>{{ this.booking.phone }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Kategori: </label> {{ this.booking.category }}
+						<label class="label title-label">Kategori: </label> <p>{{ this.booking.category }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Beskrivning: </label> {{ this.booking.description }}
+						<label class="label title-label">Beskrivning: </label> <p>{{ this.booking.description }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Datum: </label> {{ this.booking.date }}
+						<label class="label title-label">Datum: </label> <p>{{ this.booking.date }}</p>
 					</li>
 					<li>
-						<label class="label title-label">Tid: </label> {{ this.booking.time }}
+						<label class="label title-label">Tid: </label> <p>{{ this.booking.time }}</p>
 					</li>
 				</ul>
+
+				<div class="btn-wrapper">
+					<button type="button" class="btn-primary" v-on:click="emitBooking">Skicka</button>
+					<button type="button" class="btn-secondary" v-on:click.prevent="confirmModal.isVisible = false">Avbryt</button>
+				</div>
+
 			</div>
 		</modal>
 
@@ -90,7 +96,7 @@
 </template>
 
 <script>
-	import { fetchBookingsByDate } from '@/functions/fetching/getRequests.js';
+	import { fetchBookingsByDate } from '@/functions/recurringFetch.js';
   import Datepicker from './DatePicker.vue';
   import Timepicker from './Timepicker.vue';
 	import Modal from './Modal.vue';
@@ -127,12 +133,12 @@
 				},
 
 				errorModal: {
-			isVisible: false,
+					isVisible: false,
 					message: ''
 				},
 
 				confirmModal: {
-			isVisible: false
+					isVisible: false
 				}
 			}
 		},
@@ -199,34 +205,39 @@
 						return false; 
 				 	} else { 
 						 return true; 
-						 }
+					}
 				}
 			},
+
 			checkIfEmpty: function () {
 				const values = Object.values(this.booking);
-				
-				const missingInput = values.map((row) => {
-					if (!row || row === '') {
-						return row;
-					}
-				});
 
-				return missingInput;
+				let empty = 0;
+
+				for (let i = 0; i < values.length; i++) {
+					if (values[i] === '' || values[i] === null) {
+						empty++;
+					}	
+				}
+
+				return empty;
 			},
+
 			checkBooking: function (e) {
 				e.preventDefault();
-				/* Getting the empty values to continue on this function and print what inputs are missing */
-				const isEmpty = this.checkIfEmpty();
 
-				if (isEmpty) {
-					this.errorModal.message = 'Alla fält måste vara ifyllda!';
+				const missingInput = this.checkIfEmpty();
+
+				if (missingInput !== 0) {
+					this.errorModal.message = `Hoppsan, det finns ${missingInput} tomma fält. Alla fält måste vara ifyllda!`;
 					this.errorModal.isVisible = true;
 				} else {
 					this.confirmModal.isVisible = true;
 				}
 			},
-			sendBooking: function () {
-				this.$emit('sendBooking', this.booking);
+
+			emitBooking: function () {
+				this.$emit('emitBooking', this.booking);
 			}
 		}
 	}
@@ -378,6 +389,37 @@
 					}
 				}
 			}
+
+			/* .modal-confirm-booking {
+				 li {
+          text-transform: none;
+					display: flex;
+					letter-spacing: 0.15rem;
+					color: $lightGrey;
+
+          &:not(:last-child) {
+          margin-bottom: 1.2rem;
+          }
+
+           label {
+            @include form-label;
+            margin-right: 0.5rem;
+          }
+
+          .field {
+            width: 100%;
+            display: inline-block;
+					}
+        }
+					
+				.btn-wrapper {
+					margin-top: 2rem;
+					text-align:center;
+					button {
+						margin-right: 0.5rem;
+					}
+				}
+			 }*/
 		}
 	
 

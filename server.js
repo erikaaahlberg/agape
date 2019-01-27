@@ -58,18 +58,20 @@ app.get('/bookings', (req, res) => {
   connection.query(
     `SELECT * FROM bookings`,
     (error, data, fields) => {
+      
       if (error) {
-        console.log('Failed to get all bookings: ' + error);
-        res.sendStatus(500); // Show internal server error
-        res.end();
-        return;
+        res.send({
+          success: false,
+          message: 'Något har gått fel och inga bokningar hämtades, vänligen försök igen.'
+        });
       }
+
       const bookings = data.map((row) => {
         return row;
       });
+
       res.json(bookings);
       res.end();
-      //res.send(data);
     }
   );
 });
@@ -77,21 +79,24 @@ app.get('/bookings', (req, res) => {
 /* Get all bookings from one date, in the future admin is supposed to be able to get bookings by date */
 app.get('/bookings/date/:date', (req, res) => {
   const date = req.params.date;
+
   connection.query(
     `SELECT * FROM bookings WHERE date = ?`, [date],
     (error, data, fields) => {
+
       if (error) {
-        console.log('Failed to get all bookings: ' + error);
-        res.sendStatus(500); // Show internal server error
-        res.end();
-        return;
+        res.send({
+          success: false,
+          message: 'Något har gått fel och inga bokningar hämtades, vänligen försök igen.'
+        });
       }
+
       const bookings = data.map((row) => {
         return row;
       });
+
       res.json(bookings);
       res.end();
-      //res.send(data);
     }
   );
 });
@@ -102,18 +107,20 @@ app.get('/bookings/dates', (req, res) => {
   connection.query(
     `SELECT DISTINCT date FROM bookings order by date DESC`,
     (error, data, fields) => {
+
       if (error) {
-        console.log('Failed to get all bookings: ' + error);
-        res.sendStatus(500); // Show internal server error
-        res.end();
-        return;
+        res.send({
+          success: false,
+          message: 'Något har gått fel och inga bokningar hämtades, vänligen försök igen.'
+        });
       }
+
       const bookings = data.map((row) => {
         return row;
       });
+      
       res.json(bookings);
       res.end();
-      //res.send(data);
     }
   );
 });
@@ -121,8 +128,6 @@ app.get('/bookings/dates', (req, res) => {
 
 /* Create booking */
 app.post('/bookings/create', (req, res) => {
-  console.log(req.body);
-
   const id = '';
   const firstName = req.body.firstName;
   const lastName = req.body.lastName;
@@ -137,14 +142,21 @@ app.post('/bookings/create', (req, res) => {
     `INSERT INTO bookings
   (id, firstName, lastName, email, phone, category, description, date, time)
   VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)`, [firstName, lastName, email, phone, category, description, date, time], (err, results, fields) => {
-      if (err) {
-        console.log('Failed to create new booking: ' + err);
-        res.sendStatus(500)
-        res.end();
-        return;
-      }
-    })
-  res.end();
+
+    if (err) {
+      res.send({
+        success: false,
+        message: 'Något har gått fel och din bokning misslyckades, vänligen försök igen.'
+      });
+    }
+
+    if (results.length > 0) {
+      res.send({
+        success: true,
+        message: `Härligt ${firstName}, din bokning har blivit genomförd. Jag kommer att kontakta dig för att bestämma en mötesplats. Vi ses ${date} kl. ${time}!`
+      });
+    }
+  })
 });
 
 
@@ -160,42 +172,47 @@ app.put('/bookings/update', (req, res) => {
   const date = req.body.date;
   const time = req.body.time;
 
-  const queryString =
-    `UPDATE bookings
-    SET firstName= ?, lastName= ?, email=?, phone=?, category= ?, description= ?,date=?, time= ?
-    WHERE id = ?`
-
   connection.query(`UPDATE bookings
   SET firstName= ?, lastName= ?, email=?, phone=?, category= ?, description= ?,date=?, time= ?
   WHERE id = ?`, [firstName, lastName, email, phone, category, description, date, time, id], (err, results, fields) => {
+
     if (err) {
-      console.log('Failed to update booking: ' + err);
-      res.sendStatus(500) // Show user internal server error
-      res.end();
-      return;
+      res.send({
+        success: false,
+        message: 'Något gick väldigt fel, inte ens Erika vet vad.'
+      });
+    }
+
+    if (results.length > 0) {
+      res.send({
+        success: true,
+        message: 'Bokningen har blivit uppdaterad.'
+      });
     }
   })
-  res.end();
 });
 
 /* Delete booking */
 app.delete('/bookings/delete', (req, res) => {
   const id = req.body.id;
-  console.log(id);
-  const queryString =
-    `DELETE from bookings
-    WHERE id = ?`
 
   connection.query(`DELETE from bookings
     WHERE id = ?`, [id], (err, results, fields) => {
+
     if (err) {
-      console.log('Failed to delete booking: ' + err);
-      res.sendStatus(500); // Show user internal server error
-      res.end();
-      return;
+      res.send({
+        success: false,
+        message: 'Något gick väldigt fel, inte ens Erika vet vad.'
+      });
+    }
+
+    if (results.length > 0) {
+      res.send({
+        success: true,
+        message: 'Bokningen har blivit raderad.'
+      });
     }
   })
-  res.end();
 });
 
 
@@ -272,13 +289,13 @@ app.post('/admin/login', (req, res) => {
   connection.query(
     `SELECT * FROM admin WHERE username = ?`, [username],
     (error, results, fields) => {
-      console.log(results);
       if (error) {
-        console.log('Det funkar inte att logga in: ' + error);
-        res.sendStatus(500); // Show user internal server error
-        res.end();
-        return;
+        res.send({
+          success: false,
+          message: 'Något gick väldigt fel, inte ens Erika vet vad.'
+        });
       }
+
       if (results.length > 0) {
         bcrypt.compare(password, results[0].password, function(err, result) {
           if (err) {

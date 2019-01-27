@@ -11,6 +11,7 @@ export function formatTimeForPostRequest (date) {
 	
 	return `${hour}:${min}`;
 }
+
 export function formatDateForPostRequest (date) {
 	const year = date.getFullYear();
 	let month = date.getMonth() + 1;
