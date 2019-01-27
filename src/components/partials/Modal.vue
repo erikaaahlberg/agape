@@ -111,15 +111,13 @@
   }
 
   .modal-body {
-    //position: relative;
-    //padding: 20px 10px;
     @include container-padding;
   }
 
     .modal-confirm-question,
     .modal-error-message {
     text-align: center;
-    padding: 0px;
+    padding: 0rem;
 
     p {
       margin-bottom: 1.5rem;

@@ -51,7 +51,7 @@
 
 			.lists-wrapper {
 				flex-basis: 60%;
-				padding: 0px;
+				padding: 0rem;
 				flex-direction: row;
 
 				@include ipad-min {
@@ -65,7 +65,7 @@
 					.contact-list,
 					.social-media-list {
 						width: 100%;
-						padding: 0px;
+						padding: 0rem;
 
 						li {
 							display: inline-block;

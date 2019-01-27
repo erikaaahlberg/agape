@@ -11,7 +11,7 @@
     <div class="container-text">
       <h3>{{ title }}</h3>
       <p>{{ description }}</p>
-        <a :href="link" class="link-primary">
+        <a :href="link" class="link-primary" target="_blank">
           Gå vidare till facebook 
           <i class="fas fa-angle-right"></i>
         </a>

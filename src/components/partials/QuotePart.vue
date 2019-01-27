@@ -32,9 +32,9 @@
         text-align: center;
 
       p{
-        max-width: 600px;
+        max-width: 50rem;
         margin: auto;
-        font-size: 1.5em;
+        font-size: 1.5rem;
         text-transform: uppercase;
       }
 
@@ -43,7 +43,7 @@
       }
 
       i{
-        margin: 10px;
+        margin: 1rem;
       }
     }
   }

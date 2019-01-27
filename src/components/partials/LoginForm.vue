@@ -67,10 +67,10 @@
 
     .label {
       @include form-label;
-      margin-bottom: 0px;
+      margin-bottom: 0rem;
 
       &:not(:last-child) {
-        margin-bottom: 0px;
+        margin-bottom: 0rem;
       }
     }
 

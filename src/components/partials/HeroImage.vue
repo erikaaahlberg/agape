@@ -20,7 +20,6 @@
   };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss">
 @import '@/scss/_main.scss';
 
@@ -50,11 +49,11 @@
 
       .container{
         position: relative;
-        margin-bottom: 30px;
-        margin-left: 30px;
+        margin-bottom: 3rem;
+        margin-left: 3rem;
 
         @include ipad-min {
-          margin-bottom: -400px;
+          margin-bottom: -40rem;
         }
       }
     }

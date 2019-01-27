@@ -99,19 +99,5 @@
   .logout-link-wrapper {
     display: inline-block;
   }
-  /*.modal-confirm-question {
-    text-align: center;
-    padding: 0px;
-    p {
-      margin-bottom: 2rem;
-    }
-    
-    button {
-      margin-right: 0.5rem;
-      &:nth-last-child() {
-      margin-right: 0rem;
-      }
-    }
-  }*/
 
 </style>

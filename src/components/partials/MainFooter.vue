@@ -99,8 +99,12 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
 				}
         @include small-min {
 					padding: 3rem;
-          flex-basis: 30%;
+          flex-basis: 33%;
           text-align: left;
+
+          &:nth-child(1) {
+            padding: 3rem 0rem 3rem 3rem;
+          }
 
           &:nth-child(3) {
             text-align: right;

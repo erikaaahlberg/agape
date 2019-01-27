@@ -56,7 +56,7 @@
 
         h3 {
           margin-bottom: 1rem;
-          padding-bottom: 0px;
+          padding-bottom: 0rem;
 
           span {
             color: $secondary;
@@ -65,7 +65,6 @@
 
         @include ipad-min {
           flex-basis: 50%;
-          //padding: 5rem;
         }
       }
 
