@@ -2,13 +2,13 @@
   <div class="list-wrapper">
     <ul class="contact-list">
       <li>
-        <a href="mailto:karl@thewisdomofaman.se">
+        <a href="mailto:karl@thewisdomofaman.se" target="_blank">
           <i class="far fa-envelope-open"></i>     
           <span class="link-title">karl@thewisdomofaman.se</span>
         </a>
       </li>
       <li>
-        <a href="tel:0760505813">
+        <a href="tel:0760505813" target="_blank">
           <i class="fas fa-mobile-alt"></i> 
           <span class="link-title">
             0760505813

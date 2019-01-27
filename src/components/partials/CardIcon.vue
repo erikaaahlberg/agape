@@ -8,7 +8,7 @@
       <p>
         {{ description }}
       </p>
-      <a href="#" class="link-primary">Läs mer <i class="fas fa-angle-right c-red"></i></a>
+      <a href="#" class="link-primary" target="_blank">Läs mer <i class="fas fa-angle-right c-red"></i></a>
     </div>
   </div>
 </template>
@@ -41,17 +41,8 @@
     }
 
     .container-text {
-			//padding: 3rem;
-			//@include container-padding;
     	margin: auto;
       text-align: center;
-
-			/*@include ipad-min {
-
-			}
-      @include medium-min {
-        padding: 2rem 3rem;
-      }*/
 
       a {
         margin: 0rem;
