@@ -10,7 +10,6 @@
 					</b-select>
 				</b-field>
 			</div>
-{{booking}}
 			<label class="label title-label">Fyll i dina personliga uppgifter</label>
 			<b-field>
 				<b-input placeholder="Förnamn" type="text" v-model="booking.firstName" use-html5-validation required></b-input>

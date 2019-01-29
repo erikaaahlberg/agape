@@ -37,11 +37,15 @@
 		width: 100%;
 		background: black;
 		padding: 0rem;
-		margin: 0rem;
+		margin: 0rem;  
+		position: sticky;
+  		top: 0;
+		z-index:100;
 
 		.trustbar-wrapper {		
 			margin: 0;
 			padding: 1rem 2rem 1rem 2rem;
+
 			@include flex-center;
 			justify-content: space-between;
 
@@ -54,13 +58,17 @@
 				padding: 0rem;
 				flex-direction: row;
 
-				@include mobile-max {
-					display: none;
+				@include mobile-portrait-max {
+					flex-basis: 65%;
 				}
 
-				@include ipad-min {
-					flex-basis: 30%;
+				@include mobile-landscape-max {
+					flex-basis: 50%;
 				}
+
+				/*@include ipad-min {
+					flex-basis: 30%;
+				}*/
 
 				.list-wrapper {
 					@include flex-center;
@@ -99,17 +107,14 @@
 				flex-basis: 70%;
 				text-align: right;
 
-				@include mobile-max {
-					flex-basis: 100%;
+				@include mobile-portrait-max {
+					flex-basis: 45%;
 				}
 
 				.logout-link-wrapper,
 				.login-link-wrapper {
 					width: 100%;	
-
-					@include mobile-max {
-					text-align: center;
-					}
+					text-align: right;
 				}
 
 				.status {
@@ -117,6 +122,10 @@
 					letter-spacing: 0.1rem;
 					margin-right: 0.5rem;
 					color: $lightGrey;
+
+					@include mobile-portrait-max {
+						display: none;
+					}
 				}
 
 				.trustbar-btn-green {

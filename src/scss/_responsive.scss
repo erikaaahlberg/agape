@@ -1,11 +1,25 @@
-$mobile-max-width: 480px;
+$mobile-max-width-portrait: 480px;
+$mobile-max-width-landscape: 667px;
 $ipad-width: 768px;
 $desktop-small-width: 992px;
 $desktop-medium-width: 1200px;
 $desktop-large-width: 1340px;
 
+
 @mixin mobile-max {
-	@media (max-width: #{$mobile-max-width}) {
+	@media (max-width: #{$mobile-max-width-portrait}) {
+		@content;
+	}
+}
+
+@mixin mobile-portrait-max {
+	@media (max-width: #{$mobile-max-width-portrait}) and (orientation: portrait) {
+		@content;
+	}
+}
+
+@mixin mobile-landscape-max {
+	@media (max-width: #{$mobile-max-width-landscape}) and (orientation: landscape) {
 		@content;
 	}
 }
