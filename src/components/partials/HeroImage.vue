@@ -1,17 +1,17 @@
 <template>
-<section id="hero-img" class="hero is-link is-fullheight-with-navbar">
-  <div class="hero-body">
-    <div class="overlay"></div>
-    <div class="container">
-      <!--
-      <h1>Karl Green</h1>
-      <h3>
-        Människa & vägledare på jorden
-      </h3>
-    -->
+  <section id="main-hero">
+    <div class="hero-img">
+      <div class="overlay"></div>
+      <div class="title-container">
+        <h1>Karl Green</h1>
+        <h3>
+          <p>Människa &</p> 
+          <p>vägledare</p> 
+          <p>på jorden</p>
+        </h3>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </template>
 
 <script>
@@ -23,22 +23,25 @@
 <style lang="scss">
 @import '@/scss/_main.scss';
 
-  #hero-img {  
-    min-height: calc(70vh - 3.25rem);
+  #main-hero {  
+    .hero-img{
+      background: url("../../assets/images/karl.jpg"); 
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      min-height: calc(70vh - 3.25rem);
 
-    @include small-min {
-      min-height: calc(90vh - 3.25rem);
-    }
+      @include small-min {
+        min-height: calc(90vh - 3.25rem);
+      }
 
       @include mobile-portrait-max {
         min-height: calc(50vh - 3.25rem);
       }
     
-    .hero-body{
-      background: url("../../assets/images/karl.jpg"); 
-      background-size: cover;
-      position: relative;
-      text-align: left;
+      /*@include mobile-landscape-max {
+        min-height: calc(70vh - 3.25rem);
+      }*/
 
       .overlay{
         position: absolute;
@@ -49,14 +52,38 @@
         left: 0;
       } 
 
-      .container{
+      .title-container{
+        width: 50%;
         position: relative;
-        margin-bottom: 3rem;
-        margin-left: 3rem;
+        top: 1rem;
+        left: 1rem;
+        opacity: 0.2;
+        color: rgb(177, 168, 134);
 
         @include ipad-min {
-          //margin-bottom: -40rem;
+          left: 2rem;
         }
+
+        h1 {
+          font-size: 2rem;
+          letter-spacing: 0.12rem;
+          @include ipad-min {
+            font-size: 3rem;
+          }
+        }
+        p {
+          font-size: 1.3rem;
+          margin-top: 0rem;
+          font-weight: 400;
+          text-transform: uppercase;
+          letter-spacing: 0.12rem;
+
+          @include ipad-min {
+            margin-top: 1rem;
+            font-size: 2rem;
+          }
+        }
+
       }
     }
   }
