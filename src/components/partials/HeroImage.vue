@@ -8,7 +8,7 @@
       <h3>
         Människa & vägledare på jorden
       </h3>
-      -->
+    -->
     </div>
   </div>
 </section>
@@ -24,13 +24,15 @@
 @import '@/scss/_main.scss';
 
   #hero-img {  
-    .hero.is-fullheight-with-navbar {
-      min-height: calc(80vh - 3.25rem);
+    min-height: calc(70vh - 3.25rem);
 
-      @include ipad-min {
-        min-height: calc(90vh - 3.25rem);
-      }
+    @include small-min {
+      min-height: calc(90vh - 3.25rem);
     }
+
+      @include mobile-portrait-max {
+        min-height: calc(50vh - 3.25rem);
+      }
     
     .hero-body{
       background: url("../../assets/images/karl.jpg"); 
@@ -53,7 +55,7 @@
         margin-left: 3rem;
 
         @include ipad-min {
-          margin-bottom: -40rem;
+          //margin-bottom: -40rem;
         }
       }
     }
