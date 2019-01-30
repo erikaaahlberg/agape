@@ -34,13 +34,15 @@
 	@import '@/scss/_main.scss';
 	
 	.trustbar {
+		//border-bottom: 0.02rem solid $black;
 		width: 100%;
-		background: black;
+		background: $secondary;
 		padding: 0rem;
 		margin: 0rem;  
 		position: sticky;
-  		top: 0;
+		top: 0;
 		z-index:100;
+		box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.44);
 
 		.trustbar-wrapper {		
 			margin: 0;
@@ -50,7 +52,7 @@
 			justify-content: space-between;
 
 			@include ipad-min {
-				padding: 1rem 3rem 0.7rem;
+				padding: 1rem 3rem 1rem;
 			}
 
 			.lists-wrapper {
@@ -71,12 +73,11 @@
 				}*/
 
 				.list-wrapper {
-					@include flex-center;
 					display: inline-block;
-
 
 					.contact-list,
 					.social-media-list {
+						@include flex-center;
 						width: 100%;
 						padding: 0rem;
 
@@ -89,7 +90,7 @@
 							}
 
 							i {
-								@include link($white, $primary);
+								@include link($black, $white);
 								font-size: 1.5rem;
 							}
 						}
@@ -128,14 +129,14 @@
 					}
 				}
 
-				.trustbar-btn-green {
-					@include button($primaryBright, $black, $primary, $white);
+				.trustbar-btn-primary {
+					@include button($white, $black, $black, $white);
 					padding: 0.1rem 1rem 0rem;
 					font-size: 1rem;
 				}
 
 				.trustbar-btn-secondary {
-					@include button($secondary, $black, $secondaryBright, $black);
+					@include button($black, $white, $white, $black);
 					padding: 0.1rem 1rem 0rem;
 					font-size: 1rem;
 				}

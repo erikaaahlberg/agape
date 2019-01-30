@@ -162,12 +162,14 @@
 
       editBooking: function (selectedBooking, selectedIndex) {
         this.edit = true;
+
         for (let i = 0; i < this.$refs.items.length; i++) {
           if (i !== selectedIndex) {
             this.hideElement(this.$refs.items[i]);
           }
         }
-        /* Set this.booking to the selected booking */
+        
+        /* Set this.booking to the selected booking to be edited */
         this.booking = {
           id: selectedBooking.id,
           firstName: selectedBooking.firstName,

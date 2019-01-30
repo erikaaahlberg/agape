@@ -44,6 +44,7 @@
 
       i{
         margin: 1rem;
+        color: $white;
       }
     }
   }

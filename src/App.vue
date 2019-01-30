@@ -30,8 +30,7 @@
   @import url('https://fonts.googleapis.com/css?family=Hind:400,600,700');
   @import '@/scss/_main.scss';
 
-  $family-sans-serif: "Hind",
-  sans-serif;
+  $hind: 'Hind', sans-serif;
 
   /* ---------- Global classes ---------- */
   /* Grid */
@@ -90,24 +89,11 @@
 
   #app {
     background: black;
-    font-family: 'Hind', sans-serif;
+    font-family: $hind;
     text-transform: uppercase;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $white;
-
-    h2 {
-      width: 100%;
-      background: $black;
-      border-bottom: 0.1rem solid $lightGrey;
-      padding: 0.5rem;
-      padding-top: 1rem;
-      padding-left: 3rem;
-    }
-
-    i.fa-angle-right{
-        color: $secondary;
-    }
   }
 
 </style>

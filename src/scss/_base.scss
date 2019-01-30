@@ -17,18 +17,32 @@ html {
   color: $white;
 }
 
-h1, 
-h2 {
-  letter-spacing: 0.2rem;
+h1 {
+	font-size: 2.7rem;
+	letter-spacing: 2rem;
   font-weight: 600;
 }
 
-h1 {
-  font-size: 2.7rem;
-}
-
 h2 {
-  font-size: 2rem;
+  font-weight: 600;
+  font-size: 2rem;   
+  letter-spacing: 0.17rem;
+  width: 100%;
+  background: $black;
+  border-bottom: 0.1rem solid $lightGrey;
+  padding: 0.5rem;
+  padding-top: 1rem;
+	padding-left: 3rem;
+	padding-right: 3rem;
+
+  i.fa-angle-right{
+      color: $secondary;
+	}
+	
+	@include mobile-max {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
 }
 
 h3,
@@ -36,7 +50,7 @@ h4,
 h5,
 h6 {
   font-size: 1.7rem;
-  letter-spacing: 0.15rem;
+  letter-spacing: 0.12rem;
   font-weight: 600;
 }
 
@@ -45,7 +59,8 @@ p {
   line-height: 1.8em;
   letter-spacing: 0.15rem;
   font-size: 1rem;
-  hyphens: auto;
+	hyphens: auto;
+	color: $lightGrey;
 }
 
 li {

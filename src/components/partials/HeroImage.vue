@@ -57,7 +57,7 @@
         position: relative;
         top: 1rem;
         left: 1rem;
-        opacity: 0.2;
+        opacity: 0.3;
         color: rgb(177, 168, 134);
 
         @include ipad-min {
@@ -65,9 +65,18 @@
         }
 
         h1 {
-          font-size: 2rem;
+          font-size: 2.1rem;
           letter-spacing: 0.12rem;
-          @include ipad-min {
+          font-weight: 400;
+          display: inline-block;
+          margin-bottom: 1rem;
+          border-bottom: 0.5rem solid rgb(177, 168, 134);
+          hyphens: none;
+
+          @include mobile-portrait-max {
+            font-size: 2rem;
+          }
+          @include small-min {
             font-size: 3rem;
           }
         }
@@ -78,8 +87,8 @@
           text-transform: uppercase;
           letter-spacing: 0.12rem;
 
-          @include ipad-min {
-            margin-top: 1rem;
+          @include small-min {
+            margin-top: 0.5rem;
             font-size: 2rem;
           }
         }

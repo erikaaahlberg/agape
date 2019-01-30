@@ -1,6 +1,6 @@
 <template>
   <div :class="logInClass">
-    <button type="button" class="trustbar-btn trustbar-btn-green" @click="showModal">
+    <button type="button" class="trustbar-btn trustbar-btn-primary" @click="showModal">
       Logga in
     </button>
     <modal v-show="isModalVisible" @close="closeModal">

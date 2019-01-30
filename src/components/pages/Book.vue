@@ -45,14 +45,6 @@
         //return duplicateDates;
         console.log(duplicateDates);
       },
-      filterBookedTimes: function (duplicateDates, bookedDates) {
-        console.log('hej');
-      },
-
-      findFullyBookedDates: function (bookedDates) {
-        console.log('hej');
-      },
-
       createBooking: function ($event) {
         let requestBody = $event;
 
@@ -68,17 +60,12 @@
             redirect: 'follow'
           })
           .then((response) => {
-
             if (response.ok) {
               const message =
                 `Tack ${requestBody.firstName} för din bokning!
-                    Varmt välkommen till Agape den ${requestBody.date} kl.${requestBody.time}!`;
-              console.log('yes');
-              //this.triggerShowModal(message, true);
+                Varmt välkommen till Agape den ${requestBody.date} kl.${requestBody.time}!`;
             } else {
               const message = "Bokningen misslyckades, försök igen.";
-              //this.triggerShowModal(message, true);
-              console.log('no');
             }
           });
       }

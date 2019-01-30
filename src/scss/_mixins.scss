@@ -16,31 +16,6 @@
   }
 
   @include left-right-padding;
-/*
-  @include mobile-max {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  @include mobile-max {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-
-  @include ipad-min {
-    padding-left: 4rem;
-    padding-right: 4rem;
-  }
-
-  @include medium-min {
-    padding-left: 5rem;
-    padding-right: 5rem;
-  }
-
-  @include large-min {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }*/
 }
 
 /* Buttons and links */
@@ -258,8 +233,8 @@
     padding-right: 5rem;
   }
 
-  /*@include large-min {
+  @include large-min {
     padding-left: 6rem;
     padding-right: 6rem;
-  }*/
+  }
 }

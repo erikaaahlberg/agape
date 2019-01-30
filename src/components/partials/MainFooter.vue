@@ -100,7 +100,8 @@ import SocialMediaList from '@/components/partials/SocialMediaList.vue';
         p {
 					text-align: center;
 					max-width: 35rem;
-					margin: auto;
+          margin: auto;
+          color: $white;
         }
 
         ul.social-media-list {
