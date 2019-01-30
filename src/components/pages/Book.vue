@@ -3,7 +3,7 @@
     <h2><i class="fas fa-angle-right"></i> Boka tid direkt</h2>
     <div class="form-wrapper">
       <div class="form-container">
-        <booking-form v-on:sendBooking="createBooking($event)" />
+        <booking-form v-on:sendBooking="createBooking($event)" :bookingStatus="bookingStatus"/>
       </div>
     </div>
   </section>
@@ -20,32 +20,18 @@
 
   export default {
     name: 'Book',
+    
     data: function () {
       return {
-        bookings: [],
-        bookingConfirm: {}
+        bookingStatus: null
       }
     },
+
     components: {
       'booking-form': BookingForm
     },
+
     methods: {
-      filterDuplicateDates: function (bookings) {
-        /* Check for bookings on the same date */
-        const duplicateDates = [];
-        const lastIndex = bookings.length - 1;
-        for (let i = 0; i < bookings.length; i++) {
-          if (i !== lastIndex) {
-            for (let p = i + 1; p < bookings.length; p++) {
-              if (bookings[i].date === bookings[p].date) {
-                duplicateDates.push(bookings[i].date);
-              }
-            }
-          }
-        }
-        //return duplicateDates;
-        console.log(duplicateDates);
-      },
       createBooking: function ($event) {
         let requestBody = $event;
 
@@ -62,7 +48,7 @@
           })
           .then(response => response.json())
             .then((confirm) => {
-              this.bookingConfirm = confirm;
+              this.bookingStatus = confirm;
           });
       }
     }

@@ -73,14 +73,11 @@
 		max-width: 50rem;
     height: auto;
 		overflow-x: auto;
+    border-bottom: 0.1rem solid $lightGrey;
 		
 		@include ipad-min {
 			width: 60%;
 		}
-
-		/*@include medium-min {
-			width: 40%;
-		}*/
   }
 
   .modal-header {

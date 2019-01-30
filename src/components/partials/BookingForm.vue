@@ -207,7 +207,8 @@
 			},
 
 			checkInput: function () {
-				this.booking.keys()
+				this.booking.keys();
+				
 				for (var key in this.booking) { 
 					if (checkIfEmpty(this.booking.key)) { 
 						return false; 
