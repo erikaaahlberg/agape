@@ -45,11 +45,13 @@
 			</div>
 		</form>
 
-		<modal v-show="errorModal.isVisible" @close="errorModal.isVisible = false">
-	  <h1 slot="title"><i class="fas fa-angle-right"></i> Error</h1>
+		<modal v-show="messageModal.isVisible" @close="messageModal.isVisible = false">
+	  <h1 slot="title"><i class="fas fa-angle-right"></i> {{ messageModal.title }}</h1>
 	  <div class="modal-error-message" slot="body">
-				<p>{{ errorModal.message }}</p>
-				<button type="button" class="btn-primary" @click="errorModal.isVisible = false">Försök igen</button>
+				<p>{{ messageModal.message }}</p>
+				<div class="btn-wrapper">
+					<button type="button" :class="messageModal.btnClass" @click="messageModal.isVisible = false">{{ messageModal.btnTitle }}</button>
+				</div>
 			</div>
 	</modal>
 
@@ -131,9 +133,12 @@
 					bookedTimes: []
 				},
 
-				errorModal: {
+				messageModal: {
 					isVisible: false,
-					message: ''
+					title: '',
+					message: '',
+					btnClass: '',
+					btnTitle: ''
 				},
 
 				confirmModal: {
@@ -141,6 +146,10 @@
 				}
 			}
 		},
+
+		props: [
+			'confirmMessage'
+		],
 
 		computed: {
 			setValue: function (value) {
@@ -228,8 +237,11 @@
 				const missingInput = this.checkIfEmpty();
 
 				if (missingInput !== 0) {
-					this.errorModal.message = `Hoppsan, det finns ${missingInput} tomma fält. Alla fält måste vara ifyllda!`;
-					this.errorModal.isVisible = true;
+					this.messageModal.title = 'Error';
+					this.messageModal.message = `Hoppsan, det finns ${missingInput} tomma fält. Alla fält måste vara ifyllda!`;
+					this.messageModal.btnClass = 'btn btn-secondary';
+					this.messageModal.btnTitle = 'Försök igen';
+					this.messageModal.isVisible = true;
 				} else {
 					this.confirmModal.isVisible = true;
 				}

@@ -22,7 +22,8 @@
     name: 'Book',
     data: function () {
       return {
-        bookings: []
+        bookings: [],
+        bookingConfirm: {}
       }
     },
     components: {
@@ -59,19 +60,13 @@
             credentials: 'omit',
             redirect: 'follow'
           })
-          .then((response) => {
-            if (response.ok) {
-              const message =
-                `Tack ${requestBody.firstName} för din bokning!
-                Varmt välkommen till Agape den ${requestBody.date} kl.${requestBody.time}!`;
-            } else {
-              const message = "Bokningen misslyckades, försök igen.";
-            }
+          .then(response => response.json())
+            .then((confirm) => {
+              this.bookingConfirm = confirm;
           });
       }
     }
   }
-
 </script>
 
 <style lang="scss">

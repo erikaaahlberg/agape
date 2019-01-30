@@ -216,71 +216,6 @@ app.delete('/bookings/delete', (req, res) => {
 });
 
 
-/* ----- Session handlers for Admin login ----- */
-/* Set session variable accessible for all functions */
-/*let currentSession;
-
-/* Check for on going session */
-/*app.get('/', (req, res) => {
-
-  currentSession = req.session;
-  //console.log(currentSession);
-  if (currentSession.username) {
-    connection.query(
-      `SELECT id, username, email 
-      FROM admin WHERE id= ?`, [currentSession.id], 
-      (err, data, fields) => {
-        if (err) {
-          console.log('Något gick fel!');
-          const response = {
-            active: false,
-            message: 'Ingen är inloggad!'
-          }; 
-          console.log(response);
-          res.json(response);
-          res.end();
-        }
-        if (data && data.length > 0) {
-          const fetchedUser = data.map((row) => {
-            return {
-              active: true,
-              id: row.id,
-              username: row.username,
-              email: row.email
-            };
-          });
-          currentSession = fetchedUser;
-          //res.send(currentSession);
-          res.json(currentSession);
-          res.end();
-        } else {
-          const response = {
-            active: false,
-            message: 'Data kunde ej hittas'
-          }; 
-          console.log(response);
-          res.json(response);
-          res.end();
-        }
-        
-        /*if (results) {
-          res.send({
-            success: true,
-            user_id: results[0].id,
-            label_name: results[0].label_name
-          });
-        } else {
-          res.send({
-            success: false
-          });
-        }
-      }
-    );
-  }
-  res.end();
-});*/
-
-
 /* Login */
 app.post('/admin/login', (req, res) => {
   const username = req.body.username;
@@ -318,7 +253,12 @@ app.post('/admin/login', (req, res) => {
             });
           }
         });
-      }
+			} else {
+				res.send({
+					success: false,
+					message: `Fel användarnamn, traj agajn!`
+				});
+			}
     }
   );
 });

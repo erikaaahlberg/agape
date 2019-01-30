@@ -29,6 +29,7 @@
       @click="emitInput">
         Logga in
       </button>
+      {{userInput}}
     </form>
   </div>
 </template>
