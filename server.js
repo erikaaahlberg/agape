@@ -26,7 +26,7 @@ app.use(express.static('public'));
 
 app.use(cors({
   origin: ["http://localhost:8080"],
-  methods:['GET','POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
@@ -58,7 +58,7 @@ app.get('/bookings', (req, res) => {
   connection.query(
     `SELECT * FROM bookings`,
     (error, data, fields) => {
-      
+
       if (error) {
         res.send({
           success: false,
@@ -118,7 +118,7 @@ app.get('/bookings/dates', (req, res) => {
       const bookings = data.map((row) => {
         return row;
       });
-      
+
       res.json(bookings);
       res.end();
     }
@@ -142,21 +142,18 @@ app.post('/bookings/create', (req, res) => {
     `INSERT INTO bookings
   (id, firstName, lastName, email, phone, category, description, date, time)
   VALUES (0, ?, ?, ?, ?, ?, ?, ?, ?)`, [firstName, lastName, email, phone, category, description, date, time], (err, results, fields) => {
+      if (err) {
+        res.send({
+          success: false,
+          message: 'Något har gått fel och din bokning misslyckades, vänligen försök igen.'
+        });
+      }
 
-    if (err) {
-      res.send({
-        success: false,
-        message: 'Något har gått fel och din bokning misslyckades, vänligen försök igen.'
-      });
-    }
-
-    if (results.length > 0) {
       res.send({
         success: true,
         message: `Härligt ${firstName}, din bokning har blivit genomförd. Jag kommer att kontakta dig för att bestämma en mötesplats. Vi ses ${date} kl. ${time}!`
       });
-    }
-  })
+    })
 });
 
 
@@ -183,12 +180,10 @@ app.put('/bookings/update', (req, res) => {
       });
     }
 
-    if (results.length > 0) {
-      res.send({
-        success: true,
-        message: 'Bokningen har blivit uppdaterad.'
-      });
-    }
+    res.send({
+      success: true,
+      message: 'Bokningen har blivit uppdaterad.'
+    });
   })
 });
 
@@ -206,12 +201,10 @@ app.delete('/bookings/delete', (req, res) => {
       });
     }
 
-    if (results.length > 0) {
       res.send({
         success: true,
         message: 'Bokningen har blivit raderad.'
       });
-    }
   })
 });
 
@@ -220,7 +213,7 @@ app.delete('/bookings/delete', (req, res) => {
 app.post('/admin/login', (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-  
+
   connection.query(
     `SELECT * FROM admin WHERE username = ?`, [username],
     (error, results, fields) => {
@@ -232,7 +225,7 @@ app.post('/admin/login', (req, res) => {
       }
 
       if (results.length > 0) {
-        bcrypt.compare(password, results[0].password, function(err, result) {
+        bcrypt.compare(password, results[0].password, function (err, result) {
           if (err) {
             res.send({
               success: false,
@@ -253,12 +246,12 @@ app.post('/admin/login', (req, res) => {
             });
           }
         });
-			} else {
-				res.send({
-					success: false,
-					message: `Fel användarnamn, traj agajn!`
-				});
-			}
+      } else {
+        res.send({
+          success: false,
+          message: `Fel användarnamn, traj agajn!`
+        });
+      }
     }
   );
 });

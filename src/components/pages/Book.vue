@@ -3,7 +3,7 @@
     <h2><i class="fas fa-angle-right"></i> Boka tid direkt</h2>
     <div class="form-wrapper">
       <div class="form-container">
-        <booking-form v-on:sendBooking="createBooking($event)" :bookingStatus="bookingStatus"/>
+        <booking-form v-on:emitBooking="createBooking($event)" :bookingStatus="bookingStatus"/>
       </div>
     </div>
   </section>
@@ -11,8 +11,6 @@
 
 <script>
   import BookingForm from '@/components/partials/BookingForm.vue';
-  import { fetchBookings } from '@/functions/recurringFetch.js';
-  import { fetchBookedDates } from '@/functions/recurringFetch.js';
 
   const bodyParser = require('body-parser');
   let cors = require('cors');
