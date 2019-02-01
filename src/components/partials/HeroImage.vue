@@ -38,10 +38,6 @@
       @include mobile-portrait-max {
         min-height: calc(50vh - 3.25rem);
       }
-    
-      /*@include mobile-landscape-max {
-        min-height: calc(70vh - 3.25rem);
-      }*/
 
       .overlay{
         position: absolute;
